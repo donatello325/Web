@@ -40,7 +40,7 @@ nav ul li a {
 }
 
 .hero-section {
-    background: url('erensio.PNG') no-repeat center center/cover;
+    background: ('erensio.PNG') no-repeat center center/cover;
     color: #fff;
     height: 100vh;
     display: flex;
