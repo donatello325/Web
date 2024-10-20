@@ -5,158 +5,79 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
 header {
-    background: #333;
-    color: #fff;
-    padding: 20px 0;
+    background-color: #333;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
 }
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.logo {
-    font-size: 2em;
-    font-weight: 700;
+header h1 {
+    margin-bottom: 1rem;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
 }
 
 nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
 }
 
-.hero-section {
-    background: url('https://fwcdn.pl/nph/875720/2020/25412_1.14.jpg') no-repeat center center/cover;
-    color: #fff;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
-.hero-section h2 {
-    font-size: 3em;
+main {
+    padding: 2rem;
 }
 
-.hero-section p {
-    font-size: 1.2em;
-    margin: 20px 0;
+section {
+    margin-bottom: 3rem;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #007BFF;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.btn:hover {
-    background: #0056b3;
-}
-
-.about-section, .services-section, .contact-section {
-    padding: 50px 0;
-    text-align: center;
-}
-
-h2 {
-    margin-bottom: 20px;
-    font-size: 2.5em;
-    font-weight: 500;
-}
-
-.service-cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.service-card {
-    background: #f4f4f4;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.contact-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.contact-section input, .contact-section textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.slider {
     width: 100%;
+    overflow: hidden;
+    margin: 2rem 0;
 }
 
-.contact-section button {
-    padding: 10px 20px;
-    background: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.slide-track {
+    display: flex;
+    animation: scroll 15s linear infinite;
 }
 
-.contact-section button:hover {
-    background: #0056b3;
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+.slide {
+    min-width: 20%;
+    transition: transform 0.5s;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 10px;
 }
 
 footer {
-    background: #333;
-    color: #fff;
-    padding: 20px 0;
+    background-color: #333;
+    color: white;
     text-align: center;
-}
-
-.socials {
-    margin-top: 10px;
-}
-
-.socials a {
-    color: #fff;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 1.5em;
-}
-
-@media (max-width: 768px) {
-    .service-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .service-card {
-        width: 90%;
-    }
-
-    .hero-section h2 {
-        font-size: 2em;
-    }
-
-    .hero-section p {
-        font-size: 1em;
-    }
+    padding: 1rem 0;
 }
