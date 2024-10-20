@@ -93,7 +93,7 @@ section {
     margin-bottom: 3rem;
 }
 
-/* Estilos específicos para el carrusel de últimos elementos votados */
+/* Estilos del deslizador */
 .slider {
     width: 100%;
     overflow: hidden;
@@ -102,27 +102,25 @@ section {
 
 .slide-track {
     display: flex;
-    width: calc(200%); /* Ancho doble para crear el bucle continuo */
-    animation: scroll 30s linear infinite; /* Animación continua */
+    width: calc(200%); /* Ancho suficiente para incluir dos conjuntos de imágenes */
+    animation: scroll 30s linear infinite; /* Animación continua en bucle */
 }
 
 @keyframes scroll {
     0% {
-        transform: translateX(0); /* Inicio */
+        transform: translateX(0); /* Inicio en la primera imagen */
     }
     100% {
-        transform: translateX(-50%); /* Desplaza a la mitad del carrusel */
+        transform: translateX(-50%); /* Desplazarse hasta la mitad (donde empieza la repetición) */
     }
 }
 
 .slide {
-    min-width: 20%; /* Cada imagen ocupa el 20% del ancho visible */
-    transition: transform 0.5s;
+    min-width: 10%; /* Cada imagen ocupa el 10% del ancho, dado que hay 10 imágenes */
 }
 
 .slide img {
     width: 100%;
-    height: auto;
     border-radius: 10px;
     object-fit: cover;
 }
