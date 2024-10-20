@@ -1,91 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Página web de prueba para ofrecer servicios profesionales.">
-    <meta name="keywords" content="servicios, desarrollo, consultoría, soporte">
-    <meta name="author" content="Tu Nombre">
-    <title>Página Web para Pruebas</title>
+    <title>Web de Votación</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMQ3l3mHfX9e5r/D5WgD4XKBBV8DXXbqeOjfR" crossorigin="anonymous">
 </head>
 <body>
-
     <header>
-        <div class="container">
-            <h1 class="logo">Web de Pruebas</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>Web de Votación de Películas, Series, Libros y Más</h1>
+        <nav>
+            <ul>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#peliculas">Películas</a></li>
+                <li><a href="#series">Series</a></li>
+                <li><a href="#libros">Libros</a></li>
+                <li><a href="#comics">Cómics</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section id="home" class="hero-section">
-        <div class="container">
-            <h2>Welcome to Our Website</h2>
-            <p>Providing professional services that help you grow.</p>
-            <a href="#services" class="btn">Our Services</a>
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>We are a professional services company dedicated to delivering top-notch solutions for our clients.</p>
-        </div>
-    </section>
-
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="service-cards">
-                <div class="service-card">
-                    <h3>Consulting</h3>
-                    <p>Expert advice to help you achieve your goals.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Development</h3>
-                    <p>Custom development to bring your ideas to life.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Support</h3>
-                    <p>Ongoing support for your business needs.</p>
+    <main>
+        <section id="catalogo">
+            <h2>Últimos Elementos Votados</h2>
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="slide"><img src="img1.jpg" alt="Imagen 1"></div>
+                    <div class="slide"><img src="img2.jpg" alt="Imagen 2"></div>
+                    <div class="slide"><img src="img3.jpg" alt="Imagen 3"></div>
+                    <!-- Añadir más imágenes -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Get in touch with us for more information.</p>
-            <form id="contactForm">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
+        <section id="peliculas">
+            <h2>Películas</h2>
+            <p>Aquí se mostrarán las películas para votar...</p>
+        </section>
+
+        <section id="series">
+            <h2>Series</h2>
+            <p>Aquí se mostrarán las series para votar...</p>
+        </section>
+
+        <section id="libros">
+            <h2>Libros</h2>
+            <p>Aquí se mostrarán los libros para votar...</p>
+        </section>
+
+        <section id="comics">
+            <h2>Cómics</h2>
+            <p>Aquí se mostrarán los cómics para votar...</p>
+        </section>
+    </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 My Professional Web. All rights reserved.</p>
-            <div class="socials">
-                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
+        <p>© 2024 Web de Votación - Todos los derechos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
