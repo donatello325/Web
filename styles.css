@@ -159,3 +159,65 @@ footer {
     text-align: center;
     padding: 1rem 0;
 }
+
+/* Estilos para la ficha de cada elemento */
+.ficha-container {
+    display: flex;
+    margin: 2rem auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ficha-imagen {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.ficha-imagen img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.ficha-detalles {
+    flex: 2;
+}
+
+.ficha-detalles h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.ficha-detalles p {
+    margin: 8px 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+.ficha-detalles strong {
+    color: #333;
+}
+
+/* Ajustes generales para una ficha profesional */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem;
+}
