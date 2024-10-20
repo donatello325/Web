@@ -140,10 +140,10 @@ section {
 }
 
 .item img {
-    width: 100%;
-    height: auto;
+    width: 150px; /* Ancho fijo para todas las imágenes */
+    height: 225px; /* Altura fija para todas las imágenes (relación de aspecto 2:3) */
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: cover; /* Ajusta la imagen dentro de su contenedor sin distorsión */
 }
 
 .item p {
