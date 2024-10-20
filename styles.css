@@ -10,6 +10,7 @@ body {
     background-color: #f4f4f4;
 }
 
+/* Estilos del encabezado */
 header {
     background-color: #333;
     color: white;
@@ -126,22 +127,17 @@ section {
     object-fit: cover;
 }
 
-/* Flexbox para colocar todos los elementos en fila */
+/* Estilos para las secciones de películas, series, libros y cómics */
 .grid-container {
     display: flex;
-    flex-wrap: nowrap;  /* Asegura que los elementos no se envuelvan en una nueva línea */
-    overflow-x: auto;   /* Habilita el desplazamiento horizontal si los elementos exceden el ancho de la pantalla */
-    gap: 20px;          /* Espacio entre los elementos */
-    padding: 10px 0;
+    flex-wrap: nowrap; /* Mantener todos los elementos en una sola fila */
+    overflow-x: auto; /* Permitir el desplazamiento horizontal si es necesario */
+    gap: 20px; /* Espacio entre los elementos */
+    padding: 10px 0; /* Espaciado interno */
 }
 
-.grid-container::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento horizontal */
-}
-
-/* Cada elemento en la fila */
 .item {
-    min-width: 150px;  /* Define un ancho mínimo para cada elemento */
+    min-width: 150px; /* Tamaño mínimo de cada elemento */
     text-align: center;
 }
 
@@ -158,6 +154,7 @@ section {
     color: #333;
 }
 
+/* Estilos del pie de página */
 footer {
     background-color: #333;
     color: white;
