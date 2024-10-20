@@ -1,3 +1,4 @@
+/* Estilos generales */
 * {
     margin: 0;
     padding: 0;
@@ -49,6 +50,7 @@ section {
     margin-bottom: 3rem;
 }
 
+/* Estilos del deslizador */
 .slider {
     width: 100%;
     overflow: hidden;
@@ -57,22 +59,27 @@ section {
 
 .slide-track {
     display: flex;
-    animation: scroll 15s linear infinite;
+    width: calc(200%); /* Ancho suficiente para incluir dos conjuntos de imágenes */
+    animation: scroll 30s linear infinite; /* Animación continua en bucle */
 }
 
 @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+    0% {
+        transform: translateX(0); /* Inicio en la primera imagen */
+    }
+    100% {
+        transform: translateX(-50%); /* Desplazarse hasta la mitad (donde empieza la repetición) */
+    }
 }
 
 .slide {
-    min-width: 20%;
-    transition: transform 0.5s;
+    min-width: 10%; /* Cada imagen ocupa el 10% del ancho, dado que hay 10 imágenes */
 }
 
 .slide img {
     width: 100%;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 footer {
