@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha: El Padrino</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ficha de El Padrino</h1>
+    </header>
+
+    <main>
+        <div class="ficha-container">
+            <div class="ficha-imagen">
+                <img src="../images/el_padrino.jpg" alt="El Padrino">
+            </div>
+            <div class="ficha-detalles">
+                <h2>El Padrino (1972)</h2>
+                <p><strong>Director:</strong> Francis Ford Coppola</p>
+                <p><strong>Género:</strong> Drama, Crimen</p>
+                <p><strong>Duración:</strong> 175 minutos</p>
+                <p><strong>Sinopsis:</strong> Don Vito Corleone, patriarca de una poderosa familia mafiosa de Nueva York, organiza una fiesta en su hogar con motivo de la boda de su hija Connie. Durante la celebración, su hijo Michael, un héroe de guerra, regresa a casa, dejando claro que no tiene intención de involucrarse en los negocios familiares. Sin embargo, los problemas no tardan en aparecer cuando otros clanes intentan acabar con el poder de los Corleone.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Web de Votación - Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
