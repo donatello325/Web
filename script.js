@@ -8,3 +8,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+// Contact form submission (placeholder for functionality)
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Message sent! We will get back to you soon.');
+    this.reset(); // Resets the form
+});
