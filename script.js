@@ -1,17 +1,25 @@
-// Smooth scrolling when clicking on links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    // Selección de enlaces del menú de navegación
+    const links = document.querySelectorAll("nav ul li a");
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    links.forEach(link => {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+            const targetSection = document.querySelector(this.getAttribute("href"));
+            targetSection.scrollIntoView({ behavior: "smooth" });
         });
     });
-});
 
-// Contact form submission (placeholder for functionality)
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Message sent! We will get back to you soon.');
-    this.reset(); // Resets the form
+    // Deslizador de imágenes (catalogo)
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const totalSlides = slides.length;
+
+    function nextSlide() {
+        slides[currentSlide].style.display = "none";
+        currentSlide = (currentSlide + 1) % totalSlides;
+        slides[currentSlide].style.display = "block";
+    }
+
+    setInterval(nextSlide, 5000);
 });
