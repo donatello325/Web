@@ -127,3 +127,28 @@ footer {
     text-align: center;
     padding: 1rem 0;
 }
+
+/* Contenedor para los elementos (películas, series, libros, cómics) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Cada columna tendrá al menos 150px y ocupará el espacio disponible */
+    gap: 20px; /* Espacio entre los elementos */
+    margin-top: 20px;
+}
+
+.item {
+    text-align: center;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.item p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+}
