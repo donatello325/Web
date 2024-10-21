@@ -1,27 +1,25 @@
-/* Estilos generales */
-* {
+/* Asegurar que el body y html ocupen el 100% de la altura */
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0 auto; /* Asegura que la web esté centrada */
-    max-width: 1200px; /* Ancho máximo de la página */
-    position: relative;
 }
 
 /* Estilos del encabezado */
 header {
-    background-color: #333;
-    color: white;
-    padding: 1rem 0;
-    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Asegura que el header cubra toda la anchura */
+    background-color: #333; /* Color de fondo del encabezado */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 1; /* Para estar por encima de las imágenes laterales */
+    height: auto;
 }
 
 .header-container {
@@ -35,6 +33,7 @@ header h1 {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: white;
 }
 
 nav ul {
@@ -97,18 +96,10 @@ button[type="submit"]:hover {
     background-color: #444;
 }
 
-/* Estilos para las imágenes fijas */
-.fixed-side-images {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-}
-
+/* Imágenes laterales */
 .side-image-left, .side-image-right {
     position: fixed;
-    top: 0; /* Asegura que las imágenes laterales comiencen desde el borde superior de la ventana */
+    top: 0; /* Asegura que empiecen desde el borde superior de la pantalla */
     width: 170px; /* El ancho ya definido para las imágenes laterales */
     height: 100vh; /* Altura completa del viewport */
     object-fit: cover; /* Asegura que las imágenes cubran el espacio sin distorsión */
@@ -123,16 +114,11 @@ button[type="submit"]:hover {
     right: 0;
 }
 
-/* Ajuste adicional para asegurarse de que el encabezado no deje espacios */
-header {
-    padding: 0; /* Eliminar cualquier relleno adicional del encabezado */
-    margin: 0; /* Eliminar márgenes para que el encabezado toque el borde de la pantalla */
-}
-
-/* Ajustar el contenido principal para que no se superponga con las imágenes */
+/* Ajustar el espacio en el contenido para que no se superponga con las imágenes */
 main {
-    padding-left: 200px; /* Deja espacio a la izquierda para la imagen lateral */
-    padding-right: 200px; /* Deja espacio a la derecha para la imagen lateral */
+    padding-left: 170px; /* Deja espacio a la izquierda para la imagen lateral */
+    padding-right: 170px; /* Deja espacio a la derecha para la imagen lateral */
+    margin-top: 0; /* Aseguramos que el contenido comience justo debajo del encabezado */
 }
 
 /* Estilos del pie de página */
