@@ -109,7 +109,7 @@ button[type="submit"]:hover {
 .side-image-left, .side-image-right {
     position: fixed; /* Cambia a fixed para que las imágenes se mantengan visibles mientras haces scroll */
     top: 0; /* Asegura que las imágenes comiencen desde la parte superior de la pantalla */
-    width: 170px; /* Igual al espacio reservado en el CSS */
+    width: 200px; /* Igual al espacio reservado en el CSS */
     height: 100vh; /* Altura completa de la ventana del navegador */
     object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsión */
     z-index: -1; /* Envía las imágenes detrás del contenido principal */
