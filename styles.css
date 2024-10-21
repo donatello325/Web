@@ -125,8 +125,8 @@ button[type="submit"]:hover {
 
 /* Ajustar el contenido principal para que no se superponga con las imágenes */
 main {
-    padding-left: 170px; /* Deja espacio a la izquierda para la imagen lateral */
-    padding-right: 170px; /* Deja espacio a la derecha para la imagen lateral */
+    padding-left: 200px; /* Deja espacio a la izquierda para la imagen lateral */
+    padding-right: 200px; /* Deja espacio a la derecha para la imagen lateral */
 }
 
 /* Estilos del pie de página */
