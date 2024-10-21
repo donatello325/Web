@@ -114,10 +114,12 @@ button[type="submit"]:hover {
     right: 0;
 }
 
-/* Ajustar el espacio en el contenido para que no se superponga con las imágenes */
+/* Ajustar el cuerpo de la página para hacerlo más estrecho */
 main {
-    padding-left: 170px; /* Deja espacio a la izquierda para la imagen lateral */
-    padding-right: 170px; /* Deja espacio a la derecha para la imagen lateral */
+    max-width: 900px; /* Hacer más estrecha la página para que las imágenes laterales sean más visibles */
+    margin: 0 auto; /* Centrar el contenido */
+    padding-left: 20px; /* Pequeño relleno para no tocar los lados de la ventana */
+    padding-right: 20px;
     margin-top: 0; /* Aseguramos que el contenido comience justo debajo del encabezado */
 }
 
