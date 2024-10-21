@@ -103,7 +103,8 @@ button[type="submit"]:hover {
     width: 170px; /* El ancho ya definido para las imágenes laterales */
     height: 100vh; /* Altura completa del viewport */
     object-fit: cover;
-    z-index: -1;
+    z-index: 0; /* Dejar las imágenes detrás del contenido */
+    display: block; /* Asegurar que las imágenes se muestren */
 }
 
 .side-image-left {
@@ -116,11 +117,13 @@ button[type="submit"]:hover {
 
 /* Ajustar el cuerpo de la página para hacerlo más estrecho */
 main {
-    max-width: 800px; /* Hacer más estrecho el contenido para dejar más espacio a los lados */
+    max-width: 900px; /* Hacer más estrecho el contenido para dejar más espacio a los lados */
     margin: 0 auto;
     padding-left: 0;
     padding-right: 0;
     margin-top: 0;
+    z-index: 1; /* Asegurar que el contenido esté por encima de las imágenes laterales */
+    position: relative;
 }
 
 /* Estilos del pie de página */
