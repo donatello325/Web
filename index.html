@@ -8,276 +8,183 @@
 </head>
 <body>
     <header>
-        <h1>Web de Votación de Películas, Series, Libros y Más</h1>
-        <nav>
-            <ul>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#peliculas">Películas</a></li>
-                <li><a href="#series">Series</a></li>
-                <li><a href="#libros">Libros</a></li>
-                <li><a href="#comics">Cómics</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <h1>Web de Votación de Películas, Series, Libros y Más</h1>
+            <nav>
+                <ul>
+                    <li><a href="#catalogo">Catálogo</a></li>
+                    <li><a href="#peliculas">Películas</a></li>
+                    <li><a href="#series">Series</a></li>
+                    <li><a href="#libros">Libros</a></li>
+                    <li><a href="#comics">Cómics</a></li>
+                </ul>
+            </nav>
+        </div>
 
         <!-- Buscador -->
-    <div class="search-container">
-        <form id="search-form">
-            <input type="text" id="search-input" placeholder="Buscar...">
-            <button type="submit">Buscar</button>
-        </form>
-    </div>
-        
+        <div class="search-container">
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Buscar...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
     </header>
 
     <main>
-        
-        <section id="catalogo">
-    <h2>Últimos Elementos Votados</h2>
-    <div class="slider">
-        <div class="slide-track">
-            <!-- Aquí están las imágenes que se mostrarán en el carrusel -->
-            <div class="slide"><img src="img1.jpg" alt="Imagen 1"></div>
-            <div class="slide"><img src="img2.jpg" alt="Imagen 2"></div>
-            <div class="slide"><img src="img3.jpg" alt="Imagen 3"></div>
-            <div class="slide"><img src="img4.jpg" alt="Imagen 4"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 5"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 6"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 7"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 8"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 9"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 10"></div>
-
-            <!-- Duplicamos las imágenes para crear el efecto de bucle infinito -->
-            <div class="slide"><img src="img1.jpg" alt="Imagen 1"></div>
-            <div class="slide"><img src="img2.jpg" alt="Imagen 2"></div>
-            <div class="slide"><img src="img3.jpg" alt="Imagen 3"></div>
-            <div class="slide"><img src="img4.jpg" alt="Imagen 4"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 5"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 6"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 7"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 8"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 9"></div>
-            <div class="slide"><img src="img5.jpg" alt="Imagen 10"></div>
+        <div class="fixed-side-images">
+            <img src="imagen1.jpg" alt="Imagen Lateral 1" class="side-image-left">
+            <img src="imagen2.jpg" alt="Imagen Lateral 2" class="side-image-right">
         </div>
-    </div>
-</section>
+
+        <section id="catalogo">
+            <h2>Últimos Elementos Votados</h2>
+            <div class="slider">
+                <div class="slide-track">
+                    <!-- Aquí están las imágenes que se mostrarán en el carrusel -->
+                    <div class="slide"><img src="img1.jpg" alt="Imagen 1"></div>
+                    <div class="slide"><img src="img2.jpg" alt="Imagen 2"></div>
+                    <div class="slide"><img src="img3.jpg" alt="Imagen 3"></div>
+                    <div class="slide"><img src="img4.jpg" alt="Imagen 4"></div>
+                    <div class="slide"><img src="img5.jpg" alt="Imagen 5"></div>
+                    <!-- Duplicamos las imágenes para crear el efecto de bucle infinito -->
+                    <div class="slide"><img src="img1.jpg" alt="Imagen 1"></div>
+                    <div class="slide"><img src="img2.jpg" alt="Imagen 2"></div>
+                    <div class="slide"><img src="img3.jpg" alt="Imagen 3"></div>
+                </div>
+            </div>
+        </section>
 
         <section id="peliculas">
-    <h2>Películas</h2>
-    <div class="grid-container">
-        <div class="item">
-            <a href="fichas/el_padrino.html">
-            <img src="https://pics.filmaffinity.com/the_godfather-488102675-mmed.jpg" alt="El Padrino">
-            </a>
-            <p>El Padrino</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/the_dark_knight-102763119-mmed.jpg" alt="El Caballero Oscuro">
-            <p>El Caballero Oscuro</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/forrest_gump-212765827-mmed.jpg" alt="Forrest Gump">
-            <p>Forrest Gump</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/gladiator-331143379-mmed.jpg" alt="Gladiador">
-            <p>Gladiador</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/titanic-321994924-mmed.jpg" alt="Titanic">
-            <p>Titanic</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/the_matrix-155050517-mmed.jpg" alt="Matrix">
-            <p>Matrix</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/star_wars-166209019-mmed.jpg" alt="Star Wars: Una Nueva Esperanza">
-            <p>Star Wars: Una Nueva Esperanza</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/jurassic_park-187298880-mmed.jpg" alt="Jurassic Park">
-            <p>Jurassic Park</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/the_lord_of_the_rings_the_fellowship_of_the_ring-952398002-mmed.jpg" alt="El Señor de los Anillos: La Comunidad del Anillo">
-            <p>El Señor de los Anillos: La Comunidad del Anillo</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/the_avengers-439499921-mmed.jpg" alt="Los Vengadores">
-            <p>Los Vengadores</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/pulp_fiction-210382116-mmed.jpg" alt="Pulp Fiction">
-            <p>Pulp Fiction</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/la_la_land-262021831-mmed.jpg" alt="La La Land">
-            <p>La La Land</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/the_lion_king-983881776-mmed.jpg" alt="El Rey León">
-            <p>El Rey León</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/interstellar-366875261-mmed.jpg" alt="Interstellar">
-            <p>Interstellar</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/schindler_s_list-473662617-mmed.jpg" alt="La Lista de Schindler">
-            <p>La Lista de Schindler</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/avatar-208925608-mmed.jpg" alt="Avatar">
-            <p>Avatar</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/david_and_lisa_tv-313604803-mmed.jpg" alt="El Silencio de los Inocentes">
-            <p>El Silencio de los Inocentes</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/the_shining-453129380-mmed.jpg" alt="El Resplandor">
-            <p>El Resplandor</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/rocky-253483905-mmed.jpg" alt="Rocky">
-            <p>Rocky</p>
-        </div>
-        <div class="item">
-            <img src="https://pics.filmaffinity.com/inception-652954101-mmed.jpg" alt="Inception">
-            <p>Inception</p>
-        </div>
-    </div>
-</section>
+            <h2>Películas</h2>
+            <div class="grid-container">
+                <div class="item">
+                    <a href="fichas/el_padrino.html">
+                    <img src="https://pics.filmaffinity.com/the_godfather-488102675-mmed.jpg" alt="El Padrino">
+                    </a>
+                    <p>El Padrino</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/the_dark_knight-102763119-mmed.jpg" alt="El Caballero Oscuro">
+                    <p>El Caballero Oscuro</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/forrest_gump-212765827-mmed.jpg" alt="Forrest Gump">
+                    <p>Forrest Gump</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/gladiator-331143379-mmed.jpg" alt="Gladiador">
+                    <p>Gladiador</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/titanic-321994924-mmed.jpg" alt="Titanic">
+                    <p>Titanic</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/the_matrix-155050517-mmed.jpg" alt="Matrix">
+                    <p>Matrix</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/star_wars-166209019-mmed.jpg" alt="Star Wars: Una Nueva Esperanza">
+                    <p>Star Wars: Una Nueva Esperanza</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/jurassic_park-187298880-mmed.jpg" alt="Jurassic Park">
+                    <p>Jurassic Park</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/the_lord_of_the_rings_the_fellowship_of_the_ring-952398002-mmed.jpg" alt="El Señor de los Anillos: La Comunidad del Anillo">
+                    <p>El Señor de los Anillos: La Comunidad del Anillo</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/the_avengers-439499921-mmed.jpg" alt="Los Vengadores">
+                    <p>Los Vengadores</p>
+                </div>
+                <div class="item">
+                    <img src="https://pics.filmaffinity.com/pulp_fiction-210382116-mmed.jpg" alt="Pulp Fiction">
+                    <p>Pulp Fiction</p>
+                </div>
+            </div>
+        </section>
 
-<section id="series">
-    <h2>Series</h2>
-    <div class="grid-container">
-        <div class="item">
-            <img src="img_serie1.jpg" alt="Breaking Bad">
-            <p>Breaking Bad</p>
-        </div>
-        <div class="item">
-            <img src="img_serie2.jpg" alt="Game of Thrones">
-            <p>Game of Thrones</p>
-        </div>
-        <div class="item">
-            <img src="img_serie3.jpg" alt="Friends">
-            <p>Friends</p>
-        </div>
-        <div class="item">
-            <img src="img_serie4.jpg" alt="Stranger Things">
-            <p>Stranger Things</p>
-        </div>
-        <div class="item">
-            <img src="img_serie5.jpg" alt="The Mandalorian">
-            <p>The Mandalorian</p>
-        </div>
-        <div class="item">
-            <img src="img_serie6.jpg" alt="The Office">
-            <p>The Office</p>
-        </div>
-        <div class="item">
-            <img src="img_serie7.jpg" alt="The Crown">
-            <p>The Crown</p>
-        </div>
-        <div class="item">
-            <img src="img_serie8.jpg" alt="Sherlock">
-            <p>Sherlock</p>
-        </div>
-        <div class="item">
-            <img src="img_serie9.jpg" alt="Black Mirror">
-            <p>Black Mirror</p>
-        </div>
-        <div class="item">
-            <img src="img_serie10.jpg" alt="Narcos">
-            <p>Narcos</p>
-        </div>
-        <div class="item">
-            <img src="img_serie11.jpg" alt="The Walking Dead">
-            <p>The Walking Dead</p>
-        </div>
-        <div class="item">
-            <img src="img_serie12.jpg" alt="The Boys">
-            <p>The Boys</p>
-        </div>
-        <div class="item">
-            <img src="img_serie13.jpg" alt="Better Call Saul">
-            <p>Better Call Saul</p>
-        </div>
-        <div class="item">
-            <img src="img_serie14.jpg" alt="Dark">
-            <p>Dark</p>
-        </div>
-        <div class="item">
-            <img src="img_serie15.jpg" alt="House of Cards">
-            <p>House of Cards</p>
-        </div>
-        <div class="item">
-            <img src="img_serie16.jpg" alt="Peaky Blinders">
-            <p>Peaky Blinders</p>
-        </div>
-        <div class="item">
-            <img src="img_serie17.jpg" alt="True Detective">
-            <p>True Detective</p>
-        </div>
-        <div class="item">
-            <img src="img_serie18.jpg" alt="Rick and Morty">
-            <p>Rick and Morty</p>
-        </div>
-        <div class="item">
-            <img src="img_serie19.jpg" alt="Fargo">
-            <p>Fargo</p>
-        </div>
-        <div class="item">
-            <img src="img_serie20.jpg" alt="The Witcher">
-            <p>The Witcher</p>
-        </div>
-    </div>
-</section>
+        <section id="series">
+            <h2>Series</h2>
+            <div class="grid-container">
+                <div class="item">
+                    <img src="img_serie1.jpg" alt="Breaking Bad">
+                    <p>Breaking Bad</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie2.jpg" alt="Game of Thrones">
+                    <p>Game of Thrones</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie3.jpg" alt="Friends">
+                    <p>Friends</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie4.jpg" alt="Stranger Things">
+                    <p>Stranger Things</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie5.jpg" alt="The Mandalorian">
+                    <p>The Mandalorian</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie6.jpg" alt="The Office">
+                    <p>The Office</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie7.jpg" alt="The Crown">
+                    <p>The Crown</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie8.jpg" alt="Sherlock">
+                    <p>Sherlock</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie9.jpg" alt="Black Mirror">
+                    <p>Black Mirror</p>
+                </div>
+                <div class="item">
+                    <img src="img_serie10.jpg" alt="Narcos">
+                    <p>Narcos</p>
+                </div>
+            </div>
+        </section>
 
-<section id="libros">
-    <h2>Libros</h2>
-    <div class="grid-container">
-        <div class="item">
-            <img src="img_libro1.jpg" alt="Cien años de soledad">
-            <p>Cien años de soledad</p>
-        </div>
-        <div class="item">
-            <img src="img_libro2.jpg" alt="Don Quijote de la Mancha">
-            <p>Don Quijote de la Mancha</p>
-        </div>
-        <div class="item">
-            <img src="img_libro3.jpg" alt="1984">
-            <p>1984</p>
-        </div>
-        <div class="item">
-            <img src="img_libro4.jpg" alt="El Señor de los Anillos">
-            <p>El Señor de los Anillos</p>
-        </div>
-        <div class="item">
-            <img src="img_libro5.jpg" alt="El Hobbit">
-            <p>El Hobbit</p>
-        </div>
-        <div class="item">
-            <img src="img_libro6.jpg" alt="Matar a un ruiseñor">
-            <p>Matar a un ruiseñor</p>
-        </div>
-        <div class="item">
-            <img src="img_libro7.jpg" alt="Crimen y castigo">
-            <p>Crimen y castigo</p>
-        </div>
-        <div class="item">
-            <img src="img_libro8.jpg" alt="El Principito">
-            <p>El Principito</p>
-        </div>
-
-    </main>
-
-    <footer>
-        <p>© 2024 Web de Votación - Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        <section id="libros">
+            <h2>Libros</h2>
+            <div class="grid-container">
+                <div class="item">
+                    <img src="img_libro1.jpg" alt="Cien años de soledad">
+                    <p>Cien años de soledad</p>
+                </div>
+                <div class="item">
+                    <img src="img_libro2.jpg" alt="Don Quijote de la Mancha">
+                    <p>Don Quijote de la Mancha</p>
+                </div>
+                <div class="item">
+                    <img src="img_libro3.jpg" alt="1984">
+                    <p>1984</p>
+                </div>
+                <div class="item">
+                    <img src="img_libro4.jpg" alt="El Señor de los Anillos">
+                    <p>El Señor de los Anillos</p>
+                </div>
+                <div class="item">
+                    <img src="img_libro5.jpg" alt="El Hobbit">
+                    <p>El Hobbit</p>
+                </div>
+                <div class="item">
+                    <img src="img_libro6.jpg" alt="Matar a un ruiseñor">
+                    <p>Matar a un ruiseñor</p>
+                </div>
+                <div class="item">
+                    <img src="img_libro7.jpg" alt="Crimen y castigo">
+                    <p>Crimen y castigo</p>
+                </div>
+                <div class="item">
+                    <img src="img_libro8.jpg" alt="El Principito">
+                    <p>El Principito</p>
+                </div>
+            </div
