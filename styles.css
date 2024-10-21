@@ -107,25 +107,26 @@ button[type="submit"]:hover {
 }
 
 .side-image-left, .side-image-right {
-    position: absolute;
+    position: fixed; /* Cambia a fixed para que las imágenes se mantengan visibles mientras haces scroll */
+    top: 0; /* Asegura que las imágenes comiencen desde la parte superior de la pantalla */
     width: 170px; /* Igual al espacio reservado en el CSS */
     height: 100vh; /* Altura completa de la ventana del navegador */
     object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsión */
-    top: 0; /* Para que la imagen se pegue a la parte superior de la pantalla */
+    z-index: -1; /* Envía las imágenes detrás del contenido principal */
 }
 
 .side-image-left {
-    left: 0;
+    left: 0; /* Alinea la imagen al borde izquierdo de la pantalla */
 }
 
 .side-image-right {
-    right: 0;
+    right: 0; /* Alinea la imagen al borde derecho de la pantalla */
 }
 
-/* Ajustar el espacio en el contenido para las imágenes laterales */
+/* Ajustar el contenido principal para que no se superponga con las imágenes */
 main {
-    padding-left: 170px; /* Para dejar espacio para las imágenes laterales */
-    padding-right: 170px;
+    padding-left: 170px; /* Deja espacio a la izquierda para la imagen lateral */
+    padding-right: 170px; /* Deja espacio a la derecha para la imagen lateral */
 }
 
 /* Estilos del pie de página */
