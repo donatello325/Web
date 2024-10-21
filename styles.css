@@ -107,20 +107,26 @@ button[type="submit"]:hover {
 }
 
 .side-image-left, .side-image-right {
-    position: fixed; /* Cambia a fixed para que las imágenes se mantengan visibles mientras haces scroll */
-    top: 0; /* Asegura que las imágenes comiencen desde la parte superior de la pantalla */
-    width: 200px; /* Igual al espacio reservado en el CSS */
-    height: 100vh; /* Altura completa de la ventana del navegador */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsión */
+    position: fixed;
+    top: 0; /* Asegura que las imágenes laterales comiencen desde el borde superior de la ventana */
+    width: 170px; /* El ancho ya definido para las imágenes laterales */
+    height: 100vh; /* Altura completa del viewport */
+    object-fit: cover; /* Asegura que las imágenes cubran el espacio sin distorsión */
     z-index: -1; /* Envía las imágenes detrás del contenido principal */
 }
 
 .side-image-left {
-    left: 0; /* Alinea la imagen al borde izquierdo de la pantalla */
+    left: 0;
 }
 
 .side-image-right {
-    right: 0; /* Alinea la imagen al borde derecho de la pantalla */
+    right: 0;
+}
+
+/* Ajuste adicional para asegurarse de que el encabezado no deje espacios */
+header {
+    padding: 0; /* Eliminar cualquier relleno adicional del encabezado */
+    margin: 0; /* Eliminar márgenes para que el encabezado toque el borde de la pantalla */
 }
 
 /* Ajustar el contenido principal para que no se superponga con las imágenes */
