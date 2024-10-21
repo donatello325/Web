@@ -12,13 +12,13 @@ html, body {
 header {
     padding: 0;
     margin: 0;
-    width: 100%; /* Asegura que el header cubra toda la anchura */
-    background-color: #333; /* Color de fondo del encabezado */
+    width: 100%;
+    background-color: #333;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    z-index: 1; /* Para estar por encima de las imágenes laterales */
+    z-index: 1;
     height: auto;
 }
 
@@ -99,11 +99,11 @@ button[type="submit"]:hover {
 /* Imágenes laterales */
 .side-image-left, .side-image-right {
     position: fixed;
-    top: 0; /* Asegura que empiecen desde el borde superior de la pantalla */
+    top: 0;
     width: 170px; /* El ancho ya definido para las imágenes laterales */
     height: 100vh; /* Altura completa del viewport */
-    object-fit: cover; /* Asegura que las imágenes cubran el espacio sin distorsión */
-    z-index: -1; /* Envía las imágenes detrás del contenido principal */
+    object-fit: cover;
+    z-index: -1;
 }
 
 .side-image-left {
@@ -116,11 +116,11 @@ button[type="submit"]:hover {
 
 /* Ajustar el cuerpo de la página para hacerlo más estrecho */
 main {
-    max-width: 900px; /* Hacer más estrecha la página para que las imágenes laterales sean más visibles */
-    margin: 0 auto; /* Centrar el contenido */
-    padding-left: 20px; /* Pequeño relleno para no tocar los lados de la ventana */
-    padding-right: 20px;
-    margin-top: 0; /* Aseguramos que el contenido comience justo debajo del encabezado */
+    max-width: 800px; /* Hacer más estrecho el contenido para dejar más espacio a los lados */
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
 }
 
 /* Estilos del pie de página */
@@ -141,21 +141,21 @@ footer {
 
 .slide-track {
     display: flex;
-    width: calc(200%); /* Ancho suficiente para incluir dos conjuntos de imágenes */
-    animation: scroll 30s linear infinite; /* Animación continua en bucle */
+    width: calc(200%);
+    animation: scroll 30s linear infinite;
 }
 
 @keyframes scroll {
     0% {
-        transform: translateX(0); /* Inicio en la primera imagen */
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%); /* Desplazarse hasta la mitad (donde empieza la repetición) */
+        transform: translateX(-50%);
     }
 }
 
 .slide {
-    min-width: 10%; /* Cada imagen ocupa el 10% del ancho, dado que hay 10 imágenes */
+    min-width: 10%;
 }
 
 .slide img {
@@ -167,22 +167,22 @@ footer {
 /* Estilos para las secciones de películas, series, libros y cómics */
 .grid-container {
     display: flex;
-    flex-wrap: nowrap; /* Mantener todos los elementos en una sola fila */
-    overflow-x: auto; /* Permitir el desplazamiento horizontal si es necesario */
-    gap: 20px; /* Espacio entre los elementos */
-    padding: 10px 0; /* Espaciado interno */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
 }
 
 .item {
-    min-width: 150px; /* Tamaño mínimo de cada elemento */
+    min-width: 150px;
     text-align: center;
 }
 
 .item img {
-    width: 150px; /* Ancho fijo para todas las imágenes */
-    height: 225px; /* Altura fija para todas las imágenes (relación de aspecto 2:3) */
+    width: 150px;
+    height: 225px;
     border-radius: 10px;
-    object-fit: cover; /* Ajusta la imagen dentro de su contenedor sin distorsión */
+    object-fit: cover;
 }
 
 .item p {
