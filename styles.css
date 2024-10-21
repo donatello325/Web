@@ -108,9 +108,10 @@ button[type="submit"]:hover {
 
 .side-image-left, .side-image-right {
     position: absolute;
-    top: 100px;
-    width: 150px;
-    height: auto;
+    width: 170px; /* Igual al espacio reservado en el CSS */
+    height: 100vh; /* Altura completa de la ventana del navegador */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsión */
+    top: 0; /* Para que la imagen se pegue a la parte superior de la pantalla */
 }
 
 .side-image-left {
