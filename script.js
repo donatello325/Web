@@ -3,7 +3,7 @@ let collection = JSON.parse(localStorage.getItem('collection')) || [];
 function saveCollection() {
     localStorage.setItem('collection', JSON.stringify(collection));
     updateTotalPrice();
-    updateTotalComicCount();  // Aseguramos que se actualiza el número total de cómics
+    updateTotalComicCount();
 }
 
 function updateTotalPrice() {
@@ -37,11 +37,21 @@ function updateSeriesTotalPrice(series) {
     updateTotalComicCount();
 }
 
+// Nueva función para calcular la nota media de una serie
+function calculateAverageRating(series) {
+    if (series.items.length === 0) return 0;
+
+    const totalRating = series.items.reduce((sum, item) => sum + (item.rating || 0), 0);
+    return (totalRating / series.items.length).toFixed(1); // Nota media con 1 decimal
+}
+
 function renderCollection() {
     const tbody = document.getElementById('collectionTable').querySelector('tbody');
     tbody.innerHTML = '';
+
     collection.forEach((item, index) => {
         const comicCount = item.items ? item.items.length : 0;
+        const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
 
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -50,13 +60,16 @@ function renderCollection() {
             </td>
             <td>${item.type}</td>
             <td>${item.price}€</td>
+            <td>${averageRating}</td>
             <td>
                 <button onclick="editComicPrice(${index})">Editar</button>
+                <button onclick="editComicRating(${index})">Editar Nota</button>
                 <button onclick="deleteComic(${index})">Eliminar</button>
             </td>
         `;
         tbody.appendChild(row);
     });
+
     saveCollection();
 }
 
@@ -64,9 +77,10 @@ function addComic() {
     const name = prompt('Nombre de la Serie/Tomo Único:');
     const type = prompt('Tipo (Serie/Tomo Único):');
     const price = parseFloat(prompt('Precio:'));
+    const rating = type === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
 
-    if (name && type && !isNaN(price)) {
-        const newComic = { name, type, price, items: type === 'Serie' ? [] : null };
+    if (name && type && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
+        const newComic = { name, type, price, items: type === 'Serie' ? [] : null, rating: type === 'Tomo Único' ? rating : null };
         collection.push(newComic);
         renderCollection();
     }
@@ -76,6 +90,15 @@ function editComicPrice(index) {
     const newPrice = parseFloat(prompt('Nuevo precio:'));
     if (!isNaN(newPrice)) {
         collection[index].price = newPrice;
+        renderCollection();
+    }
+}
+
+// Nueva función para editar la nota de un tomo único
+function editComicRating(index) {
+    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
+    if (newRating >= 1 && newRating <= 10) {
+        collection[index].rating = newRating;
         renderCollection();
     }
 }
@@ -97,17 +120,25 @@ function openSeries(index) {
             <td>${comic.number}</td>
             <td>${comic.name}</td>
             <td>${comic.price}€</td>
-            <td><button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button></td>
+            <td>${comic.rating || "Sin nota"}</td>
+            <td><button onclick="editSeriesComicRating(${index}, ${i})">Editar Nota</button>
+                <button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button></td>
         `;
         tbody.appendChild(row);
     });
 
     updateSeriesTotalPrice(series);
-
-    // Cargamos el color de fondo del encabezado específico de la serie
-    loadSeriesHeaderColor(series.name);
-
     document.getElementById('seriesModal').style.display = 'block';
+}
+
+// Nueva función para añadir una nota a un número de la serie
+function editSeriesComicRating(seriesIndex, comicIndex) {
+    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
+    if (newRating >= 1 && newRating <= 10) {
+        collection[seriesIndex].items[comicIndex].rating = newRating;
+        openSeries(seriesIndex); // Refresca la vista de la serie abierta
+        saveCollection();
+    }
 }
 
 function closeModal() {
@@ -121,11 +152,12 @@ function addSeriesComic() {
     const number = prompt('Número del Cómic:');
     const name = prompt('Nombre del Cómic:');
     const price = parseFloat(prompt('Precio:'));
+    const rating = parseInt(prompt('Nota (1-10):'));
 
-    if (number && name && !isNaN(price)) {
-        const newComic = { number, name, price };
+    if (number && name && !isNaN(price) && rating >= 1 && rating <= 10) {
+        const newComic = { number, name, price, rating };
         collection[index].items.push(newComic);
-        openSeries(index);
+        openSeries(index); // Refresca la vista de la serie abierta
         saveCollection();
     }
 }
