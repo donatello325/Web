@@ -103,6 +103,10 @@ function openSeries(index) {
     });
 
     updateSeriesTotalPrice(series);
+
+    // Cargamos el color de fondo del encabezado específico de la serie
+    loadSeriesHeaderColor(series.name);
+
     document.getElementById('seriesModal').style.display = 'block';
 }
 
