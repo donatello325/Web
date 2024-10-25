@@ -6,25 +6,44 @@
     <title>Colección de Cómics</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="loadHeaderColor()">
+<body onload="loadHeaderColors()">
 
 <!-- Encabezado principal dentro de un div que cambiará de color -->
 <div id="header" style="padding: 20px; text-align: center;">
     <h1 id="mainTitle">Colección de Cómics</h1>
 </div>
 
-<!-- Menú desplegable para elegir el color del fondo del encabezado -->
-<label for="colorPicker"></label>
-<select id="colorPicker" onchange="changeHeaderColor()">
+<!-- Menú desplegable para cambiar el color del fondo del encabezado principal -->
+<label for="colorPickerHeader"></label>
+<select id="colorPickerHeader" onchange="changeHeaderColor('header', 'headerColor')">
     <option value="white">Blanco</option>
     <option value="lightgray">Gris Claro</option>
     <option value="lightblue">Azul Claro</option>
     <option value="lightgreen">Verde Claro</option>
     <option value="lightpink">Rosa Claro</option>
     <option value="lightyellow">Amarillo Claro</option>
+    <option value="red">Rojo</option>
+    <option value="darkgray">Gris Oscuro</option>
 </select>
 
-<h2>Series y Tomos Únicos</h2>
+<!-- Encabezado para la tabla principal -->
+<div id="mainTableHeader" style="padding: 20px; text-align: center; margin-top: 20px;">
+    <h2>Series y Tomos Únicos</h2>
+</div>
+
+<!-- Menú desplegable para cambiar el color del fondo del encabezado de la tabla principal -->
+<label for="colorPickerTable"></label>
+<select id="colorPickerTable" onchange="changeHeaderColor('mainTableHeader', 'tableHeaderColor')">
+    <option value="white">Blanco</option>
+    <option value="lightgray">Gris Claro</option>
+    <option value="lightblue">Azul Claro</option>
+    <option value="lightgreen">Verde Claro</option>
+    <option value="lightpink">Rosa Claro</option>
+    <option value="lightyellow">Amarillo Claro</option>
+    <option value="red">Rojo</option>
+    <option value="darkgray">Gris Oscuro</option>
+</select>
+
 <table id="collectionTable">
     <thead>
         <tr>
@@ -46,7 +65,23 @@
 
 <!-- Ficha de Serie en ventana modal -->
 <div id="seriesModal" style="display:none;">
-    <h2 id="seriesTitle"></h2>
+    <div id="seriesHeader" style="padding: 20px; text-align: center;">
+        <h2 id="seriesTitle">Título de la Serie</h2>
+    </div>
+
+    <!-- Menú desplegable para cambiar el color del fondo del encabezado de las series -->
+    <label for="colorPickerSeries"></label>
+    <select id="colorPickerSeries" onchange="changeHeaderColor('seriesHeader', 'seriesHeaderColor')">
+        <option value="white">Blanco</option>
+        <option value="lightgray">Gris Claro</option>
+        <option value="lightblue">Azul Claro</option>
+        <option value="lightgreen">Verde Claro</option>
+        <option value="lightpink">Rosa Claro</option>
+        <option value="lightyellow">Amarillo Claro</option>
+        <option value="red">Rojo</option>
+        <option value="darkgray">Gris Oscuro</option>
+    </select>
+
     <table id="seriesTable">
         <thead>
             <tr>
@@ -70,33 +105,41 @@
 
 <script src="script.js"></script>
 
-<!-- JavaScript para cambiar y cargar el color del encabezado -->
+<!-- JavaScript para cambiar y cargar el color de los encabezados -->
 <script>
-    function changeHeaderColor() {
-        const colorPicker = document.getElementById('colorPicker');
-        const header = document.getElementById('header');
+    function changeHeaderColor(headerId, storageKey) {
+        const colorPicker = document.getElementById(`colorPicker${headerId.charAt(0).toUpperCase() + headerId.slice(1)}`);
+        const header = document.getElementById(headerId);
         const selectedColor = colorPicker.value;
 
         // Cambiamos el color de fondo del encabezado
         header.style.backgroundColor = selectedColor;
 
         // Guardamos el color seleccionado en localStorage
-        localStorage.setItem('headerColor', selectedColor);
+        localStorage.setItem(storageKey, selectedColor);
     }
 
-    // Función para cargar el color guardado al cargar la página
-    function loadHeaderColor() {
-        const savedColor = localStorage.getItem('headerColor');
-        if (savedColor) {
-            const header = document.getElementById('header');
-            const colorPicker = document.getElementById('colorPicker');
+    // Función para cargar los colores guardados al cargar la página
+    function loadHeaderColors() {
+        const headers = [
+            { id: 'header', storageKey: 'headerColor', pickerId: 'colorPickerHeader' },
+            { id: 'mainTableHeader', storageKey: 'tableHeaderColor', pickerId: 'colorPickerTable' },
+            { id: 'seriesHeader', storageKey: 'seriesHeaderColor', pickerId: 'colorPickerSeries' }
+        ];
 
-            // Aplicamos el color guardado al fondo del encabezado
-            header.style.backgroundColor = savedColor;
+        headers.forEach(({ id, storageKey, pickerId }) => {
+            const savedColor = localStorage.getItem(storageKey);
+            if (savedColor) {
+                const header = document.getElementById(id);
+                const colorPicker = document.getElementById(pickerId);
 
-            // Actualizamos el valor seleccionado en el menú desplegable
-            colorPicker.value = savedColor;
-        }
+                // Aplicamos el color guardado al fondo del encabezado
+                header.style.backgroundColor = savedColor;
+
+                // Actualizamos el valor seleccionado en el menú desplegable
+                colorPicker.value = savedColor;
+            }
+        });
     }
 </script>
 
