@@ -107,17 +107,14 @@
 
 <script src="script.js"></script>
 
-<!-- JavaScript para cambiar y cargar el color de los encabezados -->
+<!-- JavaScript para cambiar y cargar los colores de los encabezados -->
 <script>
     function changeHeaderColor(headerId, storageKey, pickerId) {
         const colorPicker = document.getElementById(pickerId);
         const header = document.getElementById(headerId);
         const selectedColor = colorPicker.value;
 
-        // Cambiamos el color de fondo del encabezado
         header.style.backgroundColor = selectedColor;
-
-        // Guardamos el color seleccionado en localStorage
         localStorage.setItem(storageKey, selectedColor);
     }
 
@@ -125,29 +122,10 @@
         const colorPicker = document.getElementById('colorPickerSeries');
         const seriesHeader = document.getElementById('seriesHeader');
         const selectedColor = colorPicker.value;
-
-        // Cambiamos el color de fondo del encabezado de la serie
-        seriesHeader.style.backgroundColor = selectedColor;
-
-        // Obtenemos el nombre de la serie para guardar el color específico
         const seriesTitle = document.getElementById('seriesTitle').innerText;
 
-        // Guardamos el color seleccionado en localStorage usando el nombre de la serie como clave
+        seriesHeader.style.backgroundColor = selectedColor;
         localStorage.setItem(`seriesHeaderColor_${seriesTitle}`, selectedColor);
-    }
-
-    function loadSeriesHeaderColor(seriesName) {
-        const savedColor = localStorage.getItem(`seriesHeaderColor_${seriesName}`);
-        if (savedColor) {
-            const seriesHeader = document.getElementById('seriesHeader');
-            const colorPicker = document.getElementById('colorPickerSeries');
-
-            // Aplicamos el color guardado al fondo del encabezado de la serie
-            seriesHeader.style.backgroundColor = savedColor;
-
-            // Actualizamos el valor seleccionado en el menú desplegable
-            colorPicker.value = savedColor;
-        }
     }
 
     function loadHeaderColors() {
@@ -162,14 +140,13 @@
                 const header = document.getElementById(id);
                 const colorPicker = document.getElementById(pickerId);
 
-                // Aplicamos el color guardado al fondo del encabezado
                 header.style.backgroundColor = savedColor;
-
-                // Actualizamos el valor seleccionado en el menú desplegable
                 colorPicker.value = savedColor;
             }
         });
     }
+
+    loadHeaderColors();
 </script>
 
 </body>
