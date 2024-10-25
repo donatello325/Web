@@ -1,36 +1,45 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
-h1 {
+
+h1, h2 {
     text-align: center;
 }
+
+/* Estilos para la tabla */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 th, td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
 }
+
 th {
     background-color: #f4f4f4;
 }
+
 .button {
     padding: 5px 10px;
     margin-top: 10px;
 }
+
+/* Estilos para el total */
 .total {
     font-weight: bold;
     text-align: right;
     margin-top: 10px;
 }
 
+/* Estilo del checkbox de lectura cuando está marcado como leído */
 .green-check {
     accent-color: green;
-    color: green;
 }
