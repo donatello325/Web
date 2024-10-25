@@ -3,6 +3,7 @@ let collection = JSON.parse(localStorage.getItem('collection')) || [];
 function saveCollection() {
     localStorage.setItem('collection', JSON.stringify(collection));
     updateTotalPrice();
+    updateTotalComicCount(); // Actualizamos también el número total de cómics
 }
 
 function updateTotalPrice() {
@@ -10,12 +11,29 @@ function updateTotalPrice() {
     document.getElementById('totalPrice').innerText = `Total: ${total}€`;
 }
 
+function updateTotalComicCount() {
+    let totalComics = 0;
+
+    collection.forEach(item => {
+        if (item.type === 'Serie') {
+            // Para las series, sumamos la cantidad de cómics dentro de la serie
+            totalComics += item.items.length;
+        } else {
+            // Para los tomos únicos, contamos el tomo como un solo cómic
+            totalComics += 1;
+        }
+    });
+
+    // Mostramos el número total de cómics en el elemento correspondiente
+    document.getElementById('totalComicCount').innerText = `Total de cómics: ${totalComics}`;
+}
+
 function updateSeriesTotalPrice(series) {
     const total = series.items.reduce((sum, item) => sum + item.price, 0);
     series.price = total;  // Actualizamos el precio de la serie
     document.getElementById('seriesTotalPrice').innerText = `Total: ${total}€`;
 
-    // Actualizamos la cantidad de cómics en la serie
+    // También actualizamos la cantidad de cómics en la serie
     const comicCount = series.items.length;
     document.getElementById('seriesComicCount').innerText = `Número de cómics: ${comicCount}`;
 
