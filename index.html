@@ -8,7 +8,19 @@
 </head>
 <body>
 
-<h1>Colección de Cómics</h1>
+<!-- Encabezado principal con un menú desplegable para cambiar de color -->
+<h1 id="mainTitle">Colección de Cómics</h1>
+
+<!-- Menú desplegable para elegir el color del título -->
+<label for="colorPicker">Cambiar color del título:</label>
+<select id="colorPicker" onchange="changeTitleColor()">
+    <option value="black">Negro</option>
+    <option value="red">Rojo</option>
+    <option value="blue">Azul</option>
+    <option value="green">Verde</option>
+    <option value="purple">Morado</option>
+    <option value="orange">Naranja</option>
+</select>
 
 <h2>Series y Tomos Únicos</h2>
 <table id="collectionTable">
@@ -24,7 +36,7 @@
 </table>
 <button class="button" onclick="addComic()">Añadir Serie/Tomo Único</button>
 
-    <!-- Aquí mostramos el precio total y el número total de cómics -->
+<!-- Aquí mostramos el precio total y el número total de cómics -->
 <div class="total">
     <div id="totalPrice">Total: 0€</div>
     <div id="totalComicCount">Total de cómics: 0</div> <!-- Nuevo elemento para mostrar el número total de cómics -->
@@ -37,7 +49,7 @@
         <thead>
             <tr>
                 <th>Número</th>
-                <th>Saga</th>
+                <th>Nombre</th>
                 <th>Precio</th>
                 <th>Acciones</th>
             </tr>
@@ -47,12 +59,23 @@
     <button class="button" onclick="addSeriesComic()">Añadir Número</button>
     <button class="button" onclick="closeModal()">Cerrar</button>
 
+    <!-- Aquí añadimos el conteo de cómics y el total -->
     <div class="total">
         <div id="seriesTotalPrice">Total: 0€</div>
         <div id="seriesComicCount">Número de cómics: 0</div> <!-- Nuevo elemento para el conteo -->
     </div>
 </div>
-    
+
 <script src="script.js"></script>
+
+<!-- JavaScript para cambiar el color del encabezado -->
+<script>
+    function changeTitleColor() {
+        const colorPicker = document.getElementById('colorPicker');
+        const mainTitle = document.getElementById('mainTitle');
+        mainTitle.style.color = colorPicker.value;  // Cambiamos el color del título
+    }
+</script>
+
 </body>
 </html>
