@@ -67,6 +67,13 @@ button {
   align-items: center; /* Centra todo el contenido horizontalmente */
 }
 
+/* Evitar que flexbox afecte a las tablas */
+table, th, td {
+  display: table;  /* Restablece el comportamiento normal de tabla */
+  width: auto;
+  text-align: left;
+}
+
 .modal-content h2 {
   margin-bottom: 20px;
   text-align: center;
@@ -132,4 +139,12 @@ td {
 
 .delete-btn:hover {
   color: darkred;
+}
+
+/* Solo aplicamos flexbox dentro del modal, no en la tabla */
+.modal-content form {
+  display: flex;
+  flex-direction: column;  /* Aplica solo al contenido del formulario del modal */
+  gap: 15px;
+  width: 100%;
 }
