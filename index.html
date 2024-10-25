@@ -8,13 +8,12 @@
 </head>
 <body onload="loadHeaderColors()">
 
-<!-- Encabezado principal dentro de un div que cambiará de color -->
 <div id="header" style="padding: 20px; text-align: center;">
     <h1 id="mainTitle">Colección de Cómics</h1>
 </div>
 
 <!-- Menú desplegable para cambiar el color del fondo del encabezado principal -->
-<label for="colorPickerHeader"></label>
+<label for="colorPickerHeader">Cambiar color de fondo del encabezado principal:</label>
 <select id="colorPickerHeader" onchange="changeHeaderColor('header', 'headerColor', 'colorPickerHeader')">
     <option value="white">Blanco</option>
     <option value="lightgray">Gris Claro</option>
@@ -30,7 +29,7 @@
 </div>
 
 <!-- Menú desplegable para cambiar el color del fondo del encabezado de la tabla principal -->
-<label for="colorPickerTable"></label>
+<label for="colorPickerTable">Cambiar color de fondo del encabezado de la tabla principal:</label>
 <select id="colorPickerTable" onchange="changeHeaderColor('mainTableHeader', 'tableHeaderColor', 'colorPickerTable')">
     <option value="white">Blanco</option>
     <option value="lightgray">Gris Claro</option>
