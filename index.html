@@ -85,15 +85,8 @@
     }
 
     function updateTotalPrice() {
-        let total = 0;
-        collection.forEach(item => {
-            if (item.type === 'Serie') {
-                item.price = item.items.reduce((sum, comic) => sum + comic.price, 0);
-            }
-            total += item.price;
-        });
+        const total = collection.reduce((sum, item) => sum + item.price, 0);
         document.getElementById('totalPrice').innerText = `Total: ${total}€`;
-        renderCollection();
     }
 
     function updateSeriesTotalPrice(series) {
@@ -116,24 +109,24 @@
             `;
             tbody.appendChild(row);
         });
+        saveCollection();
     }
 
     function addComic() {
         const name = prompt('Nombre de la Serie/Tomo Único:');
         const type = prompt('Tipo (Serie/Tomo Único):');
-        const price = type === 'Serie' ? 0 : parseFloat(prompt('Precio:'));
+        const price = parseFloat(prompt('Precio:'));
 
         if (name && type && !isNaN(price)) {
             const newComic = { name, type, price, items: type === 'Serie' ? [] : null };
             collection.push(newComic);
-            saveCollection();
             renderCollection();
         }
     }
 
     function deleteComic(index) {
         collection.splice(index, 1);
-        saveCollection();
+        renderCollection();
     }
 
     function openSeries(index) {
@@ -159,7 +152,6 @@
 
     function closeModal() {
         document.getElementById('seriesModal').style.display = 'none';
-        updateTotalPrice();
     }
 
     function addSeriesComic() {
@@ -181,7 +173,6 @@
     function deleteSeriesComic(seriesIndex, comicIndex) {
         collection[seriesIndex].items.splice(comicIndex, 1);
         openSeries(seriesIndex);
-        saveCollection();
     }
 
     renderCollection();
