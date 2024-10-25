@@ -13,7 +13,7 @@
 </div>
 
 <!-- Menú desplegable para cambiar el color del fondo del encabezado principal -->
-<label for="colorPickerHeader"></label>
+<label for="colorPickerHeader">Cambiar color de fondo del encabezado principal:</label>
 <select id="colorPickerHeader" onchange="changeHeaderColor('header', 'headerColor', 'colorPickerHeader')">
     <option value="white">Blanco</option>
     <option value="lightgray">Gris Claro</option>
@@ -29,7 +29,7 @@
 </div>
 
 <!-- Menú desplegable para cambiar el color del fondo del encabezado de la tabla principal -->
-<label for="colorPickerTable"></label>
+<label for="colorPickerTable">Cambiar color de fondo del encabezado de la tabla principal:</label>
 <select id="colorPickerTable" onchange="changeHeaderColor('mainTableHeader', 'tableHeaderColor', 'colorPickerTable')">
     <option value="white">Blanco</option>
     <option value="lightgray">Gris Claro</option>
@@ -45,6 +45,7 @@
             <th>Nombre</th>
             <th>Tipo</th>
             <th>Precio</th>
+            <th>Nota</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -65,7 +66,7 @@
     </div>
 
     <!-- Menú desplegable para cambiar el color del fondo del encabezado de las series -->
-    <label for="colorPickerSeries"></label>
+    <label for="colorPickerSeries">Cambiar color de fondo del encabezado de la serie:</label>
     <select id="colorPickerSeries" onchange="changeSeriesHeaderColor()">
         <option value="white">Blanco</option>
         <option value="lightgray">Gris Claro</option>
@@ -81,6 +82,7 @@
                 <th>Número</th>
                 <th>Nombre</th>
                 <th>Precio</th>
+                <th>Nota</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -112,7 +114,6 @@
         localStorage.setItem(storageKey, selectedColor);
     }
 
-    // Función para cambiar el color del encabezado de las series y guardarlo en localStorage
     function changeSeriesHeaderColor() {
         const colorPicker = document.getElementById('colorPickerSeries');
         const seriesHeader = document.getElementById('seriesHeader');
@@ -128,7 +129,6 @@
         localStorage.setItem(`seriesHeaderColor_${seriesTitle}`, selectedColor);
     }
 
-    // Función para cargar el color guardado para cada serie
     function loadSeriesHeaderColor(seriesName) {
         const savedColor = localStorage.getItem(`seriesHeaderColor_${seriesName}`);
         if (savedColor) {
@@ -143,7 +143,6 @@
         }
     }
 
-    // Función general para cargar los colores de los encabezados
     function loadHeaderColors() {
         const headers = [
             { id: 'header', storageKey: 'headerColor', pickerId: 'colorPickerHeader' },
