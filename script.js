@@ -43,6 +43,20 @@ function loadComics() {
   });
 }
 
+// Función para confirmar y eliminar un cómic
+function confirmDelete(index) {
+  const confirmation = confirm("¿Estás seguro de que quieres borrar este cómic?");
+  if (confirmation) {
+    deleteComic(index);
+  }
+}
+
+function deleteComic(index) {
+  comicsList.splice(index, 1); // Elimina el cómic del array
+  localStorage.setItem("comicsCollection", JSON.stringify(comicsList)); // Actualiza el almacenamiento local
+  loadComics(); // Recarga la lista
+}
+
 function viewSeries(series) {
   const seriesComics = comicsList.filter((comic) => comic.series === series);
   let total = seriesComics.reduce((sum, comic) => sum + comic.price, 0).toFixed(2);
