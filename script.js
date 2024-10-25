@@ -5,7 +5,7 @@ const imageGroups = [
     { left: 'https://wallpapers-clan.com/wp-content/uploads/2023/10/batman-with-bats-moon-comics-wallpaper.jpg', right: 'https://mfiles.alphacoders.com/944/thumb-944452.jpg' },
     { left: 'https://www.omegacenter.es/90179-large_default/una-enfermedad-llamada-amor-04.jpg', right: 'https://images.cdn3.buscalibre.com/fit-in/360x360/a6/c0/a6c08d3fb14032dd22483419ff0f5371.jpg' },
     { left: 'https://mfiles.alphacoders.com/971/thumb-971175.jpg', right: 'https://i.imgur.com/m0AVGGm.png' },
-    { left: 'img4_left.jpg', right: 'img4_right.jpg' }
+    { left: 'https://wallpapers-clan.com/wp-content/uploads/2023/10/batman-with-bats-moon-comics-wallpaper.jpg', right: 'https://i.pinimg.com/736x/52/20/5f/52205ffcbadbe741c97d76426c1601ef.jpg' }
 ];
 
 // Función para elegir un grupo de imágenes aleatoriamente
