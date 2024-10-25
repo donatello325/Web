@@ -6,7 +6,7 @@
     <title>Colección de Cómics</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="loadHeaderColor()">
 
 <!-- Encabezado principal dentro de un div que cambiará de color -->
 <div id="header" style="padding: 20px; text-align: center;">
@@ -14,7 +14,7 @@
 </div>
 
 <!-- Menú desplegable para elegir el color del fondo del encabezado -->
-<label for="colorPicker"></label>
+<label for="colorPicker">Cambiar color de fondo del encabezado:</label>
 <select id="colorPicker" onchange="changeHeaderColor()">
     <option value="white">Blanco</option>
     <option value="lightgray">Gris Claro</option>
@@ -70,12 +70,33 @@
 
 <script src="script.js"></script>
 
-<!-- JavaScript para cambiar el color del encabezado -->
+<!-- JavaScript para cambiar y cargar el color del encabezado -->
 <script>
     function changeHeaderColor() {
         const colorPicker = document.getElementById('colorPicker');
         const header = document.getElementById('header');
-        header.style.backgroundColor = colorPicker.value;  // Cambiamos el color de fondo del encabezado
+        const selectedColor = colorPicker.value;
+
+        // Cambiamos el color de fondo del encabezado
+        header.style.backgroundColor = selectedColor;
+
+        // Guardamos el color seleccionado en localStorage
+        localStorage.setItem('headerColor', selectedColor);
+    }
+
+    // Función para cargar el color guardado al cargar la página
+    function loadHeaderColor() {
+        const savedColor = localStorage.getItem('headerColor');
+        if (savedColor) {
+            const header = document.getElementById('header');
+            const colorPicker = document.getElementById('colorPicker');
+
+            // Aplicamos el color guardado al fondo del encabezado
+            header.style.backgroundColor = savedColor;
+
+            // Actualizamos el valor seleccionado en el menú desplegable
+            colorPicker.value = savedColor;
+        }
     }
 </script>
 
