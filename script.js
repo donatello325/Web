@@ -61,7 +61,7 @@ function renderCollection() {
             <td>${item.price}€</td>
             <td>${averageRating}</td>
             <td>${item.type === 'Serie' ? getSeriesStatusSelect(item, index) : '-'}</td>
-            <td><input type="checkbox" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' ? "disabled" : ""} ${isRead && item.type === 'Serie' ? 'class="green-check"' : ''}></td>
+            <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' ? "disabled" : ""}></td>
             <td>
                 <button onclick="editComicPrice(${index})">Editar</button>
                 <button onclick="editComicRating(${index})">Editar Nota</button>
