@@ -1,29 +1,41 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-top: 80px; /* Espacio para el encabezado fijo */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Un fondo de color suave para los bordes */
 }
 
-/* Encabezado fijo en la parte superior */
+/* Contenedor principal para centrar el contenido */
+.container {
+    max-width: 1000px; /* Ajusta esto para más o menos ancho */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
+    background-color: white; /* Fondo blanco para el contenido */
+    padding: 20px; /* Espacio dentro del contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para que el contenedor resalte */
+}
+
+/* Encabezado fijo, pero dentro del contenedor */
 #header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #f4f4f4; /* Cambia el color según prefieras */
-    padding: 10px 0; /* Altura más estrecha */
+    background-color: #f4f4f4;
+    padding: 10px 0;
     text-align: center;
     z-index: 1000;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para que resalte */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el título dentro del encabezado */
-#header h1 {
+.container h1 {
     margin: 0;
     font-size: 1.8em;
+}
+
+/* Espaciado para el contenido para que no quede detrás del encabezado */
+body {
+    padding-top: 80px; /* Espacio suficiente para el encabezado fijo */
 }
 
 /* Estilos para la tabla */
