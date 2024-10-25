@@ -32,12 +32,14 @@ function loadComics() {
   const comicsListElem = document.getElementById("comicsList");
   comicsListElem.innerHTML = "";
 
-  comicsList.forEach((comic) => {
+  comicsList.forEach((comic, index) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td onclick="viewSeries('${comic.series}')">${comic.series}</td>
       <td>${comic.number}</td>
-      <td>${comic.price.toFixed(2)}</td>
+      <td>${comic.price.toFixed(2)}
+          <button onclick="confirmDelete(${index})" class="delete-btn">X</button>
+      </td>
     `;
     comicsListElem.appendChild(row);
   });
