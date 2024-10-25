@@ -1,3 +1,20 @@
+/* Contenedores para las imágenes laterales */
+.left-image, .right-image {
+    position: fixed;
+    top: 100px; /* Ajusta esta distancia para que no se superpongan con el encabezado */
+    width: 150px; /* Ajusta el ancho de las imágenes */
+    height: auto;
+    z-index: 1000; /* Asegura que las imágenes estén sobre el contenido */
+}
+
+.left-image {
+    left: 0; /* Imagen en el lado izquierdo */
+}
+
+.right-image {
+    right: 0; /* Imagen en el lado derecho */
+}
+
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
@@ -15,17 +32,17 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para que el contenedor resalte */
 }
 
-/* Encabezado fijo, pero dentro del contenedor */
+/* Encabezado fijo en la parte superior, de lado a lado */
 #header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw; /* Asegurar que el encabezado ocupe todo el ancho de la ventana */
     background-color: #f4f4f4;
     padding: 10px 0;
     text-align: center;
     z-index: 1000;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .container h1 {
