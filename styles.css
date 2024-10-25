@@ -1,13 +1,29 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    max-width: 1500px;  /* Ampliamos el ancho máximo */
+    max-width: 1500px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 80px; /* Espacio para el encabezado fijo */
 }
 
-h1, h2 {
+/* Encabezado fijo en la parte superior */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f4f4f4; /* Cambia el color según prefieras */
+    padding: 10px 0; /* Altura más estrecha */
     text-align: center;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para que resalte */
+}
+
+/* Estilos para el título dentro del encabezado */
+#header h1 {
+    margin: 0;
+    font-size: 1.8em;
 }
 
 /* Estilos para la tabla */
@@ -41,5 +57,5 @@ th {
 
 /* Estilo para checkbox de lectura verde */
 .checkbox-lectura {
-    accent-color: green;  /* Los checkboxes se ven verdes */
+    accent-color: green;
 }
