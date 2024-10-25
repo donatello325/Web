@@ -65,7 +65,7 @@
     </div>
 
     <!-- Menú desplegable para cambiar el color del fondo del encabezado de las series -->
-    <label for="colorPickerSeries"></label>
+    <label for="colorPickerSeries">Cambiar color de fondo del encabezado de la serie:</label>
     <select id="colorPickerSeries" onchange="changeSeriesHeaderColor()">
         <option value="white">Blanco</option>
         <option value="lightgray">Gris Claro</option>
@@ -98,16 +98,25 @@
 
 <script src="script.js"></script>
 
-<!-- JavaScript para cambiar y cargar el color del encabezado de las series individualmente -->
+<!-- JavaScript para cambiar y cargar el color de los encabezados -->
 <script>
+    function changeHeaderColor(headerId, storageKey, pickerId) {
+        const colorPicker = document.getElementById(pickerId);
+        const header = document.getElementById(headerId);
+        const selectedColor = colorPicker.value;
+
+        // Cambiamos el color de fondo del encabezado
+        header.style.backgroundColor = selectedColor;
+
+        // Guardamos el color seleccionado en localStorage
+        localStorage.setItem(storageKey, selectedColor);
+    }
+
     // Función para cambiar el color del encabezado de las series y guardarlo en localStorage
     function changeSeriesHeaderColor() {
         const colorPicker = document.getElementById('colorPickerSeries');
         const seriesHeader = document.getElementById('seriesHeader');
         const selectedColor = colorPicker.value;
-
-        // Cambiamos el color de fondo del encabezado
-        header.style.backgroundColor = selectedColor;
 
         // Cambiamos el color de fondo del encabezado de la serie
         seriesHeader.style.backgroundColor = selectedColor;
