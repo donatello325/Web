@@ -67,13 +67,6 @@ button {
   align-items: center; /* Centra todo el contenido horizontalmente */
 }
 
-/* Evitar que flexbox afecte a las tablas */
-table, th, td {
-  display: table;  /* Restablece el comportamiento normal de tabla */
-  width: auto;
-  text-align: left;
-}
-
 .modal-content h2 {
   margin-bottom: 20px;
   text-align: center;
@@ -117,6 +110,13 @@ table, th, td {
   color: #aaa;
   font-size: 24px;
   cursor: pointer;
+}
+
+/* Evitar que flexbox afecte a las tablas */
+table, th, td {
+  display: table;  /* Restablece el comportamiento normal de tabla */
+  width: auto;
+  text-align: left;
 }
 
 /* Para alinear el contenido dentro de la celda de precio */
