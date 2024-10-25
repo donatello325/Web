@@ -2,7 +2,7 @@ let collection = JSON.parse(localStorage.getItem('collection')) || [];
 
 // Grupos de imágenes (4 combinaciones de 2 imágenes)
 const imageGroups = [
-    { left: 'img1_left.jpg', right: 'img1_right.jpg' },
+    { left: 'https://e0.pxfuel.com/wallpapers/192/803/desktop-wallpaper-data-src-vertical-cool-batman-phone-new-52-batman-rebirth-really-cool-batman.jpg', right: 'https://i.pinimg.com/originals/1d/dc/38/1ddc3861da2f483500833aecd8005363.jpg' },
     { left: 'img2_left.jpg', right: 'img2_right.jpg' },
     { left: 'img3_left.jpg', right: 'img3_right.jpg' },
     { left: 'img4_left.jpg', right: 'img4_right.jpg' }
