@@ -73,15 +73,14 @@ button {
   cursor: pointer;
 }
 
-/* Estilos para el botón de eliminación "X" */
 .delete-btn {
   background-color: transparent;
   color: red;
   border: none;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 10px;
-  font-size: 18px;  /* Asegurarse de que sea visible */
+  font-size: 16px;  /* Ajustar tamaño para que se vea bien junto al precio */
+  margin-left: 10px;  /* Añadir espacio entre el precio y la "X" */
 }
 
 .delete-btn:hover {
