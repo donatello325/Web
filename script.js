@@ -12,19 +12,26 @@ function updateTotalPrice() {
 
 function updateSeriesTotalPrice(series) {
     const total = series.items.reduce((sum, item) => sum + item.price, 0);
-    series.price = total;  // Actualizamos el precio de la serie en la colección
+    series.price = total;  // Actualizamos el precio de la serie
     document.getElementById('seriesTotalPrice').innerText = `Total: ${total}€`;
-    renderCollection(); // Re-renderizamos la tabla principal para que muestre el precio actualizado
+    
+    // También actualizamos la cantidad de cómics en la serie
+    const comicCount = series.items.length;
+    document.getElementById('seriesComicCount').innerText = `Número de cómics: ${comicCount}`;
+    
+    renderCollection(); // Volvemos a renderizar la tabla principal para reflejar cambios
 }
 
 function renderCollection() {
     const tbody = document.getElementById('collectionTable').querySelector('tbody');
     tbody.innerHTML = '';
     collection.forEach((item, index) => {
+        const comicCount = item.items ? item.items.length : 0;  // Cantidad de cómics en la serie
+
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>
-                ${item.type === 'Serie' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a>` : item.name}
+                ${item.type === 'Serie' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}
             </td>
             <td>${item.type}</td>
             <td>${item.price}€</td>
@@ -80,7 +87,7 @@ function openSeries(index) {
         tbody.appendChild(row);
     });
 
-    updateSeriesTotalPrice(series);  // Actualizamos el precio total de la serie al abrirla
+    updateSeriesTotalPrice(series);  // Actualizamos el precio total y el número de cómics
     document.getElementById('seriesModal').style.display = 'block';
 }
 
