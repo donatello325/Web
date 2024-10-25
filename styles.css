@@ -2,7 +2,7 @@
 .left-image, .right-image {
     position: fixed;
     top: 0; /* Alinea la imagen con la parte superior */
-    width: 150px; /* Ancho fijo de la imagen lateral */
+    width: 250px; /* Ancho fijo de la imagen lateral */
     height: 100vh; /* Altura completa de la ventana */
     z-index: 1000;
     overflow: hidden; /* Asegura que la imagen no desborde el contenedor */
