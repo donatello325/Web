@@ -1,5 +1,30 @@
 let collection = JSON.parse(localStorage.getItem('collection')) || [];
 
+// Grupos de imágenes (4 combinaciones de 2 imágenes)
+const imageGroups = [
+    { left: 'img1_left.jpg', right: 'img1_right.jpg' },
+    { left: 'img2_left.jpg', right: 'img2_right.jpg' },
+    { left: 'img3_left.jpg', right: 'img3_right.jpg' },
+    { left: 'img4_left.jpg', right: 'img4_right.jpg' }
+];
+
+// Función para elegir un grupo de imágenes aleatoriamente
+function setRandomImages() {
+    const randomGroup = imageGroups[Math.floor(Math.random() * imageGroups.length)];
+    
+    // Establecer la imagen izquierda
+    document.querySelector('.left-image img').src = randomGroup.left;
+    
+    // Establecer la imagen derecha
+    document.querySelector('.right-image img').src = randomGroup.right;
+}
+
+// Llama a la función cuando se carga la página
+window.onload = function() {
+    setRandomImages();
+    renderCollection(); // Llama también a renderCollection al cargar la página
+};
+
 function saveCollection() {
     localStorage.setItem('collection', JSON.stringify(collection));
     updateTotalPrice();
