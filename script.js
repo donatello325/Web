@@ -3,7 +3,7 @@ let collection = JSON.parse(localStorage.getItem('collection')) || [];
 function saveCollection() {
     localStorage.setItem('collection', JSON.stringify(collection));
     updateTotalPrice();
-    updateTotalComicCount(); // Actualizamos también el número total de cómics
+    updateTotalComicCount();  // Aseguramos que se actualiza el número total de cómics
 }
 
 function updateTotalPrice() {
@@ -38,6 +38,7 @@ function updateSeriesTotalPrice(series) {
     document.getElementById('seriesComicCount').innerText = `Número de cómics: ${comicCount}`;
 
     renderCollection(); // Re-renderizamos la tabla principal para que muestre el precio actualizado
+    updateTotalComicCount(); // Actualizamos el número total de cómics después de cualquier cambio en una serie
 }
 
 function renderCollection() {
@@ -60,7 +61,7 @@ function renderCollection() {
         `;
         tbody.appendChild(row);
     });
-    saveCollection();
+    saveCollection();  // Al renderizar la colección, también guardamos y actualizamos los totales
 }
 
 function addComic() {
@@ -125,13 +126,14 @@ function addSeriesComic() {
         const newComic = { number, name, price };
         collection[index].items.push(newComic);
         openSeries(index); // Volvemos a abrir la serie para reflejar el cambio
-        saveCollection();
+        saveCollection();  // Guardamos la colección y actualizamos el total de cómics
     }
 }
 
 function deleteSeriesComic(seriesIndex, comicIndex) {
     collection[seriesIndex].items.splice(comicIndex, 1);
     openSeries(seriesIndex); // Actualizamos la serie y su precio tras eliminar un número
+    saveCollection();  // Aseguramos que el total de cómics se actualiza tras eliminar un cómic
 }
 
 renderCollection();
