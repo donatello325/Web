@@ -12,7 +12,9 @@ function updateTotalPrice() {
 
 function updateSeriesTotalPrice(series) {
     const total = series.items.reduce((sum, item) => sum + item.price, 0);
+    series.price = total;  // Actualizamos el precio de la serie en la colección
     document.getElementById('seriesTotalPrice').innerText = `Total: ${total}€`;
+    renderCollection(); // Re-renderizamos la tabla principal para que muestre el precio actualizado
 }
 
 function renderCollection() {
@@ -78,7 +80,7 @@ function openSeries(index) {
         tbody.appendChild(row);
     });
 
-    updateSeriesTotalPrice(series);
+    updateSeriesTotalPrice(series);  // Actualizamos el precio total de la serie al abrirla
     document.getElementById('seriesModal').style.display = 'block';
 }
 
@@ -97,14 +99,14 @@ function addSeriesComic() {
     if (number && name && !isNaN(price)) {
         const newComic = { number, name, price };
         collection[index].items.push(newComic);
-        openSeries(index);
+        openSeries(index); // Volvemos a abrir la serie para reflejar el cambio
         saveCollection();
     }
 }
 
 function deleteSeriesComic(seriesIndex, comicIndex) {
     collection[seriesIndex].items.splice(comicIndex, 1);
-    openSeries(seriesIndex);
+    openSeries(seriesIndex); // Actualizamos la serie y su precio tras eliminar un número
 }
 
 renderCollection();
