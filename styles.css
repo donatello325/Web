@@ -73,15 +73,16 @@ button {
   cursor: pointer;
 }
 
-/* Estilos para el botón de eliminación */
+/* Estilos para el botón de eliminación "X" */
 .delete-btn {
-  background-color: red;
-  color: white;
+  background-color: transparent;
+  color: red;
   border: none;
-  padding: 5px 10px;
+  font-weight: bold;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .delete-btn:hover {
-  background-color: darkred;
+  color: darkred;
 }
