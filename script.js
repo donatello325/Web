@@ -14,12 +14,12 @@ function updateSeriesTotalPrice(series) {
     const total = series.items.reduce((sum, item) => sum + item.price, 0);
     series.price = total;  // Actualizamos el precio de la serie
     document.getElementById('seriesTotalPrice').innerText = `Total: ${total}€`;
-    
-    // También actualizamos la cantidad de cómics en la serie
+
+    // Actualizamos la cantidad de cómics en la serie
     const comicCount = series.items.length;
     document.getElementById('seriesComicCount').innerText = `Número de cómics: ${comicCount}`;
-    
-    renderCollection(); // Volvemos a renderizar la tabla principal para reflejar cambios
+
+    renderCollection(); // Re-renderizamos la tabla principal para que muestre el precio actualizado
 }
 
 function renderCollection() {
