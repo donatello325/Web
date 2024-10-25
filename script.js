@@ -40,7 +40,16 @@ function updateSeriesTotalPrice(series) {
 function renderCollection() {
     const tbody = document.getElementById('collectionTable').querySelector('tbody');
     tbody.innerHTML = '';
-    collection.forEach((item, index) => {
+
+    // Dividimos la colección en series y tomos únicos
+    const series = collection.filter(item => item.type === 'Serie').sort((a, b) => a.name.localeCompare(b.name));
+    const tomosUnicos = collection.filter(item => item.type === 'Tomo Único').sort((a, b) => a.name.localeCompare(b.name));
+
+    // Concatenamos series primero y tomos únicos después
+    const sortedCollection = [...series, ...tomosUnicos];
+
+    // Renderizamos cada ítem en la tabla
+    sortedCollection.forEach((item, index) => {
         const comicCount = item.items ? item.items.length : 0;
 
         const row = document.createElement('tr');
@@ -57,7 +66,8 @@ function renderCollection() {
         `;
         tbody.appendChild(row);
     });
-    saveCollection();
+
+    saveCollection();  // Guardamos la colección y actualizamos los totales
 }
 
 function addComic() {
@@ -103,10 +113,6 @@ function openSeries(index) {
     });
 
     updateSeriesTotalPrice(series);
-
-    // Cargamos el color de fondo del encabezado específico de la serie
-    loadSeriesHeaderColor(series.name);
-
     document.getElementById('seriesModal').style.display = 'block';
 }
 
