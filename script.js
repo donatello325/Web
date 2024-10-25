@@ -52,15 +52,18 @@ function renderCollection() {
     collection.forEach((item, index) => {
         const comicCount = item.items ? item.items.length : 0;
         const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
+        const status = item.type === 'Serie' ? item.status || 'En curso' : '-';
 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>
-                ${item.type === 'Serie' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}
-            </td>
+            <td>${item.type === 'Serie' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
             <td>${item.type}</td>
             <td>${item.price}€</td>
             <td>${averageRating}</td>
+            <td>${item.type === 'Serie' ? `<select onchange="updateSeriesStatus(${index}, this.value)">
+                <option value="En curso" ${status === 'En curso' ? 'selected' : ''}>En curso</option>
+                <option value="Finalizada" ${status === 'Finalizada' ? 'selected' : ''}>Finalizada</option>
+            </select>` : '-'}</td>
             <td>
                 <button onclick="editComicPrice(${index})">Editar</button>
                 <button onclick="editComicRating(${index})">Editar Nota</button>
