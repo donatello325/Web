@@ -8,18 +8,20 @@
 </head>
 <body>
 
-<!-- Encabezado principal con un menú desplegable para cambiar de color -->
-<h1 id="mainTitle">Colección de Cómics</h1>
+<!-- Encabezado principal dentro de un div que cambiará de color -->
+<div id="header" style="padding: 20px; text-align: center;">
+    <h1 id="mainTitle">Colección de Cómics</h1>
+</div>
 
-<!-- Menú desplegable para elegir el color del título -->
-<label for="colorPicker">Cambiar color del título:</label>
-<select id="colorPicker" onchange="changeTitleColor()">
-    <option value="black">Negro</option>
-    <option value="red">Rojo</option>
-    <option value="blue">Azul</option>
-    <option value="green">Verde</option>
-    <option value="purple">Morado</option>
-    <option value="orange">Naranja</option>
+<!-- Menú desplegable para elegir el color del fondo del encabezado -->
+<label for="colorPicker">Cambiar color de fondo del encabezado:</label>
+<select id="colorPicker" onchange="changeHeaderColor()">
+    <option value="white">Blanco</option>
+    <option value="lightgray">Gris Claro</option>
+    <option value="lightblue">Azul Claro</option>
+    <option value="lightgreen">Verde Claro</option>
+    <option value="lightpink">Rosa Claro</option>
+    <option value="lightyellow">Amarillo Claro</option>
 </select>
 
 <h2>Series y Tomos Únicos</h2>
@@ -39,7 +41,7 @@
 <!-- Aquí mostramos el precio total y el número total de cómics -->
 <div class="total">
     <div id="totalPrice">Total: 0€</div>
-    <div id="totalComicCount">Total de cómics: 0</div> <!-- Nuevo elemento para mostrar el número total de cómics -->
+    <div id="totalComicCount">Total de cómics: 0</div>
 </div>
 
 <!-- Ficha de Serie en ventana modal -->
@@ -62,7 +64,7 @@
     <!-- Aquí añadimos el conteo de cómics y el total -->
     <div class="total">
         <div id="seriesTotalPrice">Total: 0€</div>
-        <div id="seriesComicCount">Número de cómics: 0</div> <!-- Nuevo elemento para el conteo -->
+        <div id="seriesComicCount">Número de cómics: 0</div>
     </div>
 </div>
 
@@ -70,10 +72,10 @@
 
 <!-- JavaScript para cambiar el color del encabezado -->
 <script>
-    function changeTitleColor() {
+    function changeHeaderColor() {
         const colorPicker = document.getElementById('colorPicker');
-        const mainTitle = document.getElementById('mainTitle');
-        mainTitle.style.color = colorPicker.value;  // Cambiamos el color del título
+        const header = document.getElementById('header');
+        header.style.backgroundColor = colorPicker.value;  // Cambiamos el color de fondo del encabezado
     }
 </script>
 
