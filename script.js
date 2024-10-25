@@ -26,7 +26,10 @@ function renderCollection() {
             </td>
             <td>${item.type}</td>
             <td>${item.price}€</td>
-            <td><button onclick="deleteComic(${index})">Eliminar</button></td>
+            <td>
+                <button onclick="editComicPrice(${index})">Editar</button>
+                <button onclick="deleteComic(${index})">Eliminar</button>
+            </td>
         `;
         tbody.appendChild(row);
     });
