@@ -37,9 +37,7 @@ function loadComics() {
     row.innerHTML = `
       <td onclick="viewSeries('${comic.series}')">${comic.series}</td>
       <td>${comic.number}</td>
-      <td>${comic.price.toFixed(2)}
-          <button onclick="confirmDelete(${index})" class="delete-btn">X</button>
-      </td>
+      <td>${comic.price.toFixed(2)} <button onclick="confirmDelete(${index})" class="delete-btn">X</button></td>
     `;
     comicsListElem.appendChild(row);
   });
