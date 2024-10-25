@@ -37,12 +37,12 @@ function updateSeriesTotalPrice(series) {
     updateTotalComicCount();
 }
 
-// Nueva función para calcular la nota media de una serie
+// Función para calcular la nota media de una serie
 function calculateAverageRating(series) {
     if (series.items.length === 0) return 0;
 
     const totalRating = series.items.reduce((sum, item) => sum + (item.rating || 0), 0);
-    return (totalRating / series.items.length).toFixed(1); // Nota media con 1 decimal
+    return (totalRating / series.items.length).toFixed(1);
 }
 
 function renderCollection() {
@@ -82,7 +82,7 @@ function addComic() {
     const rating = type === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
 
     if (name && type && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
-        const newComic = { name, type, price, items: type === 'Serie' ? [] : null, rating: type === 'Tomo Único' ? rating : null };
+        const newComic = { name, type, price, items: type === 'Serie' ? [] : null, rating: type === 'Tomo Único' ? rating : null, read: type === 'Tomo Único' ? false : null };
         collection.push(newComic);
         renderCollection();
     }
@@ -96,7 +96,6 @@ function editComicPrice(index) {
     }
 }
 
-// Nueva función para editar la nota de un tomo único
 function editComicRating(index) {
     const newRating = parseInt(prompt('Nueva Nota (1-10):'));
     if (newRating >= 1 && newRating <= 10) {
@@ -123,8 +122,11 @@ function openSeries(index) {
             <td>${comic.name}</td>
             <td>${comic.price}€</td>
             <td>${comic.rating || "Sin nota"}</td>
-            <td><button onclick="editSeriesComicRating(${index}, ${i})">Editar Nota</button>
-                <button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button></td>
+            <td><input type="checkbox" ${comic.read ? "checked" : ""} onchange="toggleSeriesComicReadStatus(${index}, ${i})"></td>
+            <td>
+                <button onclick="editSeriesComicRating(${index}, ${i})">Editar Nota</button>
+                <button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button>
+            </td>
         `;
         tbody.appendChild(row);
     });
@@ -133,18 +135,44 @@ function openSeries(index) {
     document.getElementById('seriesModal').style.display = 'block';
 }
 
-// Nueva función para añadir una nota a un número de la serie
-function editSeriesComicRating(seriesIndex, comicIndex) {
-    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
-    if (newRating >= 1 && newRating <= 10) {
-        collection[seriesIndex].items[comicIndex].rating = newRating;
-        openSeries(seriesIndex); // Refresca la vista de la serie abierta
-        saveCollection();
-    }
+function toggleSeriesComicReadStatus(seriesIndex, comicIndex) {
+    const series = collection[seriesIndex];
+    series.items[comicIndex].read = !series.items[comicIndex].read;
+
+    series.read = checkIfSeriesIsRead(series);
+    openSeries(seriesIndex);
+    renderCollection();
+    saveCollection();
 }
 
-function closeModal() {
-    document.getElementById('seriesModal').style.display = 'none';
+function toggleReadStatus(index) {
+    const item = collection[index];
+    if (item.type === 'Tomo Único') {
+        item.read = !item.read;
+    } else if (item.type === 'Serie') {
+        item.read = checkIfSeriesIsRead(item);
+    }
+    saveCollection();
+    renderCollection();
+}
+
+function checkIfSeriesIsRead(series) {
+    return series.items.length > 0 && series.items.every(comic => comic.read);
+}
+
+function getSeriesStatusSelect(item, index) {
+    return `<select onchange="updateSeriesStatus(${index}, this.value)">
+                <option value="En curso" ${item.status === 'En curso' ? 'selected' : ''}>En curso</option>
+                <option value="Finalizada" ${item.status === 'Finalizada' ? 'selected' : ''}>Finalizada</option>
+            </select>`;
+}
+
+function updateSeriesStatus(index, newStatus) {
+    if (collection[index].type === 'Serie') {
+        collection[index].status = newStatus;
+        saveCollection();
+        renderCollection();
+    }
 }
 
 function addSeriesComic() {
@@ -157,9 +185,9 @@ function addSeriesComic() {
     const rating = parseInt(prompt('Nota (1-10):'));
 
     if (number && name && !isNaN(price) && rating >= 1 && rating <= 10) {
-        const newComic = { number, name, price, rating };
+        const newComic = { number, name, price, rating, read: false };
         collection[index].items.push(newComic);
-        openSeries(index); // Refresca la vista de la serie abierta
+        openSeries(index);
         saveCollection();
     }
 }
@@ -168,6 +196,15 @@ function deleteSeriesComic(seriesIndex, comicIndex) {
     collection[seriesIndex].items.splice(comicIndex, 1);
     openSeries(seriesIndex);
     saveCollection();
+}
+
+function editSeriesComicRating(seriesIndex, comicIndex) {
+    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
+    if (newRating >= 1 && newRating <= 10) {
+        collection[seriesIndex].items[comicIndex].rating = newRating;
+        openSeries(seriesIndex);
+        saveCollection();
+    }
 }
 
 renderCollection();
