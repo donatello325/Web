@@ -16,36 +16,32 @@ function updateTotalComicCount() {
 
     collection.forEach(item => {
         if (item.type === 'Serie') {
-            // Para las series, sumamos la cantidad de cómics dentro de la serie
             totalComics += item.items.length;
         } else {
-            // Para los tomos únicos, contamos el tomo como un solo cómic
             totalComics += 1;
         }
     });
 
-    // Mostramos el número total de cómics en el elemento correspondiente
     document.getElementById('totalComicCount').innerText = `Total de cómics: ${totalComics}`;
 }
 
 function updateSeriesTotalPrice(series) {
     const total = series.items.reduce((sum, item) => sum + item.price, 0);
-    series.price = total;  // Actualizamos el precio de la serie
+    series.price = total;
     document.getElementById('seriesTotalPrice').innerText = `Total: ${total}€`;
 
-    // También actualizamos la cantidad de cómics en la serie
     const comicCount = series.items.length;
     document.getElementById('seriesComicCount').innerText = `Número de cómics: ${comicCount}`;
 
-    renderCollection(); // Re-renderizamos la tabla principal para que muestre el precio actualizado
-    updateTotalComicCount(); // Actualizamos el número total de cómics después de cualquier cambio en una serie
+    renderCollection();
+    updateTotalComicCount();
 }
 
 function renderCollection() {
     const tbody = document.getElementById('collectionTable').querySelector('tbody');
     tbody.innerHTML = '';
     collection.forEach((item, index) => {
-        const comicCount = item.items ? item.items.length : 0;  // Cantidad de cómics en la serie
+        const comicCount = item.items ? item.items.length : 0;
 
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -61,7 +57,7 @@ function renderCollection() {
         `;
         tbody.appendChild(row);
     });
-    saveCollection();  // Al renderizar la colección, también guardamos y actualizamos los totales
+    saveCollection();
 }
 
 function addComic() {
@@ -106,7 +102,7 @@ function openSeries(index) {
         tbody.appendChild(row);
     });
 
-    updateSeriesTotalPrice(series);  // Actualizamos el precio total y el número de cómics
+    updateSeriesTotalPrice(series);
     document.getElementById('seriesModal').style.display = 'block';
 }
 
@@ -125,15 +121,15 @@ function addSeriesComic() {
     if (number && name && !isNaN(price)) {
         const newComic = { number, name, price };
         collection[index].items.push(newComic);
-        openSeries(index); // Volvemos a abrir la serie para reflejar el cambio
-        saveCollection();  // Guardamos la colección y actualizamos el total de cómics
+        openSeries(index);
+        saveCollection();
     }
 }
 
 function deleteSeriesComic(seriesIndex, comicIndex) {
     collection[seriesIndex].items.splice(comicIndex, 1);
-    openSeries(seriesIndex); // Actualizamos la serie y su precio tras eliminar un número
-    saveCollection();  // Aseguramos que el total de cómics se actualiza tras eliminar un cómic
+    openSeries(seriesIndex);
+    saveCollection();
 }
 
 renderCollection();
