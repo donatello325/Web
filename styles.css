@@ -1,18 +1,18 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    margin: 0; /* Quitar margen */
-    padding: 0; /* Quitar padding */
-    max-width: 100%; /* Asegura que el contenido no esté limitado en ancho */
-    padding-top: 80px; /* Deja espacio para el encabezado fijo */
+    max-width: 1500px; /* Mantener el contenido principal más estrecho */
+    margin: 0 auto; /* Centrar el contenido */
+    padding: 20px;
+    padding-top: 80px; /* Espacio para el encabezado fijo */
 }
 
-/* Encabezado fijo en la parte superior, sin espacios */
+/* Encabezado fijo en la parte superior, de lado a lado */
 #header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw; /* Asegurar que el encabezado ocupe todo el ancho de la ventana */
     background-color: #f4f4f4; /* Color de fondo del encabezado */
     padding: 10px 0; /* Altura más estrecha */
     text-align: center;
@@ -20,7 +20,7 @@ body {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-/* Encabezado de ancho completo */
+/* Encabezado a pantalla completa */
 #header h1 {
     margin: 0;
     font-size: 1.8em;
