@@ -2,7 +2,7 @@ let collection = JSON.parse(localStorage.getItem('collection')) || [];
 
 // Grupos de imágenes (4 combinaciones de 2 imágenes)
 const imageGroups = [
-    { left: 'https://mfiles.alphacoders.com/793/thumb-793109.jpg', right: 'https://mfiles.alphacoders.com/944/thumb-944452.jpg' },
+    { left: 'https://wallpapers-clan.com/wp-content/uploads/2023/10/batman-with-bats-moon-comics-wallpaper.jpg', right: 'https://mfiles.alphacoders.com/944/thumb-944452.jpg' },
     { left: 'https://www.omegacenter.es/90179-large_default/una-enfermedad-llamada-amor-04.jpg', right: 'https://images.cdn3.buscalibre.com/fit-in/360x360/a6/c0/a6c08d3fb14032dd22483419ff0f5371.jpg' },
     { left: 'https://mfiles.alphacoders.com/971/thumb-971175.jpg', right: 'https://i.imgur.com/m0AVGGm.png' },
     { left: 'img4_left.jpg', right: 'img4_right.jpg' }
