@@ -53,6 +53,7 @@ function renderCollection() {
         const comicCount = item.items ? item.items.length : 0;
         const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
         const status = item.type === 'Serie' ? item.status || 'En curso' : '-';
+        const isRead = item.type === 'Serie' ? checkIfSeriesIsRead(item) : item.read || false;
 
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -60,10 +61,8 @@ function renderCollection() {
             <td>${item.type}</td>
             <td>${item.price}€</td>
             <td>${averageRating}</td>
-            <td>${item.type === 'Serie' ? `<select onchange="updateSeriesStatus(${index}, this.value)">
-                <option value="En curso" ${status === 'En curso' ? 'selected' : ''}>En curso</option>
-                <option value="Finalizada" ${status === 'Finalizada' ? 'selected' : ''}>Finalizada</option>
-            </select>` : '-'}</td>
+            <td>${item.type === 'Serie' ? getSeriesStatusSelect(item, index) : '-'}</td>
+            <td><input type="checkbox" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' ? "disabled" : ""}></td>
             <td>
                 <button onclick="editComicPrice(${index})">Editar</button>
                 <button onclick="editComicRating(${index})">Editar Nota</button>
