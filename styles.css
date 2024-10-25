@@ -1,10 +1,11 @@
 /* Contenedores para las imágenes laterales */
 .left-image, .right-image {
     position: fixed;
-    top: 100px; /* Ajusta esta distancia para que no se superpongan con el encabezado */
-    width: 150px; /* Ajusta el ancho de las imágenes */
-    height: auto;
+    top: 0; /* Empieza desde la parte superior de la ventana */
+    width: 150px; /* Ancho fijo para las imágenes laterales */
+    height: 100vh; /* Altura completa de la ventana */
     z-index: 1000; /* Asegura que las imágenes estén sobre el contenido */
+    overflow: hidden; /* Oculta cualquier parte extra de la imagen */
 }
 
 .left-image {
@@ -13,6 +14,13 @@
 
 .right-image {
     right: 0; /* Imagen en el lado derecho */
+}
+
+/* Ajuste de la imagen para que ocupe todo el contenedor */
+.left-image img, .right-image img {
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: 100%; /* Ajusta la imagen a la altura del contenedor */
+    object-fit: cover; /* Cubre todo el contenedor sin distorsionarse */
 }
 
 /* Estilos generales */
