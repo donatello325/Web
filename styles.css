@@ -1,7 +1,7 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    max-width: 800px;
+    max-width: 1200px;  /* Ampliamos el ancho máximo */
     margin: 0 auto;
     padding: 20px;
 }
@@ -39,7 +39,7 @@ th {
     margin-top: 10px;
 }
 
-/* Estilo del checkbox de lectura cuando está marcado como leído */
-.green-check {
-    accent-color: green;
+/* Estilo para checkbox de lectura verde */
+.checkbox-lectura {
+    accent-color: green;  /* Los checkboxes se ven verdes */
 }
