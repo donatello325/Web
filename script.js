@@ -45,6 +45,14 @@ function addComic() {
     }
 }
 
+function editComicPrice(index) {
+    const newPrice = parseFloat(prompt('Nuevo precio:'));
+    if (!isNaN(newPrice)) {
+        collection[index].price = newPrice;
+        renderCollection();
+    }
+}
+
 function deleteComic(index) {
     collection.splice(index, 1);
     renderCollection();
