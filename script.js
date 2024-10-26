@@ -50,18 +50,19 @@ function renderCollection() {
 
     collection.forEach((item, index) => {
         const comicCount = item.items ? item.items.length : 0;
-        const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
-        const status = item.type === 'Serie' ? item.status || 'En curso' : '-';
-        const isRead = item.type === 'Serie' ? checkIfSeriesIsRead(item) : item.read || false;
+        const averageRating = item.type === 'Serie' || item.type === 'Saga' ? calculateAverageRating(item) : item.rating || "Sin nota";
+        const status = item.type === 'Serie' || item.type === 'Saga' ? item.status || 'En curso' : '-';
+        const isRead = item.type === 'Serie' || item.type === 'Saga' ? checkIfSeriesIsRead(item) : item.read || false;
 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${item.type === 'Serie' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
+            <td>${item.type === 'Serie' || item.type === 'Saga' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
             <td>${item.type}</td>
+            <td>${item.format}</td> <!-- Mostrar el formato aquí -->
             <td>${item.price}€</td>
             <td>${averageRating}</td>
-            <td>${item.type === 'Serie' ? getSeriesStatusSelect(item, index) : '-'}</td>
-            <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' ? "disabled" : ""}></td>
+            <td>${item.type === 'Serie' || item.type === 'Saga' ? getSeriesStatusSelect(item, index) : '-'}</td>
+            <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' || item.type === 'Saga' ? "disabled" : ""}></td>
             <td>
                 <button onclick="editComicPrice(${index})">Editar</button>
                 <button onclick="editComicRating(${index})">Editar Nota</button>
@@ -75,13 +76,22 @@ function renderCollection() {
 }
 
 function addComic() {
-    const name = prompt('Nombre de la Serie/Tomo Único:');
-    const type = prompt('Tipo (Serie/Tomo Único):');
+    const name = prompt('Nombre de la Serie/Saga/Tomo Único:');
+    const type = prompt('Tipo (Serie/Saga/Tomo Único):');
+    const format = prompt('Formato (Cómic/Manga/Libro):'); // Nuevo campo para Formato
     const price = parseFloat(prompt('Precio:'));
     const rating = type === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
 
-    if (name && type && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
-        const newComic = { name, type, price, items: type === 'Serie' ? [] : null, rating: type === 'Tomo Único' ? rating : null, read: type === 'Tomo Único' ? false : null };
+    if (name && type && format && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
+        const newComic = { 
+            name, 
+            type, 
+            format,  // Guardamos el formato en el objeto
+            price, 
+            items: type === 'Serie' || type === 'Saga' ? [] : null, 
+            rating: type === 'Tomo Único' ? rating : null, 
+            read: type === 'Tomo Único' ? false : null 
+        };
         collection.push(newComic);
         renderCollection();
     }
