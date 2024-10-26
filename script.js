@@ -39,58 +39,77 @@ function calculateAverageRating(series) {
     return (totalRating / series.items.length).toFixed(1);
 }
 
-// Renderizar la colección principal
-function renderCollection() {
-    const tbody = document.getElementById('collectionTable').querySelector('tbody');
+// Mostrar la tabla correspondiente y ocultar las demás
+function showTable(type) {
+    document.querySelectorAll('.collection-table').forEach(table => {
+        table.style.display = 'none';
+    });
+    document.getElementById(`${type}Table`).style.display = 'block';
+    renderTable(type);  // Renderizar la tabla seleccionada
+}
+
+// Renderizar la tabla principal dependiendo del tipo
+function renderTable(type) {
+    const tbody = document.getElementById(`${type}Body`);
     tbody.innerHTML = '';
 
     collection.forEach((item, index) => {
-        const comicCount = item.items ? item.items.length : 0;
-        const averageRating = (item.type === 'Serie' || item.type === 'Saga') ? calculateAverageRating(item) : item.rating || "Sin nota";
-        const status = (item.type === 'Serie' || item.type === 'Saga') ? item.status || 'En curso' : '-';
-        const isRead = (item.type === 'Serie' || item.type === 'Saga') ? checkIfSeriesIsRead(item) : item.read || false;
+        if ((type === 'comics' && (item.category === 'Cómic' || item.category === 'Manga')) ||
+            (type === 'books' && item.category === 'Libro') ||
+            (type === 'shows' && (item.category === 'Película' || item.category === 'Serie' || item.category === 'Anime'))) {
+            
+            const comicCount = item.items ? item.items.length : 0;
+            const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
+            const status = item.type === 'Serie' ? item.status || 'En curso' : '-';
+            const isRead = item.type === 'Serie' ? checkIfSeriesIsRead(item) : item.read || false;
 
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.type === 'Serie' || item.type === 'Saga' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
-            <td>${item.type}</td>
-            <td>${item.format}</td>
-            <td>${item.price ? `${item.price.toFixed(2)}€` : '-'}</td>
-            <td>${averageRating}</td>
-            <td>${status}</td>
-            <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' || item.type === 'Saga' ? "disabled" : ""}></td>
-            <td>
-                <button onclick="editComicPrice(${index})">Editar Precio</button>
-                <button onclick="editComicRating(${index})">Editar Nota</button>
-                <button onclick="deleteComic(${index})">Eliminar</button>
-            </td>
-        `;
-        tbody.appendChild(row);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.type === 'Serie' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
+                <td>${item.type}</td>
+                <td>${item.format}</td>
+                <td>${item.price ? `${item.price.toFixed(2)}€` : '-'}</td>
+                <td>${averageRating}</td>
+                <td>${status}</td>
+                <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' ? "disabled" : ""}></td>
+                <td>
+                    <button onclick="editComicPrice(${index})">Editar Precio</button>
+                    <button onclick="editComicRating(${index})">Editar Nota</button>
+                    <button onclick="deleteComic(${index})">Eliminar</button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        }
     });
 
     saveCollection();
 }
 
-// Agregar un nuevo cómic o serie a la colección
-function addComic() {
-    const name = prompt('Nombre de la Serie/Saga/Tomo Único:');
-    const type = prompt('Tipo (Serie/Saga/Tomo Único):');
-    const format = prompt('Formato (Cómic/Manga/Libro):');
+// Agregar un nuevo elemento a la colección dependiendo del tipo de tabla
+function addItem(type) {
+    const name = prompt('Nombre:');
+    const typeSpecific = type === 'comics' ? prompt('Tipo (Serie/Saga/Tomo Único):') : type === 'books' ? 'Libro' : prompt('Tipo (Película/Serie/Anime):');
+    const formatOrGenre = prompt(`${type === 'comics' ? 'Formato' : 'Género'} (e.g., Manga, Ficción, Acción):`);
     const price = parseFloat(prompt('Precio:'));
-    const rating = type === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
+    const rating = typeSpecific === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
+    const status = type === 'comics' || type === 'shows' ? prompt('Estado (En curso, Finalizada):') : '';
+    const read = confirm('¿Leído/Visto?');
 
-    if (name && type && format && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
-        const newComic = {
+    if (name && formatOrGenre && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
+        const newItem = {
             name,
-            type,
-            format,
+            type: typeSpecific,
+            category: formatOrGenre,
+            format: formatOrGenre,
             price,
-            items: type === 'Serie' || type === 'Saga' ? [] : null,
-            rating: type === 'Tomo Único' ? rating : null,
-            read: type === 'Tomo Único' ? false : null
+            items: typeSpecific === 'Serie' || typeSpecific === 'Saga' ? [] : null,
+            rating,
+            status,
+            read: typeSpecific === 'Tomo Único' ? read : null
         };
-        collection.push(newComic);
-        renderCollection();
+        collection.push(newItem);
+        saveCollection();
+        renderTable(type);
     }
 }
 
@@ -168,14 +187,6 @@ function checkIfSeriesIsRead(series) {
     return series.items.length > 0 && series.items.every(comic => comic.read);
 }
 
-// Seleccionar estado de la serie
-function getSeriesStatusSelect(item, index) {
-    return `<select onchange="updateSeriesStatus(${index}, this.value)">
-                <option value="En curso" ${item.status === 'En curso' ? 'selected' : ''}>En curso</option>
-                <option value="Finalizada" ${item.status === 'Finalizada' ? 'selected' : ''}>Finalizada</option>
-            </select>`;
-}
-
 // Cambiar estado de la serie
 function updateSeriesStatus(index, newStatus) {
     if (collection[index].type === 'Serie') {
@@ -220,5 +231,9 @@ function editSeriesComicRating(seriesIndex, comicIndex) {
     }
 }
 
-// Renderizar la colección al cargar
-renderCollection();
+// Inicializar tablas y mostrar la de Cómics por defecto
+function initializeTables() {
+    showTable('comics');  // Mostrar la tabla de Cómics por defecto
+}
+
+initializeTables();
