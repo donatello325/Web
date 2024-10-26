@@ -17,9 +17,13 @@ function showTable(type) {
 
 function addItem(type) {
     const name = prompt(`Nombre del ${type === 'comics' ? 'Cómic/Manga' : type === 'books' ? 'Libro' : 'Serie/Anime/Película'}`);
+    const typeSpecific = prompt('Tipo (Serie, Saga, Tomo Único, etc.):');
+    const formatOrGenre = prompt(`${type === 'comics' ? 'Formato' : 'Género'} (e.g., Manga, Ficción, Acción):`);
     const price = parseFloat(prompt('Precio:'));
     const rating = parseInt(prompt('Nota (1-10):'));
-    const newEntry = { name, price, rating, read: false };
+    const status = type === 'comics' || type === 'shows' ? prompt('Estado (En curso, Finalizada):') : '';
+    const read = confirm('¿Leído/Visto?');
+    const newEntry = { name, type: typeSpecific, formatOrGenre, price, rating, status, read };
 
     if (name && !isNaN(price) && rating >= 1 && rating <= 10) {
         collection[type].push(newEntry);
@@ -36,10 +40,16 @@ function renderTable(type) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${item.name}</td>
+            <td>${item.type}</td>
+            <td>${item.formatOrGenre}</td>
             <td>${item.price}€</td>
             <td>${item.rating}</td>
+            <td>${item.status || '-'}</td>
             <td><input type="checkbox" ${item.read ? "checked" : ""} onchange="toggleReadStatus('${type}', ${index})"></td>
-            <td><button onclick="deleteItem('${type}', ${index})">Eliminar</button></td>
+            <td>
+                <button onclick="editItem('${type}', ${index})">Editar</button>
+                <button onclick="deleteItem('${type}', ${index})">Eliminar</button>
+            </td>
         `;
         tbody.appendChild(row);
     });
@@ -52,6 +62,16 @@ function toggleReadStatus(type, index) {
     saveCollection();
     renderTable(type);
     updateProgressBars();
+}
+
+function editItem(type, index) {
+    const item = collection[type][index];
+    item.name = prompt('Nuevo Nombre:', item.name);
+    item.price = parseFloat(prompt('Nuevo Precio:', item.price));
+    item.rating = parseInt(prompt('Nueva Nota (1-10):', item.rating));
+    item.read = confirm('¿Leído/Visto?');
+    saveCollection();
+    renderTable(type);
 }
 
 function deleteItem(type, index) {
