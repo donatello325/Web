@@ -53,6 +53,12 @@ th {
     text-align: right;
     margin-top: 10px;
 }
+.collection-table {
+    display: none;
+}
+.collection-table.active {
+    display: block;
+}
 
 /* Estilos para las barras de progreso */
 .progress-container {
