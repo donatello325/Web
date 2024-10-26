@@ -1,4 +1,4 @@
-/* Encabezado y estilo general */
+/* Encabezado gris para todos los títulos */
 .header-gray {
     background-color: lightgray;
     padding: 20px;
@@ -6,17 +6,32 @@
     margin-top: 20px;
     border-radius: 4px;
 }
+
+/* Encabezado verde para la tabla principal */
+.header-green {
+    background-color: #00b300; /* Verde */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+/* Encabezado fijo en la parte superior */
 #header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    background-color: lightgray;
+    background-color: #00b300; /* Color verde */
     padding: 10px 0;
     text-align: center;
+    color: white;
     z-index: 1000;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -24,6 +39,8 @@ body {
     padding-top: 80px;
     background-color: #f0f0f0;
 }
+
+/* Contenedor principal para centrar el contenido */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -31,50 +48,38 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Estilos para la tabla */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 th, td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
 }
+
 th {
     background-color: #f4f4f4;
 }
+
+/* Botones */
 .button {
     padding: 5px 10px;
     margin-top: 10px;
 }
+
+/* Estilos para el total */
 .total {
     font-weight: bold;
     text-align: right;
     margin-top: 10px;
 }
-.collection-table {
-    display: none;
-}
-.collection-table.active {
-    display: block;
-}
 
-/* Estilos para las barras de progreso */
-.progress-container {
-    margin-top: 20px;
-}
-.progress-bar {
-    margin: 10px 0;
-}
-.progress {
-    background-color: #ddd;
-    border-radius: 10px;
-    height: 20px;
-    overflow: hidden;
-}
-.progress-fill {
-    background-color: green;
-    height: 100%;
-    width: 0;
+/* Estilo para checkbox de lectura verde */
+.checkbox-lectura {
+    accent-color: green;
 }
