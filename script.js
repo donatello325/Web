@@ -1,4 +1,3 @@
-// Estructura de la colección con tablas independientes para cada categoría
 let collection = {
     comics: JSON.parse(localStorage.getItem('comics')) || [],
     books: JSON.parse(localStorage.getItem('books')) || [],
@@ -42,19 +41,19 @@ function renderTable(type) {
     tbody.innerHTML = '';
     collection[type].forEach((item, index) => {
         const comicCount = item.items ? item.items.length : 0;
-        const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
-        const status = item.type === 'Serie' ? item.status || 'En curso' : '-';
-        const isRead = item.type === 'Serie' ? checkIfSeriesIsRead(item) : item.read || false;
+        const averageRating = item.type === 'Serie (Cómic)' ? calculateAverageRating(item) : item.rating || "Sin nota";
+        const status = item.type === 'Serie (Cómic)' ? item.status || 'En curso' : '-';
+        const isRead = item.type === 'Serie (Cómic)' ? checkIfSeriesIsRead(item) : item.read || false;
 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${item.type === 'Serie' ? `<a href="#" onclick="openSeries('${type}', ${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
+            <td>${item.type === 'Serie (Cómic)' ? `<a href="#" onclick="openSeries('${type}', ${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
             <td>${item.type}</td>
             <td>${item.format}</td>
             <td>${item.price ? `${item.price.toFixed(2)}€` : '-'}</td>
             <td>${averageRating}</td>
             <td>${status}</td>
-            <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus('${type}', ${index})" ${item.type === 'Serie' ? "disabled" : ""}></td>
+            <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus('${type}', ${index})" ${item.type === 'Serie (Cómic)' ? "disabled" : ""}></td>
             <td>
                 <button onclick="editItemPrice('${type}', ${index})">Editar Precio</button>
                 <button onclick="editItemRating('${type}', ${index})">Editar Nota</button>
@@ -70,11 +69,19 @@ function renderTable(type) {
 // Agregar un nuevo elemento a la colección específica
 function addItem(type) {
     const name = prompt('Nombre:');
-    const typeSpecific = type === 'comics' ? prompt('Tipo (Serie/Saga/Tomo Único):') : type === 'books' ? 'Libro' : prompt('Tipo (Película/Serie/Anime):');
+    let typeSpecific;
+    if (type === 'comics') {
+        typeSpecific = prompt('Tipo (Serie (Cómic), Saga, Tomo Único):');
+    } else if (type === 'shows') {
+        typeSpecific = prompt('Tipo (Película, Serie TV, Anime):');
+    } else {
+        typeSpecific = 'Libro';
+    }
+
     const formatOrGenre = prompt(`${type === 'comics' ? 'Formato' : 'Género'} (e.g., Manga, Ficción, Acción):`);
     const price = parseFloat(prompt('Precio:'));
     const rating = typeSpecific === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
-    const status = type === 'comics' || type === 'shows' ? prompt('Estado (En curso, Finalizada):') : '';
+    const status = typeSpecific === 'Serie (Cómic)' || typeSpecific === 'Serie TV' ? prompt('Estado (En curso, Finalizada):') : '';
     const read = confirm('¿Leído/Visto?');
 
     if (name && formatOrGenre && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
@@ -83,7 +90,7 @@ function addItem(type) {
             type: typeSpecific,
             format: formatOrGenre,
             price,
-            items: typeSpecific === 'Serie' || typeSpecific === 'Saga' ? [] : null,
+            items: typeSpecific === 'Serie (Cómic)' ? [] : null,
             rating,
             status,
             read: typeSpecific === 'Tomo Único' ? read : null
