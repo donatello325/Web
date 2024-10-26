@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colección de Cómics y Manga</title>
+    <title>Colección de Cómics y Entretenimiento</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Encabezado principal -->
     <div id="header">
-        <h1>Mi Colección</h1>
+        <h1>Mi Colección de Entretenimiento</h1>
     </div>
 
     <!-- Contenedor principal -->
@@ -39,35 +39,76 @@
 
         <!-- Botones de navegación -->
         <div class="navigation-buttons">
-            <button onclick="scrollCollection()">Ver Colección</button>
-            <button onclick="scrollNonCollection()">Puntuar No en Colección</button>
+            <button onclick="showTable('comics')">Cómics y Manga</button>
+            <button onclick="showTable('books')">Libros</button>
+            <button onclick="showTable('shows')">Series, Anime y Películas</button>
         </div>
 
         <!-- Tabla de Cómics y Manga -->
-        <div id="mainTableHeader" class="header-gray">
+        <div id="comicsTable" class="collection-table">
             <h2>Cómics y Manga</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Formato</th>
+                        <th>Precio</th>
+                        <th>Nota</th>
+                        <th>Estado</th>
+                        <th>Lectura</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="comicsBody"></tbody>
+            </table>
+            <button onclick="addItem('comics')">Añadir Cómic/Manga</button>
         </div>
-        <table id="collectionTable">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Formato</th>
-                    <th>Precio</th>
-                    <th>Nota</th>
-                    <th>Estado</th>
-                    <th>Lectura</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <button class="button" onclick="addComic()">Añadir Cómic/Manga</button>
 
-        <!-- Precio total y cantidad de cómics/manga -->
+        <!-- Tabla de Libros -->
+        <div id="booksTable" class="collection-table" style="display: none;">
+            <h2>Libros</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Género</th>
+                        <th>Precio</th>
+                        <th>Nota</th>
+                        <th>Lectura</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="booksBody"></tbody>
+            </table>
+            <button onclick="addItem('books')">Añadir Libro</button>
+        </div>
+
+        <!-- Tabla de Series, Anime y Películas -->
+        <div id="showsTable" class="collection-table" style="display: none;">
+            <h2>Series, Anime y Películas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Género</th>
+                        <th>Precio</th>
+                        <th>Nota</th>
+                        <th>Visualización</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="showsBody"></tbody>
+            </table>
+            <button onclick="addItem('shows')">Añadir Serie/Anime/Película</button>
+        </div>
+
+        <!-- Precio total y cantidad de ítems -->
         <div class="total">
             <div id="totalPrice">Total: 0€</div>
-            <div id="totalComicCount">Total de cómics: 0</div>
+            <div id="totalItemsCount">Total de ítems: 0</div>
         </div>
     </div>
 
