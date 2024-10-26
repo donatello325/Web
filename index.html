@@ -13,32 +13,10 @@
 </div>
 
 <div class="container">
-    <!-- Menú desplegable para cambiar el color del fondo del encabezado principal -->
-    <label for="colorPickerHeader"></label>
-    <select id="colorPickerHeader" onchange="changeHeaderColor('header', 'headerColor', 'colorPickerHeader')">
-        <option value="white">Blanco</option>
-        <option value="lightgray">Gris Claro</option>
-        <option value="lightblue">Azul Claro</option>
-        <option value="lightgreen">Verde Claro</option>
-        <option value="lightpink">Rosa Claro</option>
-        <option value="lightyellow">Amarillo Claro</option>
-    </select>
-
     <!-- Encabezado para la tabla principal -->
-    <div id="mainTableHeader" style="padding: 20px; text-align: center; margin-top: 20px;">
+    <div id="mainTableHeader" class="header-gray">
         <h2>Series y Tomos Únicos</h2>
     </div>
-
-    <!-- Menú desplegable para cambiar el color del fondo del encabezado de la tabla principal -->
-    <label for="colorPickerTable"></label>
-    <select id="colorPickerTable" onchange="changeHeaderColor('mainTableHeader', 'tableHeaderColor', 'colorPickerTable')">
-        <option value="white">Blanco</option>
-        <option value="lightgray">Gris Claro</option>
-        <option value="lightblue">Azul Claro</option>
-        <option value="lightgreen">Verde Claro</option>
-        <option value="lightpink">Rosa Claro</option>
-        <option value="lightyellow">Amarillo Claro</option>
-    </select>
 
     <!-- Tabla principal -->
     <table id="collectionTable">
@@ -68,17 +46,6 @@
         <div id="seriesHeader" style="padding: 20px; text-align: center;">
             <h2 id="seriesTitle">Título de la Serie</h2>
         </div>
-
-        <!-- Menú para cambiar el color del encabezado de la serie -->
-        <label for="colorPickerSeries"></label>
-        <select id="colorPickerSeries" onchange="changeSeriesHeaderColor()">
-            <option value="white">Blanco</option>
-            <option value="lightgray">Gris Claro</option>
-            <option value="lightblue">Azul Claro</option>
-            <option value="lightgreen">Verde Claro</option>
-            <option value="lightpink">Rosa Claro</option>
-            <option value="lightyellow">Amarillo Claro</option>
-        </select>
 
         <!-- Tabla de los cómics de la serie -->
         <table id="seriesTable">
