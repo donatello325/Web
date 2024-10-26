@@ -162,10 +162,40 @@ function deleteItem(type, index) {
     renderTable(type);
 }
 
-// Actualizar el estado de lectura de un número de serie
+// Calcular el promedio de calificación de una serie
+function calculateAverageRating(series) {
+    if (series.items.length === 0) return 0;
+    const totalRating = series.items.reduce((sum, item) => sum + (item.rating || 0), 0);
+    return (totalRating / series.items.length).toFixed(1);
+}
+
+// Verificar si toda la serie ha sido leída
+function checkIfSeriesIsRead(series) {
+    return series.items.length > 0 && series.items.every(comic => comic.read);
+}
+
+// Alternar el estado de lectura de un número en la serie
 function toggleSeriesComicReadStatus(seriesIndex, comicIndex) {
     const series = collection.comics[seriesIndex];
     series.items[comicIndex].read = !series.items[comicIndex].read;
+    series.read = checkIfSeriesIsRead(series);
+    renderSeriesTable(seriesIndex);
+    saveCollection();
+}
+
+// Editar calificación de un número en una serie
+function editSeriesComicRating(seriesIndex, comicIndex) {
+    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
+    if (newRating >= 1 && newRating <= 10) {
+        collection.comics[seriesIndex].items[comicIndex].rating = newRating;
+        renderSeriesTable(seriesIndex);
+        saveCollection();
+    }
+}
+
+// Eliminar un número de una serie
+function deleteSeriesComic(seriesIndex, comicIndex) {
+    collection.comics[seriesIndex].items.splice(comicIndex, 1);
     renderSeriesTable(seriesIndex);
     saveCollection();
 }
@@ -176,5 +206,5 @@ function initializeTables() {
     updateTotals(); // Actualizar los totales al inicio
 }
 
+// Llamar a la función de inicialización
 initializeTables();
-
