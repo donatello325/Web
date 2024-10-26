@@ -1,29 +1,10 @@
-/* Encabezado gris para todos los títulos */
-.header-gray {
-    background-color: lightgray;
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px;
-    border-radius: 4px;
-}
-
-/* Encabezado verde para la tabla principal */
-.header-green {
-    background-color: #00b300; /* Verde */
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px;
-    border-radius: 4px;
-}
-
-/* Encabezado fijo en la parte superior */
+/* Encabezado y estilo general */
 #header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    background-color: #00b300; /* Color verde */
+    background-color: #00b300;
     padding: 10px 0;
     text-align: center;
     color: white;
@@ -31,16 +12,14 @@
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    padding-top: 80px;
+    padding-top: 100px;
     background-color: #f0f0f0;
 }
 
-/* Contenedor principal para centrar el contenido */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -49,7 +28,29 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Botones de navegación */
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.navigation-buttons button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 /* Estilos para la tabla */
+.collection-table {
+    display: none; /* Ocultar todas las tablas por defecto */
+}
+
+.collection-table.active {
+    display: block; /* Mostrar la tabla activa */
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -66,20 +67,7 @@ th {
     background-color: #f4f4f4;
 }
 
-/* Botones */
 .button {
     padding: 5px 10px;
     margin-top: 10px;
-}
-
-/* Estilos para el total */
-.total {
-    font-weight: bold;
-    text-align: right;
-    margin-top: 10px;
-}
-
-/* Estilo para checkbox de lectura verde */
-.checkbox-lectura {
-    accent-color: green;
 }
