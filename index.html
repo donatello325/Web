@@ -3,112 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colección de Cómics y Entretenimiento</title>
+    <title>Colección de Entretenimiento</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Encabezado principal -->
     <div id="header">
         <h1>Mi Colección de Entretenimiento</h1>
     </div>
 
-    <!-- Contenedor principal -->
     <div class="container">
-        <!-- Resumen de la colección con barras de progreso -->
-        <div class="progress-container">
-            <h2>Resumen de la colección</h2>
-            <div class="progress-bar">
-                <label>Cómics y Manga: <span id="comicsProgress">0%</span></label>
-                <div class="progress">
-                    <div class="progress-fill" id="comicsProgressBar" style="width: 0%;"></div>
-                </div>
+        <h2>Resumen de la colección</h2>
+        <div class="progress-bar">
+            <label>Cómics y Manga: <span id="comicsProgress">0%</span></label>
+            <div class="progress">
+                <div class="progress-fill" id="comicsProgressBar" style="width: 0%;"></div>
             </div>
-            <div class="progress-bar">
-                <label>Libros: <span id="booksProgress">0%</span></label>
-                <div class="progress">
-                    <div class="progress-fill" id="booksProgressBar" style="width: 0%;"></div>
-                </div>
+        </div>
+        <div class="progress-bar">
+            <label>Libros: <span id="booksProgress">0%</span></label>
+            <div class="progress">
+                <div class="progress-fill" id="booksProgressBar" style="width: 0%;"></div>
             </div>
-            <div class="progress-bar">
-                <label>Series, Anime y Películas: <span id="showsProgress">0%</span></label>
-                <div class="progress">
-                    <div class="progress-fill" id="showsProgressBar" style="width: 0%;"></div>
-                </div>
+        </div>
+        <div class="progress-bar">
+            <label>Series, Anime y Películas: <span id="showsProgress">0%</span></label>
+            <div class="progress">
+                <div class="progress-fill" id="showsProgressBar" style="width: 0%;"></div>
             </div>
         </div>
 
-        <!-- Botones de navegación -->
+        <!-- Botones para acceder a cada colección -->
         <div class="navigation-buttons">
-            <button onclick="showTable('comics')">Cómics y Manga</button>
-            <button onclick="showTable('books')">Libros</button>
-            <button onclick="showTable('shows')">Series, Anime y Películas</button>
-        </div>
-
-        <!-- Tabla de Cómics y Manga -->
-        <div id="comicsTable" class="collection-table">
-            <h2>Cómics y Manga</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Formato</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Estado</th>
-                        <th>Lectura</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="comicsBody"></tbody>
-            </table>
-            <button onclick="addItem('comics')">Añadir Cómic/Manga</button>
-        </div>
-
-        <!-- Tabla de Libros -->
-        <div id="booksTable" class="collection-table" style="display: none;">
-            <h2>Libros</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Autor</th>
-                        <th>Género</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Lectura</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="booksBody"></tbody>
-            </table>
-            <button onclick="addItem('books')">Añadir Libro</button>
-        </div>
-
-        <!-- Tabla de Series, Anime y Películas -->
-        <div id="showsTable" class="collection-table" style="display: none;">
-            <h2>Series, Anime y Películas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Género</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Visualización</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="showsBody"></tbody>
-            </table>
-            <button onclick="addItem('shows')">Añadir Serie/Anime/Película</button>
-        </div>
-
-        <!-- Precio total y cantidad de ítems -->
-        <div class="total">
-            <div id="totalPrice">Total: 0€</div>
-            <div id="totalItemsCount">Total de ítems: 0</div>
+            <button onclick="window.location.href='comics.html'">Cómics y Manga</button>
+            <button onclick="window.location.href='books.html'">Libros</button>
+            <button onclick="window.location.href='shows.html'">Series, Anime y Películas</button>
         </div>
     </div>
 
