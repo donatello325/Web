@@ -1,42 +1,30 @@
-let collection = JSON.parse(localStorage.getItem('collection')) || [];
+// Estructura de la colección con tablas independientes para cada categoría
+let collection = {
+    comics: JSON.parse(localStorage.getItem('comics')) || [],
+    books: JSON.parse(localStorage.getItem('books')) || [],
+    shows: JSON.parse(localStorage.getItem('shows')) || []
+};
 
-// Guardar colección en localStorage y actualizar totales
+// Guardar colección en localStorage por categoría
 function saveCollection() {
-    localStorage.setItem('collection', JSON.stringify(collection));
-    updateTotalPrice();
-    updateTotalComicCount();
+    localStorage.setItem('comics', JSON.stringify(collection.comics));
+    localStorage.setItem('books', JSON.stringify(collection.books));
+    localStorage.setItem('shows', JSON.stringify(collection.shows));
+    updateTotals();
 }
 
-// Calcular y actualizar el precio total
-function updateTotalPrice() {
-    const total = collection.reduce((sum, item) => sum + (item.price || 0), 0);
-    document.getElementById('totalPrice').innerText = `Total: ${total.toFixed(2)}€`;
-}
+// Actualizar los totales de precio y conteo de cada categoría y general
+function updateTotals() {
+    const comicsTotal = collection.comics.reduce((sum, item) => sum + (item.price || 0), 0);
+    const booksTotal = collection.books.reduce((sum, item) => sum + (item.price || 0), 0);
+    const showsTotal = collection.shows.reduce((sum, item) => sum + (item.price || 0), 0);
 
-// Contar y mostrar el total de ítems
-function updateTotalComicCount() {
-    let totalComics = 0;
-    collection.forEach(item => {
-        totalComics += item.type === 'Serie' ? item.items.length : 1;
-    });
-    document.getElementById('totalComicCount').innerText = `Total de cómics: ${totalComics}`;
-}
+    document.getElementById('comicsTotalPrice').innerText = `Total Cómics: ${comicsTotal.toFixed(2)}€`;
+    document.getElementById('booksTotalPrice').innerText = `Total Libros: ${booksTotal.toFixed(2)}€`;
+    document.getElementById('showsTotalPrice').innerText = `Total Películas/Series: ${showsTotal.toFixed(2)}€`;
 
-// Calcular el precio total y el conteo de cómics en series
-function updateSeriesTotalPrice(series) {
-    const total = series.items.reduce((sum, item) => sum + (item.price || 0), 0);
-    series.price = total;
-    document.getElementById('seriesTotalPrice').innerText = `Total: ${total.toFixed(2)}€`;
-    document.getElementById('seriesComicCount').innerText = `Número de cómics: ${series.items.length}`;
-    renderCollection();
-    updateTotalComicCount();
-}
-
-// Calcular promedio de calificación de una serie
-function calculateAverageRating(series) {
-    if (series.items.length === 0) return 0;
-    const totalRating = series.items.reduce((sum, item) => sum + (item.rating || 0), 0);
-    return (totalRating / series.items.length).toFixed(1);
+    const generalTotal = comicsTotal + booksTotal + showsTotal;
+    document.getElementById('generalTotalPrice').innerText = `Total General: ${generalTotal.toFixed(2)}€`;
 }
 
 // Mostrar la tabla correspondiente y ocultar las demás
@@ -45,47 +33,41 @@ function showTable(type) {
         table.style.display = 'none';
     });
     document.getElementById(`${type}Table`).style.display = 'block';
-    renderTable(type);  // Renderizar la tabla seleccionada
+    renderTable(type); // Renderizar la tabla seleccionada
 }
 
-// Renderizar la colección principal dependiendo del tipo
+// Renderizar la tabla específica dependiendo del tipo (comics, books, shows)
 function renderTable(type) {
     const tbody = document.getElementById(`${type}Body`);
     tbody.innerHTML = '';
+    collection[type].forEach((item, index) => {
+        const comicCount = item.items ? item.items.length : 0;
+        const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
+        const status = item.type === 'Serie' ? item.status || 'En curso' : '-';
+        const isRead = item.type === 'Serie' ? checkIfSeriesIsRead(item) : item.read || false;
 
-    collection.forEach((item, index) => {
-        if ((type === 'comics' && (item.type === 'Cómic' || item.type === 'Manga')) ||
-            (type === 'books' && item.type === 'Libro') ||
-            (type === 'shows' && (item.type === 'Película' || item.type === 'Serie' || item.type === 'Anime'))) {
-            
-            const comicCount = item.items ? item.items.length : 0;
-            const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
-            const status = item.type === 'Serie' ? item.status || 'En curso' : '-';
-            const isRead = item.type === 'Serie' ? checkIfSeriesIsRead(item) : item.read || false;
-
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${item.type === 'Serie' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
-                <td>${item.type}</td>
-                <td>${item.format}</td>
-                <td>${item.price ? `${item.price.toFixed(2)}€` : '-'}</td>
-                <td>${averageRating}</td>
-                <td>${status}</td>
-                <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus(${index})" ${item.type === 'Serie' ? "disabled" : ""}></td>
-                <td>
-                    <button onclick="editComicPrice(${index})">Editar Precio</button>
-                    <button onclick="editComicRating(${index})">Editar Nota</button>
-                    <button onclick="deleteComic(${index})">Eliminar</button>
-                </td>
-            `;
-            tbody.appendChild(row);
-        }
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.type === 'Serie' ? `<a href="#" onclick="openSeries('${type}', ${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
+            <td>${item.type}</td>
+            <td>${item.format}</td>
+            <td>${item.price ? `${item.price.toFixed(2)}€` : '-'}</td>
+            <td>${averageRating}</td>
+            <td>${status}</td>
+            <td><input type="checkbox" class="checkbox-lectura" ${isRead ? "checked" : ""} onchange="toggleReadStatus('${type}', ${index})" ${item.type === 'Serie' ? "disabled" : ""}></td>
+            <td>
+                <button onclick="editItemPrice('${type}', ${index})">Editar Precio</button>
+                <button onclick="editItemRating('${type}', ${index})">Editar Nota</button>
+                <button onclick="deleteItem('${type}', ${index})">Eliminar</button>
+            </td>
+        `;
+        tbody.appendChild(row);
     });
 
     saveCollection();
 }
 
-// Agregar un nuevo elemento a la colección dependiendo del tipo de tabla
+// Agregar un nuevo elemento a la colección específica
 function addItem(type) {
     const name = prompt('Nombre:');
     const typeSpecific = type === 'comics' ? prompt('Tipo (Serie/Saga/Tomo Único):') : type === 'books' ? 'Libro' : prompt('Tipo (Película/Serie/Anime):');
@@ -106,39 +88,39 @@ function addItem(type) {
             status,
             read: typeSpecific === 'Tomo Único' ? read : null
         };
-        collection.push(newItem);
+        collection[type].push(newItem);
         saveCollection();
         renderTable(type);
     }
 }
 
-// Editar precio de un cómic
-function editComicPrice(index) {
+// Editar precio de un elemento
+function editItemPrice(type, index) {
     const newPrice = parseFloat(prompt('Nuevo precio:'));
     if (!isNaN(newPrice)) {
-        collection[index].price = newPrice;
-        renderCollection();
+        collection[type][index].price = newPrice;
+        renderTable(type);
     }
 }
 
-// Editar calificación de un cómic
-function editComicRating(index) {
+// Editar calificación de un elemento
+function editItemRating(type, index) {
     const newRating = parseInt(prompt('Nueva Nota (1-10):'));
     if (newRating >= 1 && newRating <= 10) {
-        collection[index].rating = newRating;
-        renderCollection();
+        collection[type][index].rating = newRating;
+        renderTable(type);
     }
 }
 
-// Eliminar un cómic o serie
-function deleteComic(index) {
-    collection.splice(index, 1);
-    renderCollection();
+// Eliminar un elemento
+function deleteItem(type, index) {
+    collection[type].splice(index, 1);
+    renderTable(type);
 }
 
 // Abrir modal de una serie y renderizar su tabla de cómics
-function openSeries(index) {
-    const series = collection[index];
+function openSeries(type, index) {
+    const series = collection[type][index];
     const tbody = document.getElementById('seriesTable').querySelector('tbody');
     document.getElementById('seriesTitle').innerText = series.name;
     tbody.innerHTML = '';
@@ -150,10 +132,10 @@ function openSeries(index) {
             <td>${comic.name}</td>
             <td>${comic.price ? `${comic.price.toFixed(2)}€` : '-'}</td>
             <td>${comic.rating || "Sin nota"}</td>
-            <td><input type="checkbox" ${comic.read ? "checked" : ""} onchange="toggleSeriesComicReadStatus(${index}, ${i})"></td>
+            <td><input type="checkbox" ${comic.read ? "checked" : ""} onchange="toggleSeriesComicReadStatus('${type}', ${index}, ${i})"></td>
             <td>
-                <button onclick="editSeriesComicRating(${index}, ${i})">Editar Nota</button>
-                <button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button>
+                <button onclick="editSeriesComicRating('${type}', ${index}, ${i})">Editar Nota</button>
+                <button onclick="deleteSeriesComic('${type}', ${index}, ${i})">Eliminar</button>
             </td>
         `;
         tbody.appendChild(row);
@@ -161,38 +143,6 @@ function openSeries(index) {
 
     updateSeriesTotalPrice(series);
     document.getElementById('seriesModal').style.display = 'block';
-}
-
-// Cambiar estado de lectura en un cómic de una serie
-function toggleSeriesComicReadStatus(seriesIndex, comicIndex) {
-    const series = collection[seriesIndex];
-    series.items[comicIndex].read = !series.items[comicIndex].read;
-    series.read = checkIfSeriesIsRead(series);
-    openSeries(seriesIndex);
-    renderCollection();
-    saveCollection();
-}
-
-// Cambiar estado de lectura en la colección principal
-function toggleReadStatus(index) {
-    const item = collection[index];
-    item.read = item.type === 'Tomo Único' ? !item.read : checkIfSeriesIsRead(item);
-    saveCollection();
-    renderCollection();
-}
-
-// Comprobar si toda una serie ha sido leída
-function checkIfSeriesIsRead(series) {
-    return series.items.length > 0 && series.items.every(comic => comic.read);
-}
-
-// Cambiar estado de la serie
-function updateSeriesStatus(index, newStatus) {
-    if (collection[index].type === 'Serie') {
-        collection[index].status = newStatus;
-        saveCollection();
-        renderCollection();
-    }
 }
 
 // Agregar cómic a una serie
@@ -213,26 +163,10 @@ function addSeriesComic() {
     }
 }
 
-// Eliminar cómic de una serie
-function deleteSeriesComic(seriesIndex, comicIndex) {
-    collection[seriesIndex].items.splice(comicIndex, 1);
-    openSeries(seriesIndex);
-    saveCollection();
-}
-
-// Editar calificación de un cómic en una serie
-function editSeriesComicRating(seriesIndex, comicIndex) {
-    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
-    if (newRating >= 1 && newRating <= 10) {
-        collection[seriesIndex].items[comicIndex].rating = newRating;
-        openSeries(seriesIndex);
-        saveCollection();
-    }
-}
-
 // Inicializar tablas y mostrar la de Cómics por defecto
 function initializeTables() {
     showTable('comics');  // Mostrar la tabla de Cómics por defecto
+    updateTotals(); // Actualizar los totales al inicio
 }
 
 initializeTables();
