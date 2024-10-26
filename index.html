@@ -74,45 +74,6 @@
 
 <script src="script.js"></script>
 
-<!-- JavaScript para cambiar y cargar los colores de los encabezados -->
-<script>
-    function changeHeaderColor(headerId, storageKey, pickerId) {
-        const colorPicker = document.getElementById(pickerId);
-        const header = document.getElementById(headerId);
-        const selectedColor = colorPicker.value;
-
-        header.style.backgroundColor = selectedColor;
-        localStorage.setItem(storageKey, selectedColor);
-    }
-
-    function changeSeriesHeaderColor() {
-        const colorPicker = document.getElementById('colorPickerSeries');
-        const seriesHeader = document.getElementById('seriesHeader');
-        const selectedColor = colorPicker.value;
-        const seriesTitle = document.getElementById('seriesTitle').innerText;
-
-        seriesHeader.style.backgroundColor = selectedColor;
-        localStorage.setItem(`seriesHeaderColor_${seriesTitle}`, selectedColor);
-    }
-
-    function loadHeaderColors() {
-        const headers = [
-            { id: 'header', storageKey: 'headerColor', pickerId: 'colorPickerHeader' },
-            { id: 'mainTableHeader', storageKey: 'tableHeaderColor', pickerId: 'colorPickerTable' }
-        ];
-
-        headers.forEach(({ id, storageKey, pickerId }) => {
-            const savedColor = localStorage.getItem(storageKey);
-            if (savedColor) {
-                const header = document.getElementById(id);
-                const colorPicker = document.getElementById(pickerId);
-
-                header.style.backgroundColor = savedColor;
-                colorPicker.value = savedColor;
-            }
-        });
-    }
-
     loadHeaderColors();
 </script>
 
