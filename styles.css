@@ -12,7 +12,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Asegurar que el encabezado ocupe todo el ancho de la ventana */
+    width: 100vw; /* Asegura que el encabezado ocupe todo el ancho de la ventana */
     background-color: lightgray; /* Color de fondo gris */
     padding: 10px 0;
     text-align: center;
@@ -25,26 +25,23 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0; /* Un fondo de color suave para los bordes */
+    padding-top: 80px; /* Espacio suficiente para el encabezado fijo */
+    background-color: #f0f0f0; /* Fondo suave para los bordes */
 }
 
 /* Contenedor principal para centrar el contenido */
 .container {
-    max-width: 1000px; /* Ajusta esto para más o menos ancho */
-    margin: 0 auto; /* Centra el contenido horizontalmente */
+    max-width: 1000px; /* Ajusta este valor para controlar el ancho del contenido */
+    margin: 0 auto; /* Centrar el contenido */
     background-color: white; /* Fondo blanco para el contenido */
-    padding: 20px; /* Espacio dentro del contenedor */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para que el contenedor resalte */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
+/* Encabezado del contenedor */
 .container h1 {
     margin: 0;
     font-size: 1.8em;
-}
-
-/* Espaciado para el contenido para que no quede detrás del encabezado */
-body {
-    padding-top: 80px; /* Espacio suficiente para el encabezado fijo */
 }
 
 /* Estilos para la tabla */
@@ -64,6 +61,7 @@ th {
     background-color: #f4f4f4;
 }
 
+/* Botones */
 .button {
     padding: 5px 10px;
     margin-top: 10px;
