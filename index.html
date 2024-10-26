@@ -13,65 +13,62 @@
 </div>
 
 <div class="container">
-    <!-- Botón para cambiar entre tablas -->
-    <div class="arrow" onclick="toggleTable()">➔</div>
+    <!-- Encabezado para la tabla principal -->
+    <div id="mainTableHeader" class="header-gray">
+        <h2>Series, Sagas y Tomos Únicos</h2>
+    </div>
 
-    <!-- Contenedor general de tablas -->
-    <div class="tables-container">
-        <!-- Tabla principal 1 -->
-        <div id="mainTableContainer" class="table-section">
-            <div id="mainTableHeader" class="header-gray">
-                <h2>Series, Sagas y Tomos Únicos</h2>
-            </div>
+    <!-- Tabla principal -->
+    <table id="collectionTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Formato</th> <!-- Nueva columna Formato -->
+                <th>Precio</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Lectura</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button class="button" onclick="addComic()">Añadir Serie/Saga/Tomo Único</button>
 
-            <table id="collectionTable">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Formato</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Estado</th>
-                        <th>Lectura</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <button class="button" onclick="addComic()">Añadir Serie/Saga/Tomo Único</button>
-            <div class="total">
-                <div id="totalPrice">Total: 0€</div>
-                <div id="totalComicCount">Total de cómics: 0</div>
-            </div>
+    <!-- Precio total y número total de cómics -->
+    <div class="total">
+        <div id="totalPrice">Total: 0€</div>
+        <div id="totalComicCount">Total de cómics: 0</div>
+    </div>
+
+    <!-- Modal para las series -->
+    <div id="seriesModal" style="display:none;">
+        <div id="seriesHeader" class="header-gray" style="padding: 20px; text-align: center;">
+            <h2 id="seriesTitle">Título de la Serie</h2>
         </div>
 
-        <!-- Tabla principal 2 -->
-        <div id="secondTableContainer" class="table-section hidden">
-            <div id="secondTableHeader" class="header-red">
-                <h2>Segunda Colección</h2>
-            </div>
+        <!-- Tabla de los cómics de la serie -->
+        <table id="seriesTable">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Nota</th>
+                    <th>Lectura</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button class="button" onclick="addSeriesComic()">Añadir Número</button>
+        <button class="button" onclick="closeModal()">Cerrar</button>
 
-            <table id="secondCollectionTable">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Formato</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Estado</th>
-                        <th>Lectura</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <button class="button" onclick="addComicToSecondTable()">Añadir Serie/Saga/Tomo Único</button>
-            <div class="total">
-                <div id="totalPriceSecond">Total: 0€</div>
-                <div id="totalComicCountSecond">Total de cómics: 0</div>
-            </div>
+        <!-- Precio total y conteo de cómics de la serie -->
+        <div class="total">
+            <div id="seriesTotalPrice">Total: 0€</div>
+            <div id="seriesComicCount">Número de cómics: 0</div>
         </div>
     </div>
 </div>
