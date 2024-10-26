@@ -66,14 +66,17 @@ function renderTable(type) {
     saveCollection();
 }
 
-// Función de normalización para el tipo y formato
+// Normalización de entradas para el tipo y formato de Cómics
 function normalizeTypeFormat(value, type) {
-    value = value.toLowerCase();
+    value = value.trim().toLowerCase();
     if (type === "type") {
-        return value === "comic" || value === "cómic" || value === "cómic" ? "Cómic" : "Manga";
+        if (["comic", "cómic", "comics", "cómics"].includes(value)) return "Cómic";
+        if (["manga"].includes(value)) return "Manga";
     } else if (type === "format") {
-        return value === "serie" ? "Serie" : "Tomo Único";
+        if (["serie"].includes(value)) return "Serie";
+        if (["tomo unico", "tomo único", "tomounico", "tomounico"].includes(value)) return "Tomo Único";
     }
+    return null; // En caso de que no coincida con ninguno
 }
 
 // Agregar un nuevo elemento a la colección específica de Cómics y Manga
@@ -85,33 +88,50 @@ function addComicItem() {
     let format = prompt('Formato (Serie o Tomo Único):');
     format = normalizeTypeFormat(format, "format"); // Normalizar el formato
 
+    if (!type || !format) {
+        alert("Tipo o formato no válido. Intente nuevamente.");
+        return;
+    }
+
     let price = 0;
     let rating = null;
 
     if (format === "Tomo Único") {
         price = parseFloat(prompt('Precio:'));
         rating = parseInt(prompt('Nota (1-10):'));
+        if (isNaN(price) || price < 0) {
+            alert("Precio no válido. Intente nuevamente.");
+            return;
+        }
+        if (isNaN(rating) || rating < 1 || rating > 10) {
+            alert("Nota no válida. Debe ser un número entre 1 y 10.");
+            return;
+        }
     }
 
     const status = format === "Serie" ? 'En curso' : '-';
     const read = format === "Tomo Único" ? false : null;
 
-    if (name && type && format && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
-        const newItem = {
-            name,
-            type,
-            format,
-            price,
-            items: format === 'Serie' ? [] : null,
-            rating,
-            status,
-            read
-        };
-        collection.comics.push(newItem);
-        saveCollection();
-        renderTable('comics');
-    }
+    const newItem = {
+        name,
+        type,
+        format,
+        price,
+        items: format === 'Serie' ? [] : null,
+        rating,
+        status,
+        read
+    };
+
+    collection.comics.push(newItem);
+    saveCollection();
+    renderTable('comics');
 }
+
+// Vincular `addComicItem` al botón en el HTML
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("#comicsTable button").onclick = addComicItem;
+});
 
 // Editar precio de un elemento
 function editItemPrice(type, index) {
@@ -180,6 +200,11 @@ function addSeriesComic() {
         openSeries('comics', index);
         saveCollection();
     }
+}
+
+// Cerrar modal de series
+function closeModal() {
+    document.getElementById('seriesModal').style.display = 'none';
 }
 
 // Inicializar tablas y mostrar la de Cómics por defecto
