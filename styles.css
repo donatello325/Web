@@ -1,6 +1,6 @@
 /* Encabezado gris para todos los títulos */
 .header-gray {
-    background-color: lightgray; /* Color de fondo gris */
+    background-color: lightgray !important; /* Color de fondo gris */
     padding: 20px;
     text-align: center;
     margin-top: 20px;
@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     width: 100vw; /* Asegura que el encabezado ocupe todo el ancho de la ventana */
-    background-color: lightgray; /* Color de fondo gris */
+    background-color: lightgray !important; /* Color de fondo gris */
     padding: 10px 0;
     text-align: center;
     z-index: 1000;
