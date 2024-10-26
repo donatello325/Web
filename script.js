@@ -48,15 +48,15 @@ function showTable(type) {
     renderTable(type);  // Renderizar la tabla seleccionada
 }
 
-// Renderizar la tabla principal dependiendo del tipo
+// Renderizar la colección principal dependiendo del tipo
 function renderTable(type) {
     const tbody = document.getElementById(`${type}Body`);
     tbody.innerHTML = '';
 
     collection.forEach((item, index) => {
-        if ((type === 'comics' && (item.category === 'Cómic' || item.category === 'Manga')) ||
-            (type === 'books' && item.category === 'Libro') ||
-            (type === 'shows' && (item.category === 'Película' || item.category === 'Serie' || item.category === 'Anime'))) {
+        if ((type === 'comics' && (item.type === 'Cómic' || item.type === 'Manga')) ||
+            (type === 'books' && item.type === 'Libro') ||
+            (type === 'shows' && (item.type === 'Película' || item.type === 'Serie' || item.type === 'Anime'))) {
             
             const comicCount = item.items ? item.items.length : 0;
             const averageRating = item.type === 'Serie' ? calculateAverageRating(item) : item.rating || "Sin nota";
@@ -99,7 +99,6 @@ function addItem(type) {
         const newItem = {
             name,
             type: typeSpecific,
-            category: formatOrGenre,
             format: formatOrGenre,
             price,
             items: typeSpecific === 'Serie' || typeSpecific === 'Saga' ? [] : null,
