@@ -124,6 +124,7 @@ function deleteComic(index) {
 
 // Función para abrir el modal de una serie y mostrar sus cómics
 function openSeries(index) {
+    console.log("Ejecutando openSeries, índice:", index); // Mensaje de depuración
     const series = collection[index];
     const tbody = document.getElementById('seriesTable').querySelector('tbody');
     document.getElementById('seriesTitle').innerText = series.name;
@@ -146,7 +147,11 @@ function openSeries(index) {
     });
 
     updateSeriesTotalPrice(series);
-    document.getElementById('seriesModal').classList.add('active'); // Mostrar el modal
+
+    // Aplicar la clase active al modal para que se muestre
+    const seriesModal = document.getElementById('seriesModal');
+    seriesModal.classList.add('active');
+    console.log("Modal abierto para la serie:", series.name); // Mensaje de depuración
 }
 
 // Función para cerrar el modal
