@@ -50,7 +50,7 @@ function renderCollection() {
 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${item.type === 'Serie' || item.type === 'Saga' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
+            <td>${item.type === 'Serie' || item.type === 'Saga' ? `<a href="#" onclick="toggleSeriesView(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
             <td>${item.type}</td>
             <td>${item.format}</td>
             <td>${item.price}€</td>
@@ -64,12 +64,122 @@ function renderCollection() {
             </td>
         `;
         tbody.appendChild(row);
+
+        // Añadimos la vista de la serie debajo de la serie seleccionada
+        const seriesView = document.createElement('tr');
+        seriesView.id = `seriesView-${index}`;
+        seriesView.classList.add('series-view');
+        seriesView.style.display = 'none'; // Inicialmente oculto
+        seriesView.innerHTML = `<td colspan="8" id="seriesContent-${index}"></td>`;
+        tbody.appendChild(seriesView);
     });
 
     saveCollection();
 }
 
-// Función para añadir un nuevo cómic
+// Función para alternar la visualización de la serie seleccionada
+function toggleSeriesView(index) {
+    const seriesRow = document.getElementById(`seriesView-${index}`);
+    if (seriesRow.style.display === 'none') {
+        seriesRow.style.display = 'table-row';
+        renderSeriesContent(index);
+    } else {
+        seriesRow.style.display = 'none';
+    }
+}
+
+// Función para renderizar el contenido de la serie seleccionada
+function renderSeriesContent(index) {
+    const series = collection[index];
+    const seriesContent = document.getElementById(`seriesContent-${index}`);
+    seriesContent.innerHTML = `
+        <div class="header-gray">
+            <h3>${series.name}</h3>
+        </div>
+        <table class="series-table">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Nota</th>
+                    <th>Lectura</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${series.items.map((comic, i) => `
+                    <tr>
+                        <td>${comic.number}</td>
+                        <td>${comic.name}</td>
+                        <td>${comic.price}€</td>
+                        <td>${comic.rating || "Sin nota"}</td>
+                        <td><input type="checkbox" ${comic.read ? "checked" : ""} onchange="toggleSeriesComicReadStatus(${index}, ${i})"></td>
+                        <td>
+                            <button onclick="editSeriesComicRating(${index}, ${i})">Editar Nota</button>
+                            <button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button>
+                        </td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+        <button class="button add-number" onclick="addSeriesComic(${index})">Añadir Número</button>
+        <div class="total">
+            <div>Total: ${series.price}€</div>
+            <div>Número de cómics: ${series.items.length}</div>
+        </div>
+    `;
+}
+
+// Función para añadir un nuevo número en una serie
+function addSeriesComic(index) {
+    const number = prompt('Número del Cómic:');
+    const name = prompt('Nombre del Cómic:');
+    const price = parseFloat(prompt('Precio:'));
+    const rating = parseInt(prompt('Nota (1-10):'));
+
+    if (number && name && !isNaN(price) && rating >= 1 && rating <= 10) {
+        const newComic = { number, name, price, rating, read: false };
+        collection[index].items.push(newComic);
+        renderSeriesContent(index);
+        saveCollection();
+    }
+}
+
+// Función para eliminar un cómic de una serie
+function deleteSeriesComic(seriesIndex, comicIndex) {
+    collection[seriesIndex].items.splice(comicIndex, 1);
+    renderSeriesContent(seriesIndex);
+    saveCollection();
+}
+
+// Función para editar la calificación de un cómic en una serie
+function editSeriesComicRating(seriesIndex, comicIndex) {
+    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
+    if (newRating >= 1 && newRating <= 10) {
+        collection[seriesIndex].items[comicIndex].rating = newRating;
+        renderSeriesContent(seriesIndex);
+        saveCollection();
+    }
+}
+
+// Función para alternar el estado de lectura de un cómic en una serie
+function toggleSeriesComicReadStatus(seriesIndex, comicIndex) {
+    const series = collection[seriesIndex];
+    series.items[comicIndex].read = !series.items[comicIndex].read;
+    series.read = checkIfSeriesIsRead(series);
+    renderSeriesContent(seriesIndex);
+    saveCollection();
+}
+
+// Función para verificar si todos los cómics de una serie están leídos
+function checkIfSeriesIsRead(series) {
+    return series.items.length > 0 && series.items.every(comic => comic.read);
+}
+
+// Función para manejar series y tomos en la colección general
+
+// Añadir un nuevo cómic (serie, saga o tomo único) en la colección principal
 function addComic() {
     const name = prompt('Nombre de la Serie/Saga/Tomo Único:');
     const type = prompt('Tipo (Serie/Saga/Tomo Único):');
@@ -95,7 +205,7 @@ function addComic() {
     }
 }
 
-// Función para editar el precio de un cómic
+// Editar el precio de un cómic en la colección principal
 function editComicPrice(index) {
     const newPrice = parseFloat(prompt('Nuevo precio:'));
     if (!isNaN(newPrice)) {
@@ -105,7 +215,7 @@ function editComicPrice(index) {
     }
 }
 
-// Función para editar la calificación de un cómic
+// Editar la calificación de un cómic en la colección principal
 function editComicRating(index) {
     const newRating = parseInt(prompt('Nueva Nota (1-10):'));
     if (newRating >= 1 && newRating <= 10) {
@@ -115,86 +225,14 @@ function editComicRating(index) {
     }
 }
 
-// Función para eliminar un cómic
+// Eliminar un cómic de la colección principal
 function deleteComic(index) {
     collection.splice(index, 1);
     renderCollection();
     saveCollection();
 }
 
-// Función para abrir el modal de una serie y mostrar sus cómics
-function openSeries(index) {
-    console.log("Ejecutando openSeries, índice:", index); // Mensaje de depuración
-    const series = collection[index];
-    const tbody = document.getElementById('seriesTable').querySelector('tbody');
-    document.getElementById('seriesTitle').innerText = series.name;
-    tbody.innerHTML = '';
-
-    series.items.forEach((comic, i) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${comic.number}</td>
-            <td>${comic.name}</td>
-            <td>${comic.price}€</td>
-            <td>${comic.rating || "Sin nota"}</td>
-            <td><input type="checkbox" ${comic.read ? "checked" : ""} onchange="toggleSeriesComicReadStatus(${index}, ${i})"></td>
-            <td>
-                <button onclick="editSeriesComicRating(${index}, ${i})">Editar Nota</button>
-                <button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button>
-            </td>
-        `;
-        tbody.appendChild(row);
-    });
-
-    updateSeriesTotalPrice(series);
-
-    // Aplicar la clase active al modal para que se muestre
-    const seriesModal = document.getElementById('seriesModal');
-    seriesModal.classList.add('active');
-    console.log("Modal abierto para la serie:", series.name); // Mensaje de depuración
-}
-
-// Función para cerrar el modal
-function closeModal() {
-    document.getElementById('seriesModal').classList.remove('active'); // Ocultar el modal
-}
-
-// Función para añadir un nuevo número en una serie
-function addSeriesComic() {
-    const index = collection.findIndex(item => item.name === document.getElementById('seriesTitle').innerText);
-    if (index === -1) return;
-
-    const number = prompt('Número del Cómic:');
-    const name = prompt('Nombre del Cómic:');
-    const price = parseFloat(prompt('Precio:'));
-    const rating = parseInt(prompt('Nota (1-10):'));
-
-    if (number && name && !isNaN(price) && rating >= 1 && rating <= 10) {
-        const newComic = { number, name, price, rating, read: false };
-        collection[index].items.push(newComic);
-        openSeries(index);
-        saveCollection();
-    }
-}
-
-// Función para eliminar un cómic de una serie
-function deleteSeriesComic(seriesIndex, comicIndex) {
-    collection[seriesIndex].items.splice(comicIndex, 1);
-    openSeries(seriesIndex);
-    saveCollection();
-}
-
-// Función para editar la calificación de un cómic en una serie
-function editSeriesComicRating(seriesIndex, comicIndex) {
-    const newRating = parseInt(prompt('Nueva Nota (1-10):'));
-    if (newRating >= 1 && newRating <= 10) {
-        collection[seriesIndex].items[comicIndex].rating = newRating;
-        openSeries(seriesIndex);
-        saveCollection();
-    }
-}
-
-// Función para alternar el estado de lectura de un cómic
+// Función para alternar el estado de lectura de un cómic en la colección principal
 function toggleReadStatus(index) {
     const item = collection[index];
     if (item.type === 'Tomo Único') {
@@ -204,39 +242,6 @@ function toggleReadStatus(index) {
     }
     saveCollection();
     renderCollection();
-}
-
-// Función para alternar el estado de lectura de un cómic en una serie
-function toggleSeriesComicReadStatus(seriesIndex, comicIndex) {
-    const series = collection[seriesIndex];
-    series.items[comicIndex].read = !series.items[comicIndex].read;
-
-    series.read = checkIfSeriesIsRead(series);
-    openSeries(seriesIndex);
-    renderCollection();
-    saveCollection();
-}
-
-// Función para verificar si todos los cómics de una serie están leídos
-function checkIfSeriesIsRead(series) {
-    return series.items.length > 0 && series.items.every(comic => comic.read);
-}
-
-// Función para generar el selector de estado de una serie
-function getSeriesStatusSelect(item, index) {
-    return `<select onchange="updateSeriesStatus(${index}, this.value)">
-                <option value="En curso" ${item.status === 'En curso' ? 'selected' : ''}>En curso</option>
-                <option value="Finalizada" ${item.status === 'Finalizada' ? 'selected' : ''}>Finalizada</option>
-            </select>`;
-}
-
-// Función para actualizar el estado de una serie
-function updateSeriesStatus(index, newStatus) {
-    if (collection[index].type === 'Serie') {
-        collection[index].status = newStatus;
-        saveCollection();
-        renderCollection();
-    }
 }
 
 // Inicializar la colección en la página
