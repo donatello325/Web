@@ -77,8 +77,8 @@ function renderCollection() {
 
 function addComic() {
     console.log("Botón presionado"); // Verifica si esta línea aparece en la consola al hacer clic
-    const name = prompt('Nombre de la Serie/Saga/Tomo Único:');
-    const type = prompt('Tipo (Serie/Saga/Tomo Único):');
+    const name = prompt('Nombre de la Serie/Tomo Único:');
+    const type = prompt('Tipo (Serie/Tomo Único):');
     const format = prompt('Formato (Cómic/Manga/Libro):');
     const price = parseFloat(prompt('Precio:'));
     const rating = type === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
