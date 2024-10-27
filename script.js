@@ -8,7 +8,7 @@ function saveCollection() {
 
 function updateTotalPrice() {
     const total = collection.reduce((sum, item) => sum + item.price, 0);
-    document.getElementById('totalPrice').innerText = `Total: ${total}€`;
+    document.getElementById('totalPrice').innerText = Total: ${total}€;
 }
 
 function updateTotalComicCount() {
@@ -22,16 +22,16 @@ function updateTotalComicCount() {
         }
     });
 
-    document.getElementById('totalComicCount').innerText = `Total de cómics: ${totalComics}`;
+    document.getElementById('totalComicCount').innerText = Total de cómics: ${totalComics};
 }
 
 function updateSeriesTotalPrice(series) {
     const total = series.items.reduce((sum, item) => sum + item.price, 0);
     series.price = total;
-    document.getElementById('seriesTotalPrice').innerText = `Total: ${total}€`;
+    document.getElementById('seriesTotalPrice').innerText = Total: ${total}€;
 
     const comicCount = series.items.length;
-    document.getElementById('seriesComicCount').innerText = `Número de cómics: ${comicCount}`;
+    document.getElementById('seriesComicCount').innerText = Número de cómics: ${comicCount};
 
     renderCollection();
     updateTotalComicCount();
@@ -55,8 +55,8 @@ function renderCollection() {
         const isRead = item.type === 'Serie' || item.type === 'Saga' ? checkIfSeriesIsRead(item) : item.read || false;
 
         const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.type === 'Serie' || item.type === 'Saga' ? `<a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics)` : item.name}</td>
+        row.innerHTML = 
+            <td>${item.type === 'Serie' || item.type === 'Saga' ? <a href="#" onclick="openSeries(${index})">${item.name}</a> (${comicCount} cómics) : item.name}</td>
             <td>${item.type}</td>
             <td>${item.format}</td> <!-- Mostrar el formato aquí -->
             <td>${item.price}€</td>
@@ -68,7 +68,7 @@ function renderCollection() {
                 <button onclick="editComicRating(${index})">Editar Nota</button>
                 <button onclick="deleteComic(${index})">Eliminar</button>
             </td>
-        `;
+        ;
         tbody.appendChild(row);
     });
 
@@ -126,7 +126,7 @@ function openSeries(index) {
 
     series.items.forEach((comic, i) => {
         const row = document.createElement('tr');
-        row.innerHTML = `
+        row.innerHTML = 
             <td>${comic.number}</td>
             <td>${comic.name}</td>
             <td>${comic.price}€</td>
@@ -136,7 +136,7 @@ function openSeries(index) {
                 <button onclick="editSeriesComicRating(${index}, ${i})">Editar Nota</button>
                 <button onclick="deleteSeriesComic(${index}, ${i})">Eliminar</button>
             </td>
-        `;
+        ;
         tbody.appendChild(row);
     });
 
@@ -170,10 +170,10 @@ function checkIfSeriesIsRead(series) {
 }
 
 function getSeriesStatusSelect(item, index) {
-    return `<select onchange="updateSeriesStatus(${index}, this.value)">
+    return <select onchange="updateSeriesStatus(${index}, this.value)">
                 <option value="En curso" ${item.status === 'En curso' ? 'selected' : ''}>En curso</option>
                 <option value="Finalizada" ${item.status === 'Finalizada' ? 'selected' : ''}>Finalizada</option>
-            </select>`;
+            </select>;
 }
 
 function updateSeriesStatus(index, newStatus) {
