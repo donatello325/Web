@@ -1,28 +1,49 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    padding-top: 80px; /* Espacio suficiente para el encabezado fijo */
-    background-color: #f0f0f0; /* Fondo suave para los bordes */
-}
-
-/* Contenedor principal para centrar el contenido */
-.container {
-    max-width: 1000px; /* Ajusta este valor para controlar el ancho del contenido */
-    margin: 0 auto; /* Centrar el contenido */
-    background-color: white; /* Fondo blanco para el contenido */
+/* Estilo del encabezado principal en azul */
+.blue-header {
+    background-color: #87CEFA; /* Azul claro */
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
-
-/* Encabezado del contenedor */
-.container h1 {
-    margin: 0;
+    text-align: center;
+    color: white;
     font-size: 1.8em;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-/* Estilos para la tabla */
+/* Encabezado verde para la sección de Series y Tomos Únicos */
+.header-green {
+    background-color: #32CD32; /* Verde claro */
+    padding: 15px;
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Encabezado gris para modales */
+.header-gray {
+    background-color: #d3d3d3;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: black;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Estilos para el contenedor */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de las tablas */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -37,22 +58,70 @@ th, td {
 
 th {
     background-color: #f4f4f4;
+    font-weight: bold;
 }
 
 /* Botones */
 .button {
-    padding: 5px 10px;
-    margin-top: 10px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Estilos para el total */
+.add-comic {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.add-comic:hover {
+    background-color: #45a049;
+}
+
+.add-number {
+    background-color: #008CBA;
+    color: white;
+}
+
+.add-number:hover {
+    background-color: #007bb5;
+}
+
+.close-modal {
+    background-color: #f44336;
+    color: white;
+}
+
+.close-modal:hover {
+    background-color: #da190b;
+}
+
+/* Total y número de cómics */
 .total {
     font-weight: bold;
     text-align: right;
-    margin-top: 10px;
+    margin-top: 20px;
+    color: #333;
 }
 
-/* Estilo para checkbox de lectura verde */
-.checkbox-lectura {
-    accent-color: green;
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+/* Clase para mostrar el modal */
+.modal.active {
+    display: block;
 }
