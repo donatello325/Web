@@ -76,31 +76,26 @@ function renderCollection() {
 }
 
 function addComic() {
-    console.log("Botón Añadir Serie/Saga/Tomo Único presionado"); // Comprobación para ver si la función se ejecuta
+    console.log("Botón presionado"); // Verifica si esta línea aparece en la consola al hacer clic
     const name = prompt('Nombre de la Serie/Saga/Tomo Único:');
     const type = prompt('Tipo (Serie/Saga/Tomo Único):');
     const format = prompt('Formato (Cómic/Manga/Libro):');
     const price = parseFloat(prompt('Precio:'));
     const rating = type === 'Tomo Único' ? parseInt(prompt('Nota (1-10):')) : null;
 
-    // Validación de entradas
-    if (!name || !type || !format || isNaN(price) || (rating !== null && (rating < 1 || rating > 10))) {
-        alert("Por favor, complete todos los campos correctamente.");
-        return; // Salir si algún campo es inválido
+    if (name && type && format && !isNaN(price) && (rating === null || (rating >= 1 && rating <= 10))) {
+        const newComic = { 
+            name, 
+            type, 
+            format, 
+            price, 
+            items: type === 'Serie' || type === 'Saga' ? [] : null, 
+            rating: type === 'Tomo Único' ? rating : null, 
+            read: type === 'Tomo Único' ? false : null 
+        };
+        collection.push(newComic);
+        renderCollection();
     }
-
-    const newComic = {
-        name,
-        type,
-        format,
-        price,
-        items: type === 'Serie' ? [] : null,
-        rating: rating,
-        read: false
-    };
-
-    collection.push(newComic);
-    renderCollection();
 }
 
 function editComicPrice(index) {
