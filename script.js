@@ -125,7 +125,7 @@ function renderSeriesContent(index) {
         </table>
         <button class="button add-number" onclick="addSeriesComic(${index})">Añadir Número</button>
         <div class="total">
-            <div>Total: ${series.price}€</div>
+            <div>Total: ${series.items.reduce((sum, comic) => sum + comic.price, 0)}€</div>
             <div>Número de cómics: ${series.items.length}</div>
         </div>
     `;
@@ -246,3 +246,4 @@ function toggleReadStatus(index) {
 
 // Inicializar la colección en la página
 renderCollection();
+
