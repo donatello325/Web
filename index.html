@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colección de Cómics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+<div id="header">
+    <h1>Colección de Cómics</h1>
+</div>
 
+<div class="container">
+    <div id="mainTableHeader" class="header-gray">
+        <h2>Series, Sagas y Tomos Únicos</h2>
+    </div>
+
+    <table id="collectionTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Formato</th>
+                <th>Precio</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Lectura</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button class="button" onclick="addComic()">Añadir Serie/Saga/Tomo Único</button>
+
+    <div class="total">
+        <div id="totalPrice">Total: 0€</div>
+        <div id="totalComicCount">Total de cómics: 0</div>
+    </div>
+
+    <div id="seriesModal" class="hidden-modal">
+        <div id="seriesHeader" class="header-gray">
+            <h2 id="seriesTitle">Título de la Serie</h2>
+        </div>
+
+        <table id="seriesTable">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Nota</th>
+                    <th>Lectura</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button class="button" onclick="addSeriesComic()">Añadir Número</button>
+        <button class="button" onclick="closeModal()">Cerrar</button>
+
+        <div class="total">
+            <div id="seriesTotalPrice">Total: 0€</div>
+            <div id="seriesComicCount">Número de cómics: 0</div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
