@@ -3,83 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colección de Entretenimiento</title>
+    <title>Colección de Cómics</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="header">
-        <h1>Colección de Entretenimiento</h1>
-        <!-- Botones de navegación entre tablas -->
-        <div class="navigation-buttons">
-            <button onclick="showTable('comics')">Cómics y Manga</button>
-            <button onclick="showTable('books')">Libros</button>
-            <button onclick="showTable('shows')">Películas, Series y Anime</button>
-        </div>
+    
+<div id="header">
+    <h1>Colección de Cómics</h1>
+</div>
+
+<div class="container">
+    <!-- Encabezado para la tabla principal -->
+    <div id="mainTableHeader" class="header-gray">
+        <h2>Series, Sagas y Tomos Únicos</h2>
     </div>
 
-    <div class="container">
-        <!-- Tabla de Cómics y Manga -->
-        <div id="comicsTable" class="collection-table">
-            <h2>Cómics y Manga</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Formato</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Estado</th>
-                        <th>Lectura</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="comicsBody"></tbody>
-            </table>
-            <button onclick="addItem('comics')">Añadir Cómic/Manga</button>
-        </div>
+    <!-- Tabla principal -->
+    <table id="collectionTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Formato</th> <!-- Nueva columna Formato -->
+                <th>Precio</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Lectura</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button class="button" onclick="addComic()">Añadir Serie/Saga/Tomo Único</button>
 
-        <!-- Tabla de Libros -->
-        <div id="booksTable" class="collection-table" style="display: none;">
-            <h2>Libros</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Autor</th>
-                        <th>Género</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Lectura</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="booksBody"></tbody>
-            </table>
-            <button onclick="addItem('books')">Añadir Libro</button>
-        </div>
-
-        <!-- Tabla de Películas, Series y Anime -->
-        <div id="showsTable" class="collection-table" style="display: none;">
-            <h2>Películas, Series y Anime</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Género</th>
-                        <th>Precio</th>
-                        <th>Nota</th>
-                        <th>Visualización</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="showsBody"></tbody>
-            </table>
-            <button onclick="addItem('shows')">Añadir Película/Serie/Anime</button>
-        </div>
+    <!-- Precio total y número total de cómics -->
+    <div class="total">
+        <div id="totalPrice">Total: 0€</div>
+        <div id="totalComicCount">Total de cómics: 0</div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Modal para las series -->
+    <div id="seriesModal" style="display:none;">
+        <div id="seriesHeader" class="header-gray" style="padding: 20px; text-align: center;">
+            <h2 id="seriesTitle">Título de la Serie</h2>
+        </div>
+
+        <!-- Tabla de los cómics de la serie -->
+        <table id="seriesTable">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Nota</th>
+                    <th>Lectura</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button class="button" onclick="addSeriesComic()">Añadir Número</button>
+        <button class="button" onclick="closeModal()">Cerrar</button>
+
+        <!-- Precio total y conteo de cómics de la serie -->
+        <div class="total">
+            <div id="seriesTotalPrice">Total: 0€</div>
+            <div id="seriesComicCount">Número de cómics: 0</div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
