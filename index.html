@@ -8,14 +8,14 @@
 </head>
 <body>
     
-<div id="header">
+<div id="header" class="blue-header">
     <h1>Colección de Cómics</h1>
 </div>
 
 <div class="container">
     <!-- Encabezado para la tabla principal -->
-    <div id="mainTableHeader" class="header-gray">
-        <h2>Series, Sagas y Tomos Únicos</h2>
+    <div id="mainTableHeader" class="header-green">
+        <h2>Series y Tomos Únicos</h2>
     </div>
 
     <!-- Tabla principal -->
@@ -24,7 +24,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Tipo</th>
-                <th>Formato</th> <!-- Nueva columna Formato -->
+                <th>Formato</th>
                 <th>Precio</th>
                 <th>Nota</th>
                 <th>Estado</th>
@@ -34,7 +34,7 @@
         </thead>
         <tbody></tbody>
     </table>
-    <button class="button" onclick="addComic()">Añadir Serie/Saga/Tomo Único</button>
+    <button class="button add-comic" onclick="addComic()">Añadir Serie/Saga/Tomo Único</button>
 
     <!-- Precio total y número total de cómics -->
     <div class="total">
@@ -43,8 +43,8 @@
     </div>
 
     <!-- Modal para las series -->
-    <div id="seriesModal" style="display:none;">
-        <div id="seriesHeader" class="header-gray" style="padding: 20px; text-align: center;">
+    <div id="seriesModal" class="modal hidden">
+        <div id="seriesHeader" class="header-gray">
             <h2 id="seriesTitle">Título de la Serie</h2>
         </div>
 
@@ -62,8 +62,8 @@
             </thead>
             <tbody></tbody>
         </table>
-        <button class="button" onclick="addSeriesComic()">Añadir Número</button>
-        <button class="button" onclick="closeModal()">Cerrar</button>
+        <button class="button add-number" onclick="addSeriesComic()">Añadir Número</button>
+        <button class="button close-modal" onclick="closeModal()">Cerrar</button>
 
         <!-- Precio total y conteo de cómics de la serie -->
         <div class="total">
