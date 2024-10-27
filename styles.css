@@ -1,6 +1,27 @@
-/* Estilo del encabezado principal en azul */
+/* Clase para ocultar el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+/* Mostrar el modal cuando tiene la clase active */
+.modal.active {
+    display: block;
+}
+
+/* Otros estilos personalizados */
 .blue-header {
-    background-color: #87CEFA; /* Azul claro */
+    background-color: #87CEFA;
     padding: 20px;
     text-align: center;
     color: white;
@@ -10,9 +31,8 @@
     margin-bottom: 20px;
 }
 
-/* Encabezado verde para la sección de Series y Tomos Únicos */
 .header-green {
-    background-color: #32CD32; /* Verde claro */
+    background-color: #32CD32;
     padding: 15px;
     text-align: center;
     color: white;
@@ -22,7 +42,6 @@
     border-radius: 5px;
 }
 
-/* Encabezado gris para modales */
 .header-gray {
     background-color: #d3d3d3;
     padding: 15px;
@@ -34,7 +53,6 @@
     margin-top: 20px;
 }
 
-/* Estilos para el contenedor */
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -43,7 +61,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo de las tablas */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -61,7 +78,6 @@ th {
     font-weight: bold;
 }
 
-/* Botones */
 .button {
     padding: 10px 15px;
     margin: 10px 0;
@@ -97,31 +113,9 @@ th {
     background-color: #da190b;
 }
 
-/* Total y número de cómics */
 .total {
     font-weight: bold;
     text-align: right;
     margin-top: 20px;
     color: #333;
-}
-
-/* Estilos del modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 600px;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    z-index: 1000;
-}
-
-/* Clase para mostrar el modal */
-.modal.active {
-    display: block;
 }
