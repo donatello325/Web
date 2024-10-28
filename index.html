@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Título de la Página</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script> <!-- Archivo JavaScript externo con defer -->
 </head>
 <body>
 
@@ -15,8 +16,9 @@
     <div class="container">
         <div class="table-header">
             <h2>Tabla de Datos</h2>
-            <button onclick="addRow()">Añadir Datos</button>
+            <button aria-label="Añadir datos a la tabla">Añadir Datos</button> <!-- Se elimina el onclick para usar addEventListener en script.js -->
         </div>
+        
         <table id="dataTable">
             <thead>
                 <tr>
@@ -27,64 +29,10 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Las filas se agregarán aquí -->
+                <!-- Las filas se agregarán aquí mediante JavaScript -->
             </tbody>
         </table>
     </div>
-
-    <script>
-        // Cargar los datos de localStorage al cargar la página
-        document.addEventListener("DOMContentLoaded", loadData);
-
-        function loadData() {
-            const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
-            const data = JSON.parse(localStorage.getItem("tableData")) || [];
-
-            data.forEach(rowData => {
-                const newRow = table.insertRow();
-                rowData.forEach(cellData => {
-                    newRow.insertCell().innerText = cellData;
-                });
-            });
-        }
-
-        function addRow() {
-            // Solicitar datos al usuario
-            const col1 = prompt("Introduce el dato para la Columna 1:");
-            const col2 = prompt("Introduce el dato para la Columna 2:");
-            const col3 = prompt("Introduce el dato para la Columna 3:");
-            const col4 = prompt("Introduce el dato para la Columna 4:");
-
-            // Crear una nueva fila y celdas
-            const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
-            const newRow = table.insertRow();
-
-            // Agregar los datos a las celdas
-            newRow.insertCell(0).innerText = col1;
-            newRow.insertCell(1).innerText = col2;
-            newRow.insertCell(2).innerText = col3;
-            newRow.insertCell(3).innerText = col4;
-
-            // Guardar la fila en localStorage
-            saveData();
-        }
-
-        function saveData() {
-            const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
-            const data = [];
-
-            for (let i = 0; i < table.rows.length; i++) {
-                const row = table.rows[i];
-                const rowData = [];
-                for (let j = 0; j < row.cells.length; j++) {
-                    rowData.push(row.cells[j].innerText);
-                }
-                data.push(rowData);
-            }
-
-            localStorage.setItem("tableData", JSON.stringify(data));
-        }
-    </script>
 
 </body>
 </html>
