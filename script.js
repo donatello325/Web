@@ -9,9 +9,22 @@ function loadData() {
 
     data.forEach(rowData => {
         const newRow = table.insertRow();
-        rowData.forEach(cellData => {
+        rowData.forEach(cellData => { // Insertar datos para las primeras 4 columna
             newRow.insertCell().innerText = cellData;
         });
+        
+    // Crear el desplegable para la columna "Estado"
+        const estadoCell = newRow.insertCell();
+        const select = document.createElement("select");
+        select.innerHTML = `
+            <option value="En curso">En curso</option>
+            <option value="Finalizada">Finalizada</option>
+        `;
+        select.value = rowData[4] || "En curso"; // Establecer valor desde localStorage o "En curso"
+        estadoCell.appendChild(select);
+
+        // Guardar automáticamente el estado cuando cambie
+        select.addEventListener("change", saveData);
     });
 }
 
@@ -28,6 +41,19 @@ function addRow() {
     newRow.insertCell(1).innerText = col2;
     newRow.insertCell(2).innerText = col3;
     newRow.insertCell(3).innerText = col4;
+
+    // Crear el desplegable para la columna "Estado"
+    const estadoCell = newRow.insertCell();
+    const select = document.createElement("select");
+    select.innerHTML = `
+        <option value="En curso">En curso</option>
+        <option value="Finalizada">Finalizada</option>
+    `;
+    select.value = "En curso"; // Valor inicial
+    estadoCell.appendChild(select);
+
+    // Guardar automáticamente el estado cuando cambie
+    select.addEventListener("change", saveData);
 
     saveData();
 }
