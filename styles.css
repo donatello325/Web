@@ -17,7 +17,7 @@ body {
     padding: 20px 0;
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .header h1 {
@@ -34,9 +34,9 @@ body {
     max-width: 1200px;
     margin: 20px 0;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Título de la tabla */
@@ -51,8 +51,8 @@ body {
 button {
     background-color: #007A33;
     color: #FFFFFF;
-    border: 2px solid #004C1D;
-    padding: 6px 14px;
+    border: none;
+    padding: 8px 16px;
     font-size: 1em;
     cursor: pointer;
     border-radius: 4px;
@@ -64,9 +64,7 @@ button {
 }
 
 button:hover {
-    background-color: #FFFFFF;
-    color: #007A33;
-    border-color: #007A33;
+    background-color: #004C1D;
 }
 
 /* Estilos de la tabla */
@@ -79,7 +77,6 @@ table {
     border-radius: 8px;
     background: #FFFFFF;
     color: #333333;
-    border: 2px solid #000000; /* Borde negro alrededor de la tabla */
 }
 
 thead {
@@ -88,10 +85,10 @@ thead {
 }
 
 th, td {
-    padding: 6px 10px; /* Reducir el espacio para hacer las filas más estrechas */
+    padding: 8px 12px; /* Reducir el espacio para hacer las filas más estrechas */
     text-align: center;
-    border-bottom: 1px solid #000000; /* Separación clara entre filas */
-    border-right: 1px solid #000000; /* Separación clara entre columnas */
+    border-bottom: 1px solid #CCCCCC; /* Separación clara entre filas */
+    border-right: 1px solid #CCCCCC; /* Separación clara entre columnas */
 }
 
 th:last-child, td:last-child {
@@ -104,17 +101,12 @@ th {
     font-weight: bold;
 }
 
-/* Texto en negrita para la columna "Título" */
-td:first-child {
-    font-weight: bold;
-}
-
 tbody tr:nth-child(even) {
-    background-color: #D3D3D3; /* Gris claro para alternar filas */
+    background-color: #E0E0E0; /* Gris claro para alternar filas */
 }
 
 tbody tr:hover {
-    background-color: #E0F7FA; /* Fondo de celeste claro en hover */
+    background-color: #C8E6C9; /* Verde claro en hover */
     transform: scale(1.01);
     transition: transform 0.1s ease;
 }
@@ -123,8 +115,8 @@ tbody tr:hover {
 .acciones button {
     background-color: #007A33;
     color: #FFFFFF;
-    border: 1px solid #004C1D;
-    padding: 5px 9px;
+    border: none;
+    padding: 6px 10px;
     font-size: 0.9em;
     margin: 2px;
     cursor: pointer;
@@ -133,9 +125,8 @@ tbody tr:hover {
 }
 
 .acciones button:hover {
-    background-color: #FFFFFF;
-    color: #007A33;
-    border-color: #007A33;
+    background-color: #004C1D;
+    color: #E0E0E0;
 }
 
 /* Estilos para select y checkbox */
@@ -144,9 +135,9 @@ select, input[type="checkbox"] {
 }
 
 select {
-    padding: 4px;
+    padding: 5px;
     border-radius: 4px;
-    border: 1px solid #333333;
+    border: 1px solid #CCCCCC;
     background-color: #F3F3F3;
 }
 
