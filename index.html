@@ -47,7 +47,7 @@
                 const newRow = table.insertRow();
                 rowData.forEach((cellData, index) => {
                     if (index < 4) {
-                        newRow.insertCell().innerText = cellData;
+                        newRow.insertCell().innerText = cellData; // Primeras 4 columnas
                     } else if (index === 4) { // Estado
                         const stateCell = newRow.insertCell();
                         const select = document.createElement("select");
