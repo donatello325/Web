@@ -16,7 +16,7 @@
     <div class="container">
         <div class="table-header">
             <h2>Tabla de Datos</h2>
-            <button aria-label="Añadir datos a la tabla">Añadir Datos</button> <!-- Se elimina el onclick para usar addEventListener en script.js -->
+            <button aria-label="Añadir datos a la tabla">Añadir Datos</button> <!-- Sin onclick para usar addEventListener -->
         </div>
         
         <table id="dataTable">
@@ -26,8 +26,9 @@
                     <th>Columna 2</th>
                     <th>Columna 3</th>
                     <th>Columna 4</th>
-                    <th>Estado</th>
-                    <th>Lectura</th>
+                    <th>Columna 5</th> <!-- Nueva columna "Columna 5" -->
+                    <th>Estado</th> <!-- Columna "Estado" -->
+                    <th>Lectura</th> <!-- Columna "Lectura" con checkbox -->
                 </tr>
             </thead>
             <tbody>
