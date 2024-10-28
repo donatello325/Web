@@ -13,6 +13,12 @@ function loadData() {
         // Agregar datos para las primeras 5 columnas
         rowData.slice(0, 5).forEach(cellData => {
             newRow.insertCell().innerText = cellData;
+
+            if (index === 1) { // Verificar que "Tipo" esté en formato correcto
+                cell.innerText = formatTipo(cellData); // Aplicar formato a Tipo
+            } else {
+                cell.innerText = cellData;
+            }
         });
 
         // Crear el desplegable para la columna "Estado"
@@ -46,6 +52,8 @@ function addRow() {
     const col3 = prompt("Introduce el Formato de la obra:");
     const col4 = prompt("Introduce la Nota de la obra:");
     const col5 = prompt("Introduce el Precio de la obra:");
+
+    tipo = formatTipo(tipo); // Formatear el tipo
 
     if (col1 && col2 && col3 && col4 && col5) { // Verificar que los datos no estén vacíos
         const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
@@ -93,8 +101,12 @@ function saveData() {
     for (let i = 0; i < table.rows.length; i++) {
         const row = table.rows[i];
         const rowData = [];
-        for (let j = 0; j < 5; j++) { // Almacenar las primeras 5 columnas
-            rowData.push(row.cells[j].innerText);
+        for (let j = 0; j < 5; j++) { // Almacenar las primeras 5 columnas (Título, Tipo, Formato, Nota, Precio)
+            let cellData = row.cells[j].innerText;
+            if (j === 1) { // Verificar que "Tipo" esté en formato correcto
+                cellData = formatTipo(cellData); // Formatear el tipo
+            }
+            rowData.push(cellData);
         }
         // Agregar el valor seleccionado del desplegable "Estado"
         const estado = row.cells[5].querySelector("select").value;
@@ -108,4 +120,16 @@ function saveData() {
     }
 
     localStorage.setItem("tableData", JSON.stringify(data));
+}
+
+function formatTipo(input) {
+    const lowerInput = input.toLowerCase();
+    if (["cómic", "comic"].includes(lowerInput)) {
+        return "Cómic";
+    } else if (["manga"].includes(lowerInput)) {
+        return "Manga";
+    } else {
+        alert("Tipo inválido. Solo se acepta 'Cómic' o 'Manga'.");
+        return ""; // Retorna cadena vacía si el tipo es inválido
+    }
 }
