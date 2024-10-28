@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Colección de Cómics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Colección de Cómics</h1>
+    <button id="add-comic-btn">Añadir Serie/Tomo Único</button>
+  </header>
+  <main>
+    <div id="main-table-container">
+      <table id="comics-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Nota</th>
+            <th>Estado</th>
+            <th>Lectura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="comics-list">
+          <!-- Series y tomos únicos se mostrarán aquí -->
+        </tbody>
+      </table>
+      <div id="totals">
+        <p id="total-price">Total: €0</p>
+        <p id="total-count">Total de cómics: 0</p>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Modal para añadir y editar cómic -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-modal">&times;</span>
+      <form id="comic-form">
+        <h3 id="modal-title">Añadir Serie/Tomo Único</h3>
+        
+        <label for="comic-name">Nombre:</label>
+        <input type="text" id="comic-name" required>
 
+        <label for="comic-type">Tipo:</label>
+        <input type="text" id="comic-type" placeholder="Cómic o Manga" required>
+
+        <label for="comic-format">Formato:</label>
+        <input type="text" id="comic-format" placeholder="Serie o Tomo Único" required>
+
+        <label for="comic-price" class="price-label">Precio:</label>
+        <input type="number" id="comic-price" min="1" max="1000" class="price-input">
+
+        <label for="comic-note" class="note-label">Nota:</label>
+        <input type="number" id="comic-note" min="0" max="10" class="note-input">
+
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Modal para añadir tomo a una serie -->
+  <div id="tomo-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-tomo-modal">&times;</span>
+      <form id="tomo-form">
+        <h3>Añadir Tomo a Serie</h3>
+
+        <label for="tomo-name">Nombre / Número:</label>
+        <input type="text" id="tomo-name" required>
+
+        <label for="tomo-price">Precio:</label>
+        <input type="number" id="tomo-price" min="1" max="1000" required>
+
+        <label for="tomo-note">Nota:</label>
+        <input type="number" id="tomo-note" min="0" max="10" required>
+
+        <button type="submit">Guardar Tomo</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
