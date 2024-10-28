@@ -122,7 +122,7 @@
             for (let i = 0; i < table.rows.length; i++) {
                 const row = table.rows[i];
                 const rowData = [];
-                for (let j = 0; j < row.cells.length - 3; j++) { // Solo guardar las columnas originales
+                for (let j = 0; j < 4; j++) { // Guardar solo las 4 primeras columnas
                     rowData.push(row.cells[j].innerText);
                 }
                 // Agregar el estado del desplegable
