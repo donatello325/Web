@@ -22,6 +22,12 @@ let comicsCollection = JSON.parse(localStorage.getItem("comicsCollection")) || [
 let currentSeriesIndex = null;
 let editingTomeIndex = null;
 
+// Cambiar color de fondo del encabezado de la tabla principal
+function changeMainTableColor() {
+  const color = document.getElementById("main-bg-color").value;
+  document.getElementById("comics-table").style.backgroundColor = color;
+}
+
 // Mostrar modal de añadir cómic
 addComicBtn.addEventListener("click", () => {
   comicForm.reset();
@@ -78,13 +84,14 @@ function renderComics() {
     const row = document.createElement("tr");
     row.id = `comic-row-${index}`;
     row.innerHTML = `
-      <td onclick="toggleSeriesDetails(${index})">${comic.name}</td>
+      <td onclick="toggleSeriesDetails(${index})">${comic.name} (${comic.chapters.length} cómics)</td>
       <td>${comic.type}</td>
       <td>${comic.price || "-"}</td>
       <td>${comic.note || "-"}</td>
-      <td>${comic.format === "Serie" ? `<select><option>En curso</option><option>Finalizada</option></select>` : "-"}</td>
-      <td><input type="checkbox" ${comic.read ? "checked" : ""}></td>
-      <td><button class="edit-btn" onclick="editComic(${index})">Editar</button> <button class="delete-btn" onclick="deleteComic(${index})">Eliminar</button></td>
+      <td>
+        <button class="edit-btn" onclick="editComic(${index})">Editar</button>
+        <button class="delete-btn" onclick="deleteComic(${index})">Eliminar</button>
+      </td>
     `;
     comicsList.appendChild(row);
   });
@@ -101,27 +108,32 @@ function toggleSeriesDetails(index) {
     const row = document.createElement("tr");
     row.id = `series-row-${index}`;
     row.innerHTML = `
-      <td colspan="7">
+      <td colspan="5">
         <div class="series-table-container">
           <h3>${series.name}</h3>
-          <table class="series-subtable">
+          <label for="series-bg-color-${index}">Cambiar color de fondo del encabezado de la serie:</label>
+          <select id="series-bg-color-${index}" onchange="changeSeriesTableColor(${index})">
+            <option value="white">Blanco</option>
+            <option value="lightgrey">Gris Claro</option>
+          </select>
+          <table class="series-subtable" id="series-table-${index}">
             <thead>
               <tr>
                 <th>Número</th>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Nota</th>
-                <th>Lectura</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody id="series-tomes-${index}">
             </tbody>
           </table>
-          <button onclick="addTome(${index})">Añadir Tomo</button>
+          <button onclick="addTome(${index})">Añadir Número</button>
+          <button onclick="toggleSeriesDetails(${index})">Cerrar</button>
           <div id="series-total-${index}">
-            <p>Total de la serie: €0</p>
-            <p>Número de tomos: 0</p>
+            <p>Total de la serie: €${series.price}</p>
+            <p>Número de cómics: ${series.chapters.length}</p>
           </div>
         </div>
       </td>
@@ -129,6 +141,12 @@ function toggleSeriesDetails(index) {
     comicsList.insertBefore(row, document.getElementById(`comic-row-${index}`).nextSibling);
     renderSeriesTomes(index);
   }
+}
+
+// Cambiar color de fondo del encabezado de la serie
+function changeSeriesTableColor(seriesIndex) {
+  const color = document.getElementById(`series-bg-color-${seriesIndex}`).value;
+  document.getElementById(`series-table-${seriesIndex}`).style.backgroundColor = color;
 }
 
 // Renderizar tomos de una serie específica
@@ -144,9 +162,8 @@ function renderSeriesTomes(seriesIndex) {
       <td>${tome.name}</td>
       <td>${tome.price}€</td>
       <td>${tome.note}</td>
-      <td><input type="checkbox" ${tome.read ? "checked" : ""} onclick="toggleTomeRead(${seriesIndex}, ${tomeIndex})"></td>
       <td>
-        <button onclick="editTome(${seriesIndex}, ${tomeIndex})">Editar</button>
+        <button onclick="editTome(${seriesIndex}, ${tomeIndex})">Editar Nota</button>
         <button onclick="deleteTome(${seriesIndex}, ${tomeIndex})">Eliminar</button>
       </td>
     `;
@@ -210,24 +227,8 @@ function updateSeriesTotals(seriesIndex) {
   series.note = averageNote.toFixed(1);
   document.getElementById(`series-total-${seriesIndex}`).innerHTML = `
     <p>Total de la serie: €${total}</p>
-    <p>Número de tomos: ${series.chapters.length}</p>
+    <p>Número de cómics: ${series.chapters.length}</p>
   `;
-  localStorage.setItem("comicsCollection", JSON.stringify(comicsCollection));
-  renderComics();
-}
-
-// Marcar un tomo como leído y actualizar el estado de lectura de la serie
-function toggleTomeRead(seriesIndex, tomeIndex) {
-  const series = comicsCollection[seriesIndex];
-  series.chapters[tomeIndex].read = !series.chapters[tomeIndex].read;
-  checkSeriesReadStatus(seriesIndex);
-}
-
-// Comprobar si todos los tomos de una serie están leídos y actualizar el estado
-function checkSeriesReadStatus(seriesIndex) {
-  const series = comicsCollection[seriesIndex];
-  const allRead = series.chapters.every(tome => tome.read);
-  series.read = allRead;
   localStorage.setItem("comicsCollection", JSON.stringify(comicsCollection));
   renderComics();
 }
@@ -240,9 +241,17 @@ function deleteComic(index) {
   updateTotals();
 }
 
+// Eliminar un tomo de una serie
+function deleteTome(seriesIndex, tomeIndex) {
+  comicsCollection[seriesIndex].chapters.splice(tomeIndex, 1);
+  localStorage.setItem("comicsCollection", JSON.stringify(comicsCollection));
+  renderSeriesTomes(seriesIndex);
+  updateSeriesTotals(seriesIndex);
+}
+
 // Actualizar totales generales
 function updateTotals() {
-  const totalCount = comicsCollection.length;
+  const totalCount = comicsCollection.reduce((acc, comic) => acc + (comic.format === "Serie" ? comic.chapters.length : 1), 0);
   const totalPrice = comicsCollection.reduce((acc, comic) => acc + (comic.price || 0), 0);
   totalComicsCount.textContent = `Total de cómics: ${totalCount}`;
   totalComicsPrice.textContent = `Total: €${totalPrice}`;
