@@ -73,7 +73,7 @@
                         deleteButton.innerText = "Eliminar";
                         deleteButton.onclick = function() {
                             if (confirm("¿Estás seguro de que quieres eliminar esta fila?")) {
-                                table.deleteRow(newRow.rowIndex - 1); // Eliminar la fila
+                                newRow.remove(); // Eliminar la fila
                                 saveData(); // Actualizar el almacenamiento
                             }
                         };
@@ -125,7 +125,7 @@
             deleteButton.innerText = "Eliminar";
             deleteButton.onclick = function() {
                 if (confirm("¿Estás seguro de que quieres eliminar esta fila?")) {
-                    table.deleteRow(newRow.rowIndex - 1); // Eliminar la fila
+                    newRow.remove(); // Eliminar la fila
                     saveData(); // Actualizar el almacenamiento
                 }
             };
