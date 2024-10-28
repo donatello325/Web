@@ -9,12 +9,12 @@
 <body>
 
     <div class="header">
-        <h1>Mi colección</h1>
+        <h1>Título de la Página</h1>
     </div>
 
     <div class="container">
-        <h2>Mi Colección de Cómics y Mangas</h2> 
-        <div class="button-container">
+        <div class="table-header">
+            <h2>Tabla de Datos</h2>
             <button onclick="addRow()">Añadir Datos</button>
         </div>
         <table id="dataTable">
@@ -48,10 +48,8 @@
                 rowData.forEach(cellData => {
                     newRow.insertCell().innerText = cellData;
                 });
-            });
-        }
 
-         // Agregar celdas para Estado y Lectura
+                // Agregar celdas para Estado y Lectura
                 const stateCell = newRow.insertCell();
                 const select = document.createElement("select");
                 const option1 = document.createElement("option");
@@ -124,14 +122,14 @@
             for (let i = 0; i < table.rows.length; i++) {
                 const row = table.rows[i];
                 const rowData = [];
-                for (let j = 0; j < row.cells.length; j++) {
+                for (let j = 0; j < row.cells.length - 3; j++) { // Solo guardar las columnas originales
                     rowData.push(row.cells[j].innerText);
                 }
                 // Agregar el estado del desplegable
                 rowData.push(row.cells[row.cells.length - 3].querySelector("select").value);
                 // Agregar el estado del checkbox
                 rowData.push(row.cells[row.cells.length - 2].querySelector("input").checked ? "Sí" : "No");
-                
+
                 data.push(rowData);
             }
 
