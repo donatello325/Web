@@ -22,20 +22,18 @@ function loadData() {
             <option value="En curso">En curso</option>
             <option value="Finalizada">Finalizada</option>
         `;
-        selectEstado.value = rowData[5] || "En curso"; // Establecer valor desde localStorage o "En curso"
+        selectEstado.value = rowData[5] || "En curso";
         estadoCell.appendChild(selectEstado);
 
-        // Guardar automáticamente el estado cuando cambie
         selectEstado.addEventListener("change", saveData);
 
         // Crear el checkbox para la columna "Lectura"
         const lecturaCell = newRow.insertCell();
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.checked = rowData[6] === "true"; // Asegurar que el valor sea booleano al cargar
+        checkbox.checked = rowData[6] === "true";
         lecturaCell.appendChild(checkbox);
 
-        // Guardar automáticamente el estado del checkbox cuando cambie
         checkbox.addEventListener("change", saveData);
 
         // Crear la columna de "Acciones" con los botones
@@ -53,7 +51,7 @@ function addRow() {
     const nota = prompt("Introduce la Nota:");
     const precio = prompt("Introduce el Precio:");
 
-    if (titulo && tipo && formato && nota && precio) { // Verificar que los datos no estén vacíos
+    if (titulo && tipo && formato && nota && precio) {
         const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
         const newRow = table.insertRow();
 
@@ -90,7 +88,7 @@ function addRow() {
         createActionButton(accionesCell, "Editar Precio", () => editCell(newRow, 4));
         createActionButton(accionesCell, "Eliminar", () => deleteRow(newRow));
 
-        saveData(); // Guardar inmediatamente la nueva fila en localStorage
+        saveData();
     } else {
         alert("Por favor, introduce todos los datos.");
     }
@@ -126,7 +124,7 @@ function saveData() {
     for (let i = 0; i < table.rows.length; i++) {
         const row = table.rows[i];
         const rowData = [];
-        for (let j = 0; j < 5; j++) { // Almacenar las primeras 5 columnas (Título, Tipo, Formato, Nota, Precio)
+        for (let j = 0; j < 5; j++) {
             rowData.push(row.cells[j].innerText);
         }
         const estado = row.cells[5].querySelector("select").value;
