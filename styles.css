@@ -15,6 +15,10 @@ body {
     padding: 20px;
 }
 
+.button-container {
+    text-align: right; /* Alinea el botón a la derecha */
+    margin-bottom: 10px; /* Espacio entre el botón y la tabla */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -31,7 +35,6 @@ th {
 }
 
 button {
-    margin-top: 20px;
     padding: 10px 15px;
     font-size: 16px;
 }
