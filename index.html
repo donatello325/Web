@@ -1,79 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colección de Cómics</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Colección de Cómics</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-<div id="header" class="header-gray">
-    <h1>Colección de Cómics</h1>
-</div>
-
-<div class="container">
-    <!-- Encabezado para la tabla principal -->
-    <div id="mainTableHeader" class="header-gray">
-        <h2>Series y Tomos Únicos</h2>
-    </div>
-
-    <!-- Tabla principal -->
-    <table id="collectionTable">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Formato</th>
-                <th>Precio</th>
-                <th>Nota</th>
-                <th>Estado</th>
-                <th>Lectura</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
+  <header>
+    <h1>Mi Colección de Cómics</h1>
+    <button id="add-comic-btn">Añadir Cómic</button>
+  </header>
+  <main>
+    <table id="comics-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Formato</th>
+          <th>Precio</th>
+          <th>Nota</th>
+          <th>Estado</th>
+          <th>Lectura</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="comics-list">
+      </tbody>
     </table>
-    <button class="button add-comic" onclick="addComic()">Añadir Serie/Saga/Tomo Único</button>
-
-    <!-- Precio total y número total de cómics -->
-    <div class="total">
-        <div id="totalPrice">Total: 0€</div>
-        <div id="totalComicCount">Total de cómics: 0</div>
+    <div id="totals">
+      <p id="total-price">Total en Euros: €0</p>
+      <p id="total-count">Total de Cómics: 0</p>
     </div>
+  </main>
+  
+  <!-- Modal para añadir y editar cómic -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-modal">&times;</span>
+      <form id="comic-form">
+        <h3 id="modal-title">Añadir Cómic</h3>
+        
+        <label for="comic-name">Nombre:</label>
+        <input type="text" id="comic-name" required>
 
-    <!-- Modal para las series -->
-    <div id="seriesModal" class="modal hidden">
-        <div id="seriesHeader" class="header-gray">
-            <h2 id="seriesTitle">Título de la Serie</h2>
-        </div>
+        <label for="comic-type">Tipo:</label>
+        <input type="text" id="comic-type" placeholder="Cómic o Manga" required>
 
-        <!-- Tabla de los cómics de la serie -->
-        <table id="seriesTable">
-            <thead>
-                <tr>
-                    <th>Número</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Nota</th>
-                    <th>Lectura</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <button class="button add-number" onclick="addSeriesComic()">Añadir Número</button>
-        <button class="button close-modal" onclick="closeModal()">Cerrar</button>
+        <label for="comic-format">Formato:</label>
+        <input type="text" id="comic-format" placeholder="Serie o Tomo Único" required>
 
-        <!-- Precio total y conteo de cómics de la serie -->
-        <div class="total">
-            <div id="seriesTotalPrice">Total: 0€</div>
-            <div id="seriesComicCount">Número de cómics: 0</div>
-        </div>
+        <label for="comic-price" class="price-label">Precio:</label>
+        <input type="number" id="comic-price" min="1" max="1000" class="price-input">
+
+        <label for="comic-note" class="note-label">Nota:</label>
+        <input type="number" id="comic-note" min="0" max="10" class="note-input">
+
+        <button type="submit">Guardar</button>
+      </form>
     </div>
-</div>
-
-<script src="script.js"></script>
-
+  </div>
+  
+  <script src="script.js"></script>
 </body>
 </html>
