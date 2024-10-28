@@ -78,7 +78,7 @@ function addRow() {
         // Guardar automáticamente el estado del checkbox cuando cambie
         checkbox.addEventListener("change", saveData);
 
-        saveData(); // Llamar a saveData para guardar la fila nueva en localStorage inmediatamente
+        saveData(); // Guardar inmediatamente la nueva fila en localStorage
     } else {
         alert("Por favor, introduce todos los datos.");
     }
@@ -91,7 +91,7 @@ function saveData() {
     for (let i = 0; i < table.rows.length; i++) {
         const row = table.rows[i];
         const rowData = [];
-        for (let j = 0; j < row.cells.length - 1; j++) {
+        for (let j = 0; j < 4; j++) {
             rowData.push(row.cells[j].innerText);
         }
         // Agregar el valor seleccionado del desplegable "Estado"
