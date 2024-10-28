@@ -13,7 +13,8 @@
     </div>
 
     <div class="container">
-        <h2>Mi Colección de Cómics y Mangas</h2> <div class="button-container">
+        <h2>Mi Colección de Cómics y Mangas</h2> 
+        <div class="button-container">
             <button onclick="addRow()">Añadir Datos</button>
         </div>
         <table id="dataTable">
@@ -23,6 +24,9 @@
                     <th>Columna 2</th>
                     <th>Columna 3</th>
                     <th>Columna 4</th>
+                    <th>Estado</th>
+                    <th>Lectura</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,6 +51,29 @@
             });
         }
 
+         // Agregar celdas para Estado y Lectura
+                const stateCell = newRow.insertCell();
+                const select = document.createElement("select");
+                const option1 = document.createElement("option");
+                option1.value = "En curso";
+                option1.text = "En curso";
+                const option2 = document.createElement("option");
+                option2.value = "Finalizada";
+                option2.text = "Finalizada";
+                select.appendChild(option1);
+                select.appendChild(option2);
+                stateCell.appendChild(select);
+
+                const readCell = newRow.insertCell();
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                readCell.appendChild(checkbox);
+
+                // Celdas de Acciones (vacías por el momento)
+                newRow.insertCell(); // Vacía
+            });
+        }
+
         function addRow() {
             // Solicitar datos al usuario
             const col1 = prompt("Introduce el dato para la Columna 1:");
@@ -64,6 +91,28 @@
             newRow.insertCell(2).innerText = col3;
             newRow.insertCell(3).innerText = col4;
 
+            // Crear celda de Estado con desplegable
+            const stateCell = newRow.insertCell();
+            const select = document.createElement("select");
+            const option1 = document.createElement("option");
+            option1.value = "En curso";
+            option1.text = "En curso";
+            const option2 = document.createElement("option");
+            option2.value = "Finalizada";
+            option2.text = "Finalizada";
+            select.appendChild(option1);
+            select.appendChild(option2);
+            stateCell.appendChild(select);
+
+            // Crear celda de Lectura con checkbox
+            const readCell = newRow.insertCell();
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            readCell.appendChild(checkbox);
+
+            // Celdas de Acciones (vacías por el momento)
+            newRow.insertCell(); // Vacía
+
             // Guardar la fila en localStorage
             saveData();
         }
@@ -78,6 +127,11 @@
                 for (let j = 0; j < row.cells.length; j++) {
                     rowData.push(row.cells[j].innerText);
                 }
+                // Agregar el estado del desplegable
+                rowData.push(row.cells[row.cells.length - 3].querySelector("select").value);
+                // Agregar el estado del checkbox
+                rowData.push(row.cells[row.cells.length - 2].querySelector("input").checked ? "Sí" : "No");
+                
                 data.push(rowData);
             }
 
