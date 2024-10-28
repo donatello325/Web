@@ -9,7 +9,9 @@ function loadData() {
 
     data.forEach(rowData => {
         const newRow = table.insertRow();
-        rowData.slice(0, 4).forEach(cellData => { // Insertar datos para las primeras 4 columnas
+
+        // Agregar datos para las primeras 4 columnas
+        rowData.slice(0, 4).forEach(cellData => {
             newRow.insertCell().innerText = cellData;
         });
 
