@@ -27,6 +27,16 @@ function loadData() {
 
         // Guardar automáticamente el estado cuando cambie
         select.addEventListener("change", saveData);
+
+        // Crear el checkbox para la columna "Lectura"
+        const lecturaCell = newRow.insertCell();
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = rowData[5] === "true"; // Convertir el valor almacenado a booleano
+        lecturaCell.appendChild(checkbox);
+
+        // Guardar automáticamente el estado del checkbox cuando cambie
+        checkbox.addEventListener("change", saveData);
     });
 }
 
@@ -58,6 +68,16 @@ function addRow() {
         // Guardar automáticamente el estado cuando cambie
         select.addEventListener("change", saveData);
 
+        // Crear el checkbox para la columna "Lectura"
+        const lecturaCell = newRow.insertCell();
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = false; // Valor inicial no seleccionado
+        lecturaCell.appendChild(checkbox);
+
+        // Guardar automáticamente el estado del checkbox cuando cambie
+        checkbox.addEventListener("change", saveData);
+
         saveData(); // Llamar a saveData para guardar la fila nueva en localStorage inmediatamente
     } else {
         alert("Por favor, introduce todos los datos.");
@@ -77,6 +97,10 @@ function saveData() {
         // Agregar el valor seleccionado del desplegable "Estado"
         const estado = row.cells[4].querySelector("select").value;
         rowData.push(estado);
+
+        // Agregar el estado del checkbox "Lectura"
+        const lectura = row.cells[5].querySelector("input[type='checkbox']").checked;
+        rowData.push(lectura);
 
         data.push(rowData);
     }
