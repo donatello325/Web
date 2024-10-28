@@ -15,9 +15,11 @@ body {
     padding: 20px;
 }
 
-.button-container {
-    text-align: right; /* Alinea el botón a la derecha */
-    margin-bottom: 10px; /* Espacio entre el botón y la tabla */
+.table-header {
+    display: flex; /* Usar flexbox para alinear el título y el botón */
+    justify-content: space-between; /* Espacio entre el título y el botón */
+    align-items: center; /* Centrar verticalmente */
+    margin-bottom: 10px; /* Espacio entre la cabecera y la tabla */
 }
 
 table {
