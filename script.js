@@ -10,9 +10,9 @@ function loadData() {
     data.forEach(rowData => {
         const newRow = table.insertRow();
 
-        // Agregar datos para las primeras 5 columnas
-        rowData.slice(0, 5).forEach(cellData => {
-            newRow.insertCell().innerText = cellData;
+        // Agregar datos para las primeras 5 columnas (Título, Tipo, Formato, Nota, Precio)
+        rowData.slice(0, 5).forEach((cellData, index) => {
+            const cell = newRow.insertCell();
 
             if (index === 1) { // Verificar que "Tipo" esté en formato correcto
                 cell.innerText = formatTipo(cellData); // Aplicar formato a Tipo
@@ -47,23 +47,23 @@ function loadData() {
 }
 
 function addRow() {
-    const col1 = prompt("Introduce el Título de la obra:");
-    const col2 = prompt("Introduce el Tipo de obra:");
-    const col3 = prompt("Introduce el Formato de la obra:");
-    const col4 = prompt("Introduce la Nota de la obra:");
-    const col5 = prompt("Introduce el Precio de la obra:");
+    const titulo = prompt("Introduce el Título:");
+    let tipo = prompt("Introduce el Tipo (Cómic o Manga):");
+    const formato = prompt("Introduce el Formato:");
+    const nota = prompt("Introduce la Nota:");
+    const precio = prompt("Introduce el Precio:");
 
     tipo = formatTipo(tipo); // Formatear el tipo
 
-    if (col1 && col2 && col3 && col4 && col5) { // Verificar que los datos no estén vacíos
+    if (titulo && tipo && formato && nota && precio) { // Verificar que los datos no estén vacíos
         const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
         const newRow = table.insertRow();
 
-        newRow.insertCell(0).innerText = col1;
-        newRow.insertCell(1).innerText = col2;
-        newRow.insertCell(2).innerText = col3;
-        newRow.insertCell(3).innerText = col4;
-        newRow.insertCell(4).innerText = col5; // Nueva columna
+        newRow.insertCell(0).innerText = titulo;
+        newRow.insertCell(1).innerText = tipo; // Insertar el tipo formateado
+        newRow.insertCell(2).innerText = formato;
+        newRow.insertCell(3).innerText = nota;
+        newRow.insertCell(4).innerText = precio; // Nueva columna "Precio"
 
         // Crear el desplegable para la columna "Estado"
         const estadoCell = newRow.insertCell();
