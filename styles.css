@@ -2,8 +2,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #3f51b5, #5c6bc0);
-    color: #ffffff;
+    background: linear-gradient(135deg, #007A33, #004C1D);
+    color: #FFFFFF;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@ body {
 
 .header h1 {
     font-size: 2.5em;
-    color: #ffeb3b;
+    color: #FFFFFF;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -42,17 +42,17 @@ body {
 /* Título de la tabla */
 .table-header h2 {
     font-size: 1.8em;
-    color: #ffffff;
+    color: #FFFFFF;
     margin-bottom: 10px;
     text-align: center;
 }
 
 /* Botón de añadir datos */
 button {
-    background-color: #ffeb3b;
-    color: #333;
+    background-color: #007A33;
+    color: #FFFFFF;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: 1em;
     cursor: pointer;
     border-radius: 4px;
@@ -64,64 +64,69 @@ button {
 }
 
 button:hover {
-    background-color: #333;
-    color: #ffeb3b;
+    background-color: #004C1D;
 }
 
 /* Estilos de la tabla */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-top: 20px;
     overflow: hidden;
     border-radius: 8px;
-    background: #ffffff;
-    color: #333;
+    background: #FFFFFF;
+    color: #333333;
 }
 
 thead {
-    background-color: #3f51b5;
-    color: #ffffff;
+    background-color: #007A33;
+    color: #FFFFFF;
 }
 
 th, td {
-    padding: 12px 15px;
+    padding: 8px 12px; /* Reducir el espacio para hacer las filas más estrechas */
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #CCCCCC; /* Separación clara entre filas */
+    border-right: 1px solid #CCCCCC; /* Separación clara entre columnas */
+}
+
+th:last-child, td:last-child {
+    border-right: none; /* Sin borde a la derecha en la última columna */
 }
 
 th {
-    font-size: 1.1em;
+    font-size: 1em;
     text-transform: uppercase;
     font-weight: bold;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f3f3f3;
+    background-color: #E0E0E0; /* Gris claro para alternar filas */
 }
 
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #C8E6C9; /* Verde claro en hover */
     transform: scale(1.01);
     transition: transform 0.1s ease;
 }
 
 /* Botones en la columna de acciones */
 .acciones button {
-    background-color: #3f51b5;
-    color: #ffffff;
+    background-color: #007A33;
+    color: #FFFFFF;
     border: none;
-    padding: 8px 12px;
+    padding: 6px 10px;
     font-size: 0.9em;
-    margin: 3px;
+    margin: 2px;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .acciones button:hover {
-    background-color: #ffeb3b;
-    color: #3f51b5;
+    background-color: #004C1D;
+    color: #E0E0E0;
 }
 
 /* Estilos para select y checkbox */
@@ -132,8 +137,8 @@ select, input[type="checkbox"] {
 select {
     padding: 5px;
     border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: #f3f3f3;
+    border: 1px solid #CCCCCC;
+    background-color: #F3F3F3;
 }
 
 input[type="checkbox"] {
