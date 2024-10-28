@@ -68,6 +68,10 @@ function saveData() {
         for (let j = 0; j < row.cells.length; j++) {
             rowData.push(row.cells[j].innerText);
         }
+        // Agregar el valor seleccionado del desplegable "Estado"
+        const estado = row.cells[4].querySelector("select").value;
+        rowData.push(estado);
+        
         data.push(rowData);
     }
 
