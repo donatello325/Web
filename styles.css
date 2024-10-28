@@ -1,87 +1,88 @@
-/* Ocultar inicialmente la vista de la serie */
-.series-view {
-    display: none;
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
 }
 
-/* Estilo de la segunda tabla (serie seleccionada) */
-.series-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+header {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  padding: 1em;
 }
 
-.series-table th, .series-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
+header h1 {
+  margin: 0;
 }
 
-.series-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+#add-comic-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
 }
 
-/* Encabezado gris para la vista de la serie */
-.header-gray {
-    background-color: #d3d3d3;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: black;
-    border-radius: 5px;
-    margin-top: 10px;
+main {
+  width: 80%;
+  margin-top: 20px;
 }
 
-/* Contenedor principal */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Tabla principal */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
 }
 
 th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+  background-color: #f4f4f4;
 }
 
-/* Botones */
-.button {
-    padding: 8px 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+button.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
 }
 
-.add-number {
-    background-color: #008CBA;
-    color: white;
+button.delete-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
 }
 
-.add-number:hover {
-    background-color: #007bb5;
+#totals {
+  margin-top: 10px;
+  font-weight: bold;
 }
 
-/* Estilos para el total */
-.total {
-    font-weight: bold;
-    text-align: right;
-    margin-top: 10px;
-    color: #333;
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: left;
+}
+
+.close {
+  float: right;
+  font-size: 1.5em;
+  cursor: pointer;
 }
