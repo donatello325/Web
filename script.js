@@ -32,7 +32,7 @@ function loadData() {
         const lecturaCell = newRow.insertCell();
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.checked = rowData[5] === "true"; // Convertir el valor almacenado a booleano
+        checkbox.checked = rowData[5] === "true"; // Comparar explícitamente con "true" (cadena)
         lecturaCell.appendChild(checkbox);
 
         // Guardar automáticamente el estado del checkbox cuando cambie
@@ -98,9 +98,9 @@ function saveData() {
         const estado = row.cells[4].querySelector("select").value;
         rowData.push(estado);
 
-        // Agregar el estado del checkbox "Lectura"
+        // Agregar el estado del checkbox "Lectura" como cadena "true" o "false"
         const lectura = row.cells[5].querySelector("input[type='checkbox']").checked;
-        rowData.push(lectura);
+        rowData.push(lectura.toString()); // Convertir a cadena para almacenar en localStorage
 
         data.push(rowData);
     }
