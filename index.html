@@ -60,15 +60,26 @@
                 option2.text = "Finalizada";
                 select.appendChild(option1);
                 select.appendChild(option2);
+                select.value = rowData[rowData.length - 2]; // Cargar el valor guardado
                 stateCell.appendChild(select);
 
                 const readCell = newRow.insertCell();
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
+                checkbox.checked = (rowData[rowData.length - 1] === "Sí"); // Cargar el estado guardado
                 readCell.appendChild(checkbox);
 
-                // Celdas de Acciones (vacías por el momento)
-                newRow.insertCell(); // Vacía
+                // Celdas de Acciones con botón de eliminar
+                const actionCell = newRow.insertCell();
+                const deleteButton = document.createElement("button");
+                deleteButton.innerText = "Eliminar";
+                deleteButton.onclick = function() {
+                    if (confirm("¿Estás seguro de que quieres eliminar esta fila?")) {
+                        table.deleteRow(newRow.rowIndex - 1); // Eliminar la fila
+                        saveData(); // Actualizar el almacenamiento
+                    }
+                };
+                actionCell.appendChild(deleteButton);
             });
         }
 
@@ -108,8 +119,17 @@
             checkbox.type = "checkbox";
             readCell.appendChild(checkbox);
 
-            // Celdas de Acciones (vacías por el momento)
-            newRow.insertCell(); // Vacía
+            // Celdas de Acciones con botón de eliminar
+            const actionCell = newRow.insertCell();
+            const deleteButton = document.createElement("button");
+            deleteButton.innerText = "Eliminar";
+            deleteButton.onclick = function() {
+                if (confirm("¿Estás seguro de que quieres eliminar esta fila?")) {
+                    table.deleteRow(newRow.rowIndex - 1); // Eliminar la fila
+                    saveData(); // Actualizar el almacenamiento
+                }
+            };
+            actionCell.appendChild(deleteButton);
 
             // Guardar la fila en localStorage
             saveData();
