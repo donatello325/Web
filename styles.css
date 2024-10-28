@@ -18,6 +18,7 @@ body {
 .button-container {
     text-align: right; /* Alinea el botón a la derecha */
     margin-bottom: 10px; /* Espacio entre el botón y la tabla */
+}
 
 table {
     width: 100%;
