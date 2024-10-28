@@ -41,11 +41,11 @@ function loadData() {
 }
 
 function addRow() {
-    const col1 = prompt("Introduce el dato para la Columna 1:");
-    const col2 = prompt("Introduce el dato para la Columna 2:");
-    const col3 = prompt("Introduce el dato para la Columna 3:");
-    const col4 = prompt("Introduce el dato para la Columna 4:");
-    const col5 = prompt("Introduce el dato para la Columna 5:");
+    const col1 = prompt("Introduce el Título de la obra:");
+    const col2 = prompt("Introduce el Tipo de obra:");
+    const col3 = prompt("Introduce el Formato de la obra:");
+    const col4 = prompt("Introduce la Nota de la obra:");
+    const col5 = prompt("Introduce el Precio de la obra:");
 
     if (col1 && col2 && col3 && col4 && col5) { // Verificar que los datos no estén vacíos
         const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
