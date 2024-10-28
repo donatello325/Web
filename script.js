@@ -11,14 +11,8 @@ function loadData() {
         const newRow = table.insertRow();
 
         // Agregar datos para las primeras 5 columnas (Título, Tipo, Formato, Nota, Precio)
-        rowData.slice(0, 5).forEach((cellData, index) => {
-            const cell = newRow.insertCell();
-
-            if (index === 1) { // Verificar que "Tipo" esté en formato correcto
-                cell.innerText = formatTipo(cellData); // Aplicar formato a Tipo
-            } else {
-                cell.innerText = cellData;
-            }
+        rowData.slice(0, 5).forEach(cellData => {
+            newRow.insertCell().innerText = cellData;
         });
 
         // Crear el desplegable para la columna "Estado"
@@ -48,19 +42,17 @@ function loadData() {
 
 function addRow() {
     const titulo = prompt("Introduce el Título:");
-    let tipo = prompt("Introduce el Tipo (Cómic o Manga):");
+    const tipo = prompt("Introduce el Tipo:");
     const formato = prompt("Introduce el Formato:");
     const nota = prompt("Introduce la Nota:");
     const precio = prompt("Introduce el Precio:");
-
-    tipo = formatTipo(tipo); // Formatear el tipo
 
     if (titulo && tipo && formato && nota && precio) { // Verificar que los datos no estén vacíos
         const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
         const newRow = table.insertRow();
 
         newRow.insertCell(0).innerText = titulo;
-        newRow.insertCell(1).innerText = tipo; // Insertar el tipo formateado
+        newRow.insertCell(1).innerText = tipo;
         newRow.insertCell(2).innerText = formato;
         newRow.insertCell(3).innerText = nota;
         newRow.insertCell(4).innerText = precio; // Nueva columna "Precio"
@@ -102,11 +94,7 @@ function saveData() {
         const row = table.rows[i];
         const rowData = [];
         for (let j = 0; j < 5; j++) { // Almacenar las primeras 5 columnas (Título, Tipo, Formato, Nota, Precio)
-            let cellData = row.cells[j].innerText;
-            if (j === 1) { // Verificar que "Tipo" esté en formato correcto
-                cellData = formatTipo(cellData); // Formatear el tipo
-            }
-            rowData.push(cellData);
+            rowData.push(row.cells[j].innerText);
         }
         // Agregar el valor seleccionado del desplegable "Estado"
         const estado = row.cells[5].querySelector("select").value;
@@ -120,16 +108,4 @@ function saveData() {
     }
 
     localStorage.setItem("tableData", JSON.stringify(data));
-}
-
-function formatTipo(input) {
-    const lowerInput = input.toLowerCase();
-    if (["cómic", "comic"].includes(lowerInput)) {
-        return "Cómic";
-    } else if (["manga"].includes(lowerInput)) {
-        return "Manga";
-    } else {
-        alert("Tipo inválido. Solo se acepta 'Cómic' o 'Manga'.");
-        return ""; // Retorna cadena vacía si el tipo es inválido
-    }
 }
