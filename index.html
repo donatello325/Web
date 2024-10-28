@@ -45,41 +45,41 @@
 
             data.forEach(rowData => {
                 const newRow = table.insertRow();
-                rowData.forEach(cellData => {
-                    newRow.insertCell().innerText = cellData;
-                });
-
-                // Agregar celdas para Estado y Lectura
-                const stateCell = newRow.insertCell();
-                const select = document.createElement("select");
-                const option1 = document.createElement("option");
-                option1.value = "En curso";
-                option1.text = "En curso";
-                const option2 = document.createElement("option");
-                option2.value = "Finalizada";
-                option2.text = "Finalizada";
-                select.appendChild(option1);
-                select.appendChild(option2);
-                select.value = rowData[rowData.length - 2]; // Cargar el valor guardado
-                stateCell.appendChild(select);
-
-                const readCell = newRow.insertCell();
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.checked = (rowData[rowData.length - 1] === "Sí"); // Cargar el estado guardado
-                readCell.appendChild(checkbox);
-
-                // Celdas de Acciones con botón de eliminar
-                const actionCell = newRow.insertCell();
-                const deleteButton = document.createElement("button");
-                deleteButton.innerText = "Eliminar";
-                deleteButton.onclick = function() {
-                    if (confirm("¿Estás seguro de que quieres eliminar esta fila?")) {
-                        table.deleteRow(newRow.rowIndex - 1); // Eliminar la fila
-                        saveData(); // Actualizar el almacenamiento
+                rowData.forEach((cellData, index) => {
+                    if (index < 4) {
+                        newRow.insertCell().innerText = cellData;
+                    } else if (index === 4) { // Estado
+                        const stateCell = newRow.insertCell();
+                        const select = document.createElement("select");
+                        const option1 = document.createElement("option");
+                        option1.value = "En curso";
+                        option1.text = "En curso";
+                        const option2 = document.createElement("option");
+                        option2.value = "Finalizada";
+                        option2.text = "Finalizada";
+                        select.appendChild(option1);
+                        select.appendChild(option2);
+                        select.value = cellData; // Cargar el valor guardado
+                        stateCell.appendChild(select);
+                    } else if (index === 5) { // Lectura
+                        const readCell = newRow.insertCell();
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.checked = (cellData === "Sí"); // Cargar el estado guardado
+                        readCell.appendChild(checkbox);
+                    } else if (index === 6) { // Acciones
+                        const actionCell = newRow.insertCell();
+                        const deleteButton = document.createElement("button");
+                        deleteButton.innerText = "Eliminar";
+                        deleteButton.onclick = function() {
+                            if (confirm("¿Estás seguro de que quieres eliminar esta fila?")) {
+                                table.deleteRow(newRow.rowIndex - 1); // Eliminar la fila
+                                saveData(); // Actualizar el almacenamiento
+                            }
+                        };
+                        actionCell.appendChild(deleteButton);
                     }
-                };
-                actionCell.appendChild(deleteButton);
+                });
             });
         }
 
