@@ -4,37 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi colección</title>
+    <!-- Importar la fuente rústica estilo cómic -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script> <!-- Archivo JavaScript externo con defer -->
 </head>
 <body>
 
+    <!-- Contenedor de botones de cambio de tema -->
+    <div class="theme-buttons">
+    <button onclick="changeTheme('')"></button>
+    <button onclick="changeTheme('theme-2')"></button>
+    <button onclick="changeTheme('theme-3')"></button>
+    <button onclick="changeTheme('theme-4')"></button>
+</div>
+
+    <!-- Imágenes laterales -->
+    <img src="https://w7.pngwing.com/pngs/913/85/png-transparent-poison-ivy-harley-quinn-batman-catwoman-harley-quinn-comics-cg-artwork-heroes-thumbnail.png" alt="Imagen Lateral Izquierda" class="side-image left">
+    <img src="https://static.wikia.nocookie.net/character-level/images/6/66/Catwoman.png/revision/latest/scale-to-width-down/400?cb=20190408154959" alt="Imagen Lateral Derecha" class="side-image right">
+
     <div class="header">
-        <h1>Título de la Página</h1>
+        <h1>Mi Colección</h1>
     </div>
 
     <div class="container">
         <div class="table-header">
-            <button aria-label="Añadir datos a la tabla">Añadir Datos</button> <!-- Sin onclick para usar addEventListener -->
+            <button id="addDataBtn" aria-label="Añadir datos a la tabla">Añadir Datos</button>
+            <input type="text" id="searchInput" placeholder="Buscar por título" aria-label="Buscar por título">
         </div>
         
-        <table id="dataTable">
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Tipo</th>
-                    <th>Formato</th>
-                    <th>Nota</th>
-                    <th>Precio</th>
-                    <th>Estado</th> 
-                    <th>Lectura</th> 
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Las filas se agregarán aquí mediante JavaScript -->
-            </tbody>
-        </table>
+        <!-- Contenedor desplazable para la tabla principal -->
+        <div class="table-scroll">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Tipo</th>
+                        <th>Formato</th>
+                        <th>Nota</th>
+                        <th>Precio</th>
+                        <th>Estado</th> 
+                        <th>Lectura</th> 
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas se agregarán aquí mediante JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para pedir datos uno a uno -->
+    <div id="dataModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalLabel">Introduce el dato requerido</h2>
+            <p id="modalMessage">Por favor, introduce el <span id="dataFieldLabel">dato</span> solicitado.</p>
+            <input type="text" id="modalInput" placeholder="Introduce el dato aquí...">
+            
+            <div class="modal-buttons">
+                <button id="closeModalBtn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para los números de una serie -->
+    <div id="seriesModal" class="modal">
+        <div class="modal-content">
+            <span id="closeSeriesModal" class="close">&times;</span>
+            <h2 id="seriesTitle">Título de la Serie</h2>
+            
+            <!-- Contenedor desplazable para la tabla de series -->
+            <div class="table-scroll">
+                <table id="seriesTable">
+                    <thead>
+                        <tr>
+                            <th>Número</th>
+                            <th>Nota</th>
+                            <th>Precio</th>
+                            <th>Lectura</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filas se agregarán mediante JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <button id="addNumberBtn">Añadir Número</button>
+        </div>
     </div>
 
 </body>
